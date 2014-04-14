@@ -1,0 +1,151 @@
+html,
+body {
+  /*height: 100%;*/
+  background-color: white;
+  font-family: "Lato";
+  font-style: normal;
+}
+
+/* Links */
+a{
+	
+}
+a:focus{
+	
+}
+a:hover {
+	text-decoration: none;
+}
+
+.cover-wrapper {
+  /*display: table;*/
+  width: 100%;
+/*  height: 100%; /* For at least Firefox *!/
+  min-height: 100%;
+  background: url(img/portada1.jpg) 50% no-repeat;*/
+  background-color: #0096d6;
+}
+.cover-wrapper-inner {
+	padding-top: 135px;
+	padding-bottom: 65px;
+	/*height: 100%;*/
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+  height: 51px;
+  width: 246px;
+}
+.marker{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 25px;
+	margin-bottom: 25px;
+	width: 20px;
+	height: 2px;
+	background-color: white;
+}
+
+.elevator-speech{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	margin-bottom: 50px;
+}
+
+.elevator-speech p{
+	color: white;
+	font-size: 16px;
+	font-weight: 700;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+p span{
+	text-transform: none;
+}
+
+.down{
+	/*position: absolute;
+	left: auto;
+	right: auto;
+	bottom: 0px;
+	height: 100px;
+	width: 100%;
+	z-index: 300;*/
+	/*display: block;*/
+}
+
+.down-center{
+	/*text-align: center;*/
+	color: white;
+	font-size: 32px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 86px;
+	height: 86px;
+	border: 2px solid white;
+	border-radius: 100px;
+	-webkit-border-radius: 100px;
+	-moz-border-radius: 100px;
+	-ms-border-radius: 100px;
+	-o-border-radius: 100px;
+}
+
+.down-center a{
+    font-size: 15px;
+    font-weight: 700;
+    text-align: center;
+    position: relative;
+    top: 30px;
+    left: 5px;
+    color: white;
+}
+
+
+/* footer */
+footer{
+	padding-top: 50px;
+	/*background: #ededed;*/
+}
+
+.logo-footer{
+	margin-bottom: 65px;
+}
+
+address {
+	font-size: 14px;
+	font-weight: 300;
+}
+
+address a{
+	color: #0096d6;
+}
+
+address strong {
+	font-weight: 700;
+	font-size: 16px;
+	color: #0096d6;
+	margin-bottom: 10px;
+	display: inline-block;
+}
+
+address i {
+	color: silver;
+}
+
+address i:hover {
+	color: #94c11f;
+}
+
+
+.rights-footer{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 12px;
+	border-top: 1px solid gray;
+}
+
+.rights-footer p {
+	margin-top: 10px;
+}

@@ -1,0 +1,16 @@
+[Sun Apr 06 23:46:23 2014] [error] [client 82.132.232.222] File does not exist: /var/www/emakers/js/bootstrap.js
+[Sun Apr 06 23:46:24 2014] [error] [client 82.132.232.222] File does not exist: /var/www/emakers/js/bootstrap.js, referer: http://www.emakers.co.uk/en/tracking/order/017001677915
+[Mon Apr 07 08:59:36 2014] [error] [client 86.6.111.210] File does not exist: /var/www/emakers/js/bootstrap.js, referer: http://www.emakers.co.uk/en/tracking/order/017001692298
+[Mon Apr 07 09:30:23 2014] [error] [client 66.249.73.98] File does not exist: /var/www/emakers/robots.txt
+[Mon Apr 07 11:28:45 2014] [error] [client 66.249.73.228] File does not exist: /var/www/emakers/robots.txt
+[Wed Apr 09 13:36:56 2014] [error] [client 90.212.243.100] File does not exist: /var/www/emakers/css/tracking_smartphone.css, referer: http://www.emakers.co.uk/en/tracking/change_success/2014-04-09/2
+[Thu Apr 10 08:21:24 2014] [error] [client 66.249.68.136] File does not exist: /var/www/emakers/robots.txt
+[Thu Apr 10 15:35:10 2014] [error] [client 66.249.67.75] File does not exist: /var/www/emakers/robots.txt
+[Thu Apr 10 15:35:11 2014] [error] [client 66.249.67.200] File does not exist: /var/www/emakers/robots.txt
+[Thu Apr 10 19:41:37 2014] [error] [client 213.248.211.171] File does not exist: /var/www/emakers/robots.txt
+[Thu Apr 10 20:30:36 2014] [error] [client 117.78.13.17] File does not exist: /var/www/emakers/robots.txt
+[Sat Apr 12 03:32:08 2014] [error] [client 66.249.79.136] File does not exist: /var/www/emakers/robots.txt
+[Sat Apr 12 06:37:59 2014] [error] [client 180.210.228.84] File does not exist: /var/www/emakers/robots.txt
+[Sat Apr 12 11:43:38 2014] [error] [client 90.212.243.100] File does not exist: /var/www/emakers/css/tracking_smartphone.css, referer: http://www.emakers.co.uk/en/tracking/change_success/2014-04-09/2
+[Sat Apr 12 16:23:04 2014] [error] [client 66.249.65.168] File does not exist: /var/www/emakers/robots.txt
+[Sun Apr 13 23:22:58 2014] [error] [client 87.241.28.178] File does not exist: /var/www/emakers/css/tracking_smartphone.css, referer: http://www.emakers.co.uk/en/tracking/change_success/2014-04-09/2

@@ -1,0 +1,162 @@
+/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=Rokkitt:400,700);
+
+
+
+body{
+	background-image:url(../images/home_bg.jpg);
+	background-repeat:repeat-x;	
+	margin:0 0 0 0;
+	background-color:#91be43;
+	
+}
+body A{
+	text-decoration:none;	
+}
+body A:HOVER{
+	text-decoration:underline;	
+}
+
+
+#container{
+	width:962px;
+	margin:1px auto;
+	height: 940px;	
+}
+
+#header{
+	width:962px;
+	height:264px;
+	float:left;
+	
+}
+
+#logo_top{
+	width:962px;
+	height:102px;
+	float:left;
+	
+}
+
+#container_text{
+	margin:20px 0 0 0;
+	background-color:#fff;
+	font-family: 'Rokkitt', serif;
+	height:531px;
+	float:left;
+	width: 100%;	
+}
+
+#left_column{
+	 border-right: 1px solid #CCCCCC;
+    float: left;
+    height: 512px;
+    margin: 20px 0 0;
+    padding: 0 40px 0 7px;
+    width: 162px;
+}
+
+#left_column #banner{
+	margin-left:34px;
+	margin-bottom:35px;
+}
+
+#left_column #logo{
+	float: left;
+    height: 34px;
+    margin: 0 0 0 20px;
+    text-align: center;
+    width: 155px;
+}
+
+#left_column #text_tef{
+	color: #313f48;
+    float: left;
+    font-size: 17px;
+    margin:0 0 45px 0;
+    padding: 0 0 0 20px;
+    text-align: center;
+    width: 150px;
+	
+}
+
+#left_column #icons_ss{
+	float: left;
+    margin: -40px 0 0 10px;
+    text-align: center;
+    width: 170px;
+	
+}
+#left_column #icons_ss P{
+	color: #313F48;
+    display: block;
+    font-size: 13px;
+    margin: 14px 0 15px -3px
+	
+}
+#left_column #icons_ss .icons{
+	float: left;
+    margin: 0 10px;
+    width: 25px;	
+	
+}
+#primero{
+	margin-left: 20px !important;	
+}
+
+#center1,
+#center1_1{
+	color: #069EDC;
+    float: left;
+    font-family: Verdana,Geneva,sans-serif;
+    font-size: 12px;
+    height: 222px;
+    margin: 0 32px 0 50px;
+    width: 315px;
+}
+
+#center2,
+#center2_2{
+	color:#94c145;
+	float:left;
+	width:250px;
+	height:222px;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:12px;
+}
+#center2_2,
+#center1_1{
+	height: 150px;
+    margin: 15px 0 0 50px;	
+}
+
+
+H2{
+	font-size:27px;
+	font-family: 'Rokkitt', serif;	
+	line-height:25px;
+	font-weight:normal;
+}
+
+#center1 A,
+#center2 A,
+#center2_2 A,
+#center1_1 A
+{
+	color:#000;
+	font-size:11px;	
+	
+}
+
+
+#center_icons{
+	float: left;
+    margin: 15px 0 5px 80px;
+    width: 55%;	
+}
+
+#center_icons .center_icon{
+	float:left;
+	width:130px;	
+}
+
