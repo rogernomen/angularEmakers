@@ -75,8 +75,47 @@ if(strpos($_SERVER['HTTP_HOST'],'emakers-dev-public-web.es') !== false){
 	
 }else if(strpos($_SERVER['HTTP_HOST'],'emakers-dev-public-web') !== false){
 
-	header( 'Location: http://emakers-dev-public-web.es' ) ;
+	header( 'Location: http://emakers-dev-public-web.es' );
+
+}else if(strpos($_SERVER['HTTP_HOST'],'local.emakers.es') !== false){
+
+	$config['base_url']		= 'http://local.emakers.es/';
+	$config['ws_base_url'] 	= 'http://local.argos-web/ws/server.php?wsdl';
+	$config['ws_login']		= 'admin@gogentle.es';
+	$config['ws_passw']		= 'ciclocargobarna';
+	/*
+	|--------------------------------------------------------------------------
+	| Default Language
+	|--------------------------------------------------------------------------
+	|
+	| This determines which set of language files should be used. Make sure
+	| there is an available translation if you intend to use something other
+	| than english.
+	|
+	*/
+	$config['language']	= 'spanish';
+	date_default_timezone_set('Europe/Madrid');
+
+}else if(strpos($_SERVER['HTTP_HOST'],'local.emakers.co.uk') !== false){
+
+	$config['base_url']		= 'http://local.emakers.co.uk/';
+	$config['ws_base_url'] 	= 'http://local.argos-web/ws/server.php?wsdl';
+	$config['ws_login']		= 'admin@gogentle.es';
+	$config['ws_passw']		= 'ciclocargobarna';
 	
+	/*
+	|--------------------------------------------------------------------------
+	| Default Language
+	|--------------------------------------------------------------------------
+	|
+	| This determines which set of language files should be used. Make sure
+	| there is an available translation if you intend to use something other
+	| than english.
+	|
+	*/
+	$config['language']	= 'english';
+	date_default_timezone_set('Europe/London');
+		
 }else if(strpos($_SERVER['HTTP_HOST'],'emakers.es') !== false){
 
 	//si no contiene www redirigimos
