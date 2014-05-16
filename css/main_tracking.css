@@ -185,3 +185,13 @@ address i:hover {
 	margin-top: 15px;
 }
 .h4mapscript{ margin-top: 20px; }
+.hideshape{ display: none; }
+.showshape{ display: block; }
+.hidevisibility{ visibility: hidden; }
+.showvisibility{ visibility: visible; }
+label.has-error{ color:#A94442; }
+label.has-error a{ color:#A94442; }
+.centertext{ text-align: center; }
+.spinnerloading{ margin-top: 30px !important; }
+.loadingcancelshape{ margin-top: 0px !important; }
+.no_mb{ margin-bottom: 0px !important; }

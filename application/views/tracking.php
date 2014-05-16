@@ -26,6 +26,12 @@
 	<link href="<?=base_url();?>css/fontello.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?=base_url();?>css/bootstrap-datetimepicker.min.css" />
 	
+	<script>
+		var base_url = '<?= $this->config->item('base_url'); ?>';
+		var lang_site = '<?= $this->lang->lang(); ?>';
+		var requestInfo;
+	</script>
+	
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -35,22 +41,59 @@
 </head>
 <body>
 
+<!-- Modal loading -->
+<div class="modal fade" id="Error_loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<div class="alert centertext no_mb">
+      		<p>Estamos consultando los datos de su pedido. Por favor, manténgase a la espera.</p>
+      		<p class="spinnerloading"><img src="<?=base_url();?>img/spinner.gif" /></p>
+      	</div>
+      </div>
+      <div class="modal-footer centertext loadingcancelshape">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:abortRequest();">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Modal Error -->
 <div class="modal fade" id="Error" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Hemos encontrado algún error</h4>
+        <h4 class="modal-title" id="myModalLabel">Los datos introducidos no son válidos</h4>
       </div>
       <div class="modal-body">
       	<div class="alert alert-danger">
-      		<h3>Datos erróneos</h3>
+      		<p>Los datos introducidos en el formulario no son correctos. Por favor, asegúrese de introducir todos los campos y aceptar las condiciones de uso del sistema de tracking.</p>
       	</div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal no se encuentra el pedido -->
+<div class="modal fade" id="Error_pedido" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">No existe ningún pedido con éstos datos</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="alert alert-danger">
+      		<p>Hola</p>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
@@ -100,22 +143,13 @@
 		
 			<div class="navbar-scrollspy">
 	    		<ul class="nav navbar-nav">
-<!--  		              <li><a href="<?=base_url().$this->lang->lang();?>/#emakers"><?=lang('ew_navbar_item1');?></a></li>
+		    	  <li><a href="<?=base_url().$this->lang->lang();?>/#emakers"><?=lang('ew_navbar_item1');?></a></li>
 	              <li><a href="<?=base_url().$this->lang->lang();?>/#servicios"><?=lang('ew_navbar_item2');?></a></li>
-	              <li><a href="<?=base_url().$this->lang->lang();?>/#interaccion"><?=lang('ew_navbar_item3');?></a></li>-->
-	              <li><a href="/#emakers">Emakers</a></li>
-	              <li><a href="/#servicios">Servicios</a></li>
-	              <li><a href="/#interaccion">Interración</a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#interaccion"><?=lang('ew_navbar_item3');?></a></li>
 	            </ul>
             </div>
 
 			<ul class="nav navbar-nav navbar-right">
-<!--  		      		<a href="<?=base_url().$this->lang->lang();?>/tracking" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn"><?=lang('ew_navbar_item4');?> <i class="icon-squares"></i></button></a>
-	      		<a href="#" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-active"><?=lang('ew_navbar_item5');?> <i class="icon-squares"></i></button></a>
-	      		<a href="http://www.linkedin.com/company/emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-linkedin"><i class="icon-linkedin-1"></i></button></a>
-	      		<a href="https://twitter.com/emakers_es" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-twitter"><i class="icon-twitter-2"></i></button></a>
-	      		<a href="https://www.facebook.com/Emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-facebook"><i class="icon-facebook"></i></button></a>-->
-	      		<!--  -->
 	      		<a href="<?=base_url().$this->lang->lang();?>/tracking" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-active">Tracking <i class="icon-squares"></i></button></a>
 	      		<a href="#" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn">Contacta <i class="icon-squares"></i></button></a>
 	      		<a href="http://www.linkedin.com/company/emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-linkedin"><i class="icon-linkedin-1"></i></button></a>
@@ -129,28 +163,31 @@
 <div class="container margins">
     <div class="row">
     	<div class="col-sm-12">
-    		<h1>Sistema de seguimientos de envíos</h1>
+    		<h1>Sistema de seguimiento de envíos</h1>
     		<h3>Quiero conocer el estado actual de mi pedido</h3>
-    		<p>Inserte el estado de su pedido para conocer el estado actual de su pedido...</p>
+    		<p>Inserte el código de su pedido para ver el estado actual de su envío y si lo desea, puede modificar el día y la franja de recepción. No olvide que el día de la entrega y dentro de la franja que haya escogido, recibirá un SMS (en el caso de que haya facilitado un número de teléfono móvil) notificándole la ventana horaria prevista de entrega de 60 minutos.</p>
     	</div>
     	<div class="col-sm-6">
         	<form role="form">
-        	  <div class="form-group">
-        	    <label for="exampleInputEmail1">Número de pedido</label>
-        	    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Número de pedido (Campo obligatorio)">
+        	  <div class="form-group" id="num_pedido_div">
+        	    <label for="num_pedido">Número de pedido</label>
+        	    <input type="text" class="form-control" id="num_pedido" placeholder="Número de pedido">
         	  </div>
-        	  <div class="form-group">
-        	    <label for="exampleInputPassword1">Email o número de teléfono</label>
-        	    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Email o número de teléfono (Campo obligatorio)">
+        	  <div class="form-group" id="mail_or_telf_div">
+        	    <label for="mail_or_telf">Email o número de teléfono</label>
+        	    <input type="text" class="form-control" id="mail_or_telf" placeholder="Email o número de teléfono">
         	  </div>
         	  <div class="checkbox">
-        	      <label>
-        	        <input type="checkbox"> Acepto las <a href="#" data-toggle="modal" data-target="#condiciones">condiciones de uso</a>
+        	      <label id="lbl_condiciones">
+        	        <input type="checkbox" id="checkCondiciones"> Acepto las <a href="#" data-toggle="modal" data-target="#condiciones">condiciones de uso</a>
         	      </label>
         	  </div>
         	</form>
-        	<div class="pull-right"><button data-toggle="modal" data-target="#Error" class="btn btn-success">Consultar</button></div>
+        	<div class="pull-right"><button data-toggle="modal" class="btn btn-success" onclick="javascript:sendConsulta();">Consultar</button></div>
+        	<button data-toggle="modal" data-target="#Error" class="btn hideshape" id="triggerErrorShape">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#Error_loading" class="btn hideshape" id="triggerErrorLoading">&nbsp;</button>
         </div>
+        <!-- 
         <div class="col-sm-6">
         	<div class="form-group has-success">
         	  <label class="control-label" for="inputSuccess1">Input with success</label>
@@ -165,16 +202,11 @@
         	  <input type="text" class="form-control" id="inputError1">
         	</div>
         </div>
+        -->
     </div>
-    <div class="row">
+    <div class="row" style="display:block;">
     	<div class="col-sm-6">
-    		
-<!--    		<div class="alert alert-danger">
-    			<h3>Datos erróneos</h3>
-    		</div>-->
 	    	<div class="alert alert-success">
-	    	  <!--<a href="#" class="alert-link">...</a>-->
-	    	
 	    		<h1>Número de pedido</h1>
 	    		<h3>Datos del pedido</h3>
 	    		<p>Abonado: EMAKERS</p>
@@ -182,7 +214,6 @@
 	    		<p>Estado del pedido: EN ALMACÉN DESTINO</p>
 	    		<p>Entrega prevista: 02/02/2014</p>
 	    		<p>Franja prevista: MAÑANA (9:00 - 14:00)</p>
-	    		<!--<button type="button" class="btn btn-primary">Cambiar día / Franja de entrega</button>-->
 	    		<h3>Datos del destinatario</h3>
 	    		<p>David Ninyoles Asin</p>
 	    		<address>Vilamur 15-19, 08014 Barcelona</address>
@@ -224,9 +255,6 @@
     		<button class="btn btn-success" data-toggle="modal" data-target="#confirmacion">Solicitar cambio</button>
     	</div>
     </div>
-<!--    <div class="row">
-    	
-    </div>-->
 </div>
 
 
@@ -236,7 +264,6 @@
 		<div class="row">
 			<div class="col-xs-12 col-md-12">
 				<div class="logo-footer">
-					<!--<img src="<?=base_url();?>img/emakers_logo.png" width="193" alt="Logo Emakers"/>-->
 					<img src="<?=base_url();?>img/emakers_logo.png" width="193" alt="Logo Emakers"/>
 				</div>
 			</div>
@@ -253,30 +280,20 @@
 				  (+34) 93 419 92 09
 				</address>
 			</div>
-			<!--<div class="clearfix visible-xs"></div>-->
+			
 			<div class="col-md-5 col-sm-5 col-xs-12">
 				<address>
-<!--					<strong><?=lang('ew_footer_resumen_title');?></strong><br />
+					<strong><?=lang('ew_footer_resumen_title');?></strong><br />
 					<a href="<?=base_url().$this->lang->lang()?>/#emakers"><?=lang('ew_footer_resumen_emakers');?></a><br />
 					<a href="<?=base_url().$this->lang->lang()?>/#servicios"><?=lang('ew_footer_resumen_servicios');?></a><br />
 					<a href="<?=base_url().$this->lang->lang()?>/#interaccion"><?=lang('ew_footer_resumen_interaccion');?></a><br />
 					<a href="<?=base_url().$this->lang->lang()?>/#entregas"><?=lang('ew_footer_resumen_entregas');?></a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#ademas"><?=lang('ew_footer_resumen_ademas');?></a><br />-->
-					<strong>Resumen</strong><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#emakers">- Sus clientes son nuestros clientes.</a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#servicios">- Entregamos hasta las diez de la noche.</a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#interaccion">- Interactuamos con su cliente ¡DE VERDAD!</a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#entregas">- Informamos de la hora de entrega, en un margen de &plusmn;30 minutos</a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#ademas">- Y además, ¡somos sostenibles!</a><br />
+					<a href="<?=base_url().$this->lang->lang()?>/#ademas"><?=lang('ew_footer_resumen_ademas');?></a><br />
 				</address>
 			</div>
 			<div class="col-md-3 col-sm-3 col-xs-12 col-sm-offset-1 col-md-offset-1">
 				<address>
-<!--					<strong><?=lang('ew_footer_siguenos');?></strong><br />
-					<a href="http://www.linkedin.com/company/emakers" target="_blank"><i class="icon-linkedin-1"></i></a>
-					<a href="https://twitter.com/emakers_es" target="_blank"><i class="icon-twitter-2"></i></a>
-					<a href="https://www.facebook.com/Emakers" target="_blank"><i class="icon-facebook"></i></a>-->
-					<strong>Síguenos en</strong><br />
+					<strong><?=lang('ew_footer_siguenos');?></strong><br />
 					<a href="http://www.linkedin.com/company/emakers" target="_blank"><i class="icon-linkedin-1"></i></a>
 					<a href="https://twitter.com/emakers_es" target="_blank"><i class="icon-twitter-2"></i></a>
 					<a href="https://www.facebook.com/Emakers" target="_blank"><i class="icon-facebook"></i></a>
@@ -286,9 +303,11 @@
 		<div class="row">
    			<div class="col-md-12 col-sm-12 col-xs-12">
    				<div class="rights-footer">
-<!--	   				<p class="pull-right"><?=anchor($this->lang->switch_uri(($this->lang->lang() == 'es') ? 'en' : 'es'),lang('ew_footer_lenguage'));?></p>
-		        	<p><?=lang('ew_footer_copy');?> <a href="#" data-toggle="modal" data-target="#politica"><?=lang('ew_footer_politica');?></a> y <a href="#" data-toggle="modal" data-target="#condiciones"><?=lang('ew_footer_condiciones');?></a></p>-->
-		        	<p>&copy; 2014 EMAKERS. Todos los derechos reservados. <!--<a href="#" data-toggle="modal" data-target="#politica">Politica de privacidad</a> y--> <a href="#" data-toggle="modal" data-target="#condiciones">Condiciones de uso</a></p>
+	   				<p class="pull-right"><?=anchor($this->lang->switch_uri(($this->lang->lang() == 'es') ? 'en' : 'es'),lang('ew_footer_lenguage'));?></p>
+		        	<p>
+		        		<?=lang('ew_footer_copy');?>
+		        		<a href="#" data-toggle="modal" data-target="#condiciones"><?=lang('ew_footer_condiciones');?></a>
+		        	</p>
 	        	</div>
         	</div>
     	</div>
