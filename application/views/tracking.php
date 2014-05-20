@@ -41,7 +41,7 @@
 </head>
 <body>
 
-<!-- Modal loading -->
+<!-- Modal loading busqueda -->
 <div class="modal fade" id="Error_loading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -53,6 +53,20 @@
       </div>
       <div class="modal-footer centertext loadingcancelshape">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:abortRequest();">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal loading solicitud de cambios -->
+<div class="modal fade" id="Error_loading_cambios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<div class="alert centertext no_mb">
+      		<p>Estamos realizando la solicitud de los cambios que ha realizado.<br/>Por favor, manténgase a la espera.</p>
+      		<p class="spinnerloading"><img src="<?=base_url();?>img/spinner.gif" /></p>
+      	</div>
       </div>
     </div>
   </div>
@@ -80,16 +94,16 @@
 
 
 <!-- Modal no se encuentra el pedido -->
-<div class="modal fade" id="Error_pedido" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="Error_busqueda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">No existe ningún pedido con éstos datos</h4>
+        <h4 class="modal-title" id="myModalLabel">Error en la búsqueda de datos</h4>
       </div>
       <div class="modal-body">
       	<div class="alert alert-danger">
-      		<p>Hola</p>
+      		<p>No localizamos ningún pedido con los datos introducidos.<br/>Por favor, asegúrese se introducir el número de pedido completo así como el número de teléfono o correo electrónico asociado al pedido.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
       	</div>
       </div>
       <div class="modal-footer">
@@ -99,64 +113,135 @@
   </div>
 </div>
 
-<!-- Modal Confirmación de cambios a realizar -->
-<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal KO en la solicitud de cambios -->
+<div class="modal fade" id="Error_solicitud" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Ya ha realizado los cambios en su pedido</h4>
+        <h4 class="modal-title" id="myModalLabel">Error inesperado en la solicitud de datos</h4>
       </div>
       <div class="modal-body">
-      	<h1>Número de pedido</h1>
-      	<h3>Datos del pedido</h3>
-      	<p>Abonado: EMAKERS</p>
-      	<p>Datos en sistema desde: 29/01/2014</p>
-      	<p>Estado del pedido: EN ALMACÉN DESTINO</p>
-      	<p>Entrega prevista: 02/02/2014</p>
-      	<p>Franja prevista: MAÑANA (9:00 - 14:00)</p>
-      	<h3>Datos del destinatario</h3>
-      	<p>David Ninyoles Asin</p>
-      	<address>Vilamur 15-19, 08014 Barcelona</address>
+      	<div class="alert alert-danger">
+      		<p>Hemos detectado un error inesperado durante la solicitud de los cambios en el pedido con número <font id="error_num_pedido"></font>.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+      	</div>
       </div>
       <div class="modal-footer">
-        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-warning">Solicitar nuevos cambios</button>
-        <button type="button" class="btn btn-success">Los cambios són correctos</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Modal no hay dia / franja correctos en la solicitud -->
+<div class="modal fade" id="Error_fecha_franja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Error en los datos solicitados</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="alert alert-danger">
+      		<p>Hemos detectado un error en los datos solicitados.<br/>Por favor, asegúrese que la fecha y franja solicitadas sean correctas.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+      	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmación de cambios pendientes -->
+<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Hay cambios en su pedido, están pendientes de ser aprobados.</h4>
+      </div>
+      <div class="modal-body">
+      	<h1>Pedido num. <font id="cp_num_pedido"></font></h1>
+		<h3>Datos del pedido</h3>
+		<p>Abonado: <font id="cp_nombre_abonado"></font></p>
+		<p>Datos en sistema desde: <font id="cp_fecha_alta"></font></p>
+		<p id="cont_cp_fecha">Fecha de entrega: <font id="cp_fecha_entrega_cliente"></font></p>
+		<p id="cont_cp_franja">Franja de entrega: <font id="cp_franja"></font></p>
+		<h3>Datos del destinatario</h3>
+		<p id="cp_nombre_destinatario"></p>
+		<address id="cp_direccion_entrega"></address>
+		<p>Teléfono: <font id="cp_telefono1"></font></p>
+		<p>Teléfono alternativo: <font id="cp_telefono2"></font></p>
+		<p>Email: <font id="cp_email"></font></p>
+		<p>Comentarios: <font id="cp_comentarios_cliente"></font></p>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+        <button type="button" class="btn btn-warning" onclick="javascript:solicitarNuevosCambios();">Solicitar nuevos cambios</button>
+        <button type="button" class="btn btn-success" onclick="javascript:cambiosCorrectos();">Los cambios són correctos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Confirmación de cambios realizados -->
+<div class="modal fade" id="confirmacion_realizada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">La solicitud de cambios se ha realizado correctamente.</h4>
+      </div>
+      <div class="modal-body">
+      	<h1>Pedido num. <font id="cn_num_pedido"></font></h1>
+		<h3>Datos del pedido</h3>
+		<p>Abonado: <font id="cn_nombre_abonado"></font></p>
+		<p>Datos en sistema desde: <font id="cn_fecha_alta"></font></p>
+		<p id="cont_cn_fecha">Fecha de entrega: <font id="cn_fecha_entrega_cliente"></font></p>
+		<p id="cont_cn_franja">Franja de entrega: <font id="cn_franja"></font></p>
+		<h3>Datos del destinatario</h3>
+		<p id="cn_nombre_destinatario"></p>
+		<address id="cn_direccion_entrega"></address>
+		<p>Teléfono: <font id="cn_telefono1"></font></p>
+		<p>Teléfono alternativo: <font id="cn_telefono2"></font></p>
+		<p>Email: <font id="cn_email"></font></p>
+		<p>Comentarios: <font id="cn_comentarios_cliente"></font></p>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR - HEADER -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
 	  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		    	<span class="sr-only">Toggle navigation</span>
-		    	<span class="icon-bar"></span>
-		    	<span class="icon-bar"></span>
-		    	<span class="icon-bar"></span>
+	    	<span class="sr-only">Toggle navigation</span>
+	    	<span class="icon-bar"></span>
+	    	<span class="icon-bar"></span>
+	    	<span class="icon-bar"></span>
 	  		</button>
 	  		<!--<a class="navbar-brand" href="#">Project name</a>-->
 		</div>
-		<div class="navbar-collapse collapse ">
-		
-			<div class="navbar-scrollspy">
+    	<div class="navbar-collapse collapse ">
+    		<div class="navbar-scrollspy">
 	    		<ul class="nav navbar-nav">
-		    	  <li><a href="<?=base_url().$this->lang->lang();?>/#emakers"><?=lang('ew_navbar_item1');?></a></li>
-	              <li><a href="<?=base_url().$this->lang->lang();?>/#servicios"><?=lang('ew_navbar_item2');?></a></li>
-	              <li><a href="<?=base_url().$this->lang->lang();?>/#interaccion"><?=lang('ew_navbar_item3');?></a></li>
+	              <li><a href="#emakers"><?=lang('ew_navbar_item1');?></a></li>
+	              <li><a href="#servicios"><?=lang('ew_navbar_item2');?></a></li>
+	              <li><a href="#interaccion"><?=lang('ew_navbar_item3');?></a></li>
 	            </ul>
             </div>
-
-			<ul class="nav navbar-nav navbar-right">
-	      		<a href="<?=base_url().$this->lang->lang();?>/tracking" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-active">Tracking <i class="icon-squares"></i></button></a>
-	      		<a href="#" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn">Contacta <i class="icon-squares"></i></button></a>
+    		<ul class="nav navbar-nav navbar-right">
+	      		<a href="<?=base_url().$this->lang->lang();?>/tracking" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-active"><?=lang('ew_navbar_item4');?> <i class="icon-squares"></i></button></a>
+	      		<a href="<?=base_url().$this->lang->lang();?>/contacta" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn"><?=lang('ew_navbar_item5');?> <i class="icon-squares"></i></button></a>
 	      		<a href="http://www.linkedin.com/company/emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-linkedin"><i class="icon-linkedin-1"></i></button></a>
 	      		<a href="https://twitter.com/emakers_es" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-twitter"><i class="icon-twitter-2"></i></button></a>
 	      		<a href="https://www.facebook.com/Emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-facebook"><i class="icon-facebook"></i></button></a>
 	      	</ul>
-		</div>
+    	</div>
 	</div>
 </nav>
   	
@@ -185,7 +270,13 @@
         	</form>
         	<div class="pull-right"><button data-toggle="modal" class="btn btn-success" onclick="javascript:sendConsulta();">Consultar</button></div>
         	<button data-toggle="modal" data-target="#Error" class="btn hideshape" id="triggerErrorShape">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#Error_busqueda" class="btn hideshape" id="triggerError_busquedaShape">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#Error_solicitud" class="btn hideshape" id="triggerError_solicitudShape">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#Error_fecha_franja" class="btn hideshape" id="triggerError_fecha_franjaShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_loading" class="btn hideshape" id="triggerErrorLoading">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#Error_loading_cambios" class="btn hideshape" id="triggerError_cambiosLoading">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#confirmacion" class="btn hideshape" id="triggerConfirmacionShape">&nbsp;</button>
+        	<button data-toggle="modal" data-target="#confirmacion_realizada" class="btn hideshape" id="triggerConfirmacion_realizadaShape">&nbsp;</button>
         </div>
         <!-- 
         <div class="col-sm-6">
@@ -204,55 +295,58 @@
         </div>
         -->
     </div>
-    <div class="row" style="display:block;">
+    <div class="row hideshape" id="generalShapeContent">
     	<div class="col-sm-6">
 	    	<div class="alert alert-success">
-	    		<h1>Número de pedido</h1>
+	    		<h1>Pedido num. <font id="tk_num_pedido"></font></h1>
 	    		<h3>Datos del pedido</h3>
-	    		<p>Abonado: EMAKERS</p>
-	    		<p>Datos en sistema desde: 29/01/2014</p>
-	    		<p>Estado del pedido: EN ALMACÉN DESTINO</p>
-	    		<p>Entrega prevista: 02/02/2014</p>
-	    		<p>Franja prevista: MAÑANA (9:00 - 14:00)</p>
+	    		<p>Abonado: <font id="tk_nombre_abonado"></font></p>
+	    		<p>Datos en sistema desde: <font id="tk_fecha_alta"></font></p>
+	    		<p>Estado del pedido: <font id="tk_estado"></font></p>
+	    		<p id="cont_fecha">Fecha de entrega: <font id="tk_fecha_entrega_cliente"></font></p>
+	    		<p id="cont_franja">Franja de entrega: <font id="tk_franja"></font></p>
 	    		<h3>Datos del destinatario</h3>
-	    		<p>David Ninyoles Asin</p>
-	    		<address>Vilamur 15-19, 08014 Barcelona</address>
+	    		<p id="tk_nombre_destinatario"></p>
+	    		<address id="tk_direccion_entrega"></address>
 	    	</div>
     	</div>
-    	<div class="col-sm-6">
+    	<div class="col-sm-6" id="cambiosShapeContent">
+    		<p class="mt20">Si desea aplazar la entrega o programar un nuevo intento, rellene el siguiente formulario con sus preferencias.</p>
     		<form role="form">
     			<h3>Día de entrega:</h3>
     			<div class="form-group">
     				<div class='input-group date' id='diadeentrega'>
-    					<input type='text' class="form-control" />
+    					<input type='text' class="form-control" id="input_dia_entrega" />
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     				</div>
     				<h3>Franja deseada:</h3>
-    				<select class="form-control">
-    				  <option>Mañana</option>
-    				  <option>Tarde</option>
-    				  <option>Noche</option>
+    				<select class="form-control" id="input_franja_entrega">
     				</select>
     				<h3>Otros Datos:</h3>
     			</div>
     			<div class="form-group">
-    			  <label for="exampleInputEmail1">Teléfono:</label>
-    			  <input type="tel" class="form-control" id="exampleInputEmail1" placeholder="Número de teléfono">
+    			  <label for="input_telefono1">Teléfono:</label>
+    			  <input type="tel" class="form-control" id="input_telefono1" name="input_telefono1" placeholder="Número de teléfono">
     			</div>
     			<div class="form-group">
-    			  <label for="exampleInputEmail1">Teléfono alternativo:</label>
-    			  <input type="tel" class="form-control" id="exampleInputEmail1" placeholder="Número de teléfono alternativo">
+    			  <label for="input_telefono2">Teléfono alternativo:</label>
+    			  <input type="tel" class="form-control" id="input_telefono2" name="input_telefono2" placeholder="Número de teléfono alternativo">
     			</div>
     			<div class="form-group">
-    			  <label for="exampleInputPassword1">Email:</label>
-    			  <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Dirección de correo">
+    			  <label for="input_email">Email:</label>
+    			  <input type="email" class="form-control" id="input_email" name="input_email" placeholder="Dirección de correo">
     			</div>
     			<div class="form-group">
-    				<label for="exampleInputPassword1">Comentarios:</label>	
-    	    		<textarea class="form-control" rows="3" placeholder="Añade tu comentario aquí"></textarea>
+    				<label for="input_comentarios_cliente">Comentarios:</label>	
+    	    		<textarea id="input_comentarios_cliente" name="input_comentarios_cliente" class="form-control" rows="3" placeholder="Añade tu comentario aquí"></textarea>
     			</div>
+    			<input type="hidden" name="conf_franja" id="conf_franja" value="" />
+    			<input type="hidden" name="id2_pedido" id="id2_pedido" value="" />
+    			<input type="hidden" name="tabla_origen" id="tabla_origen" value="" />
+    			<input type="hidden" name="num_pedido" id="num_pedido" value="" />
+    			<input type="hidden" name="cf_agencia" id="cf_agencia" value="" />
     		</form>
-    		<button class="btn btn-success" data-toggle="modal" data-target="#confirmacion">Solicitar cambio</button>
+    		<button data-toggle="modal" class="btn btn-success" onclick="javascript:sendFranjaChange();">Solicitar cambios</button>
     	</div>
     </div>
 </div>
