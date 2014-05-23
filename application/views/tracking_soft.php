@@ -62,9 +62,9 @@
     	<div class="navbar-collapse collapse ">
     		<div class="navbar-scrollspy">
 	    		<ul class="nav navbar-nav">
-	              <li><a href="#emakers"><?=lang('ew_navbar_item1');?></a></li>
-	              <li><a href="#servicios"><?=lang('ew_navbar_item2');?></a></li>
-	              <li><a href="#interaccion"><?=lang('ew_navbar_item3');?></a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#emakers"><?=lang('ew_navbar_item1');?></a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#servicios"><?=lang('ew_navbar_item2');?></a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#interaccion"><?=lang('ew_navbar_item3');?></a></li>
 	            </ul>
             </div>
     		<ul class="nav navbar-nav navbar-right">
@@ -81,9 +81,9 @@
 <div class="container margins">
     <div class="row">
     	<div class="col-sm-12">
-    		<h1>Sistema de seguimiento de envíos</h1>
-    		<h3>Quiero conocer el estado actual de mi pedido</h3>
-    		<p>A continuación puede comprobar el estado actual de su pedido.</p>
+    		<h1><?=lang('ew_trs_title');?></h1>
+    		<h3><?=lang('ew_trs_slogan');?></h3>
+    		<p><?=lang('ew_trs_description');?></p>
     	</div>
     </div>
     <div class="row" id="generalShapeContent">
@@ -91,80 +91,80 @@
     		<?php if(isset($status) && $status == 'OK'){ ?>
 	    	<div class="alert alert-success">
 	    		<h2><?=$info['data']['num_pedido']?></h2>
-	    		<h3>Datos del pedido</h3>
-	    		<p>Datos en sistema desde: <?=$info['data']['fecha_alta']?></p>
+	    		<h3><?=lang('ew_trs_datos_pedido');?></h3>
+	    		<p><?=lang('ew_trs_datos_alta');?><?=$info['data']['fecha_alta']?></p>
 	    		<?php 
 	    			//Mostramos estado y fecha segun la tabla de origen, el estado y de si es TIPSA o no
 	    			if($info['data']['otros_operadores'] == 1){
-		    			echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    	echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].'</p>';
+		    			echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    	echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
 	    			}else{
 		    			if($info['data']['tabla'] == 'argos_entregas'){
 			    			switch($info['data']['cf_estado']){
 				    			case ESTADO_ENTREGA_POR_RECOGER:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">Franja de entrega: '.$info['data']['franja_entregaDesc'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_RECOGIDO:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">Franja de entrega: '.$info['data']['franja_entregaDesc'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_EN_ALMACEN_ORIGEN:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">Franja de entrega: '.$info['data']['franja_entregaDesc'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_EN_ALMACEN:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">Franja de entrega: '.$info['data']['franja_entregaDesc'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_EN_RUTA:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].' '.$info['data']['ventanaEntrega'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].' '.$info['data']['ventanaEntrega'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_ENTREGADA:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_entrega_final'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_entrega_final'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_AUSENTE_O_CERRADO:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_DESTINATARIO_APLAZA_ENTREGA:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">Franja de entrega: '.$info['data']['franja_entregaDesc'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_DIRECCION_INCORRECTA_POR_REPARTIDOR:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_DIRECCION_INCOMPLETA_POR_REPARTIDOR:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_NO_ACEPTA_REEMBOLSO:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_DEVOLVER_A_REMITENTE:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_DEVUELTO_A_REMITENTE:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_RECOGER_EN_AGENCIA:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_ORIGEN_NO_PREPARADO:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].' en fecha '.$info['data']['fecha_intento'].'</p>';
 				    			break;
 				    			case ESTADO_ENTREGA_CON_INCIDENCIAS:
-				    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
+				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
 				    			break;
 			    			}
 		    			}else{
-		    				echo '<p>Estado del pedido: '.$info['data']['estado_entrega'].'</p>';
-			    			echo '<p id="cont_fecha">Fecha de entrega: '.$info['data']['estado_entrega'].'</p>';
-				    		echo '<p id="cont_franja">Franja de entrega: '.$info['data']['franja_entregaDesc'].'</p>';
+		    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
+			    			echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['estado_entrega'].'</p>';
+				    		echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
 		    			}
 		    		}
 	    		?>
@@ -172,18 +172,18 @@
 	    	<?php 
 		    	// Si es un pedido que se pueden solicitar cambios, mostramos los controles
     			if($info['data']['show_opciones'] == 1){ 
-	    			echo '<div class="btn-group btn-group-justified"><div class="btn-group"><button type="button" class="btn btn-default btn-warning" onclick="javascript:goToTracking(\''.$info['data']['num_pedido'].'\');">Quiero realizar cambios en la previsión de entrega</button></div></div>';
+	    			echo '<div class="btn-group btn-group-justified"><div class="btn-group"><button type="button" class="btn btn-default btn-warning" onclick="javascript:goToTracking(\''.$info['data']['num_pedido'].'\');">'.lang('ew_trs_solicitar').'</button></div></div>';
     			}
     			
     			// Finalmente, si es un pedido TIPSA, mostramos la alerta
     			if($info['data']['otros_operadores'] == 1){
-	    			echo '<div class="alert alert-warning"><h3>Notas importantes</h3><p>Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Tipsa más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p></div>';
+	    			echo '<div class="alert alert-warning">'.lang('ew_trs_notas_importantes').'</div>';
 	    		}
 	    	?>
 	    	<?php }else{ ?>
 	    	<div class="alert alert-warning">
-		    	<h3>Error en la búsqueda de datos</h3>
-	    		<p>No localizamos ningún pedido con los datos introducidos.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+		    	<h3><?=lang('ew_trs_error_title');?></h3>
+	    		<p><?=lang('ew_trs_error_description');?></p>
 	    	</div>
 	    	<?php } ?>
     	</div>

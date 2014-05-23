@@ -96,7 +96,7 @@ $autoload['config'] = array();
 |
 */
 
-$autoload['language'] = array('emakers', 'emakers_old_web');
+$autoload['language'] = array('emakers');
 
 
 /*

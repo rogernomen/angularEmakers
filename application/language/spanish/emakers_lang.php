@@ -122,10 +122,10 @@ $lang['ew_section_privacy_close']="Cerrar";
 
 $lang['ew_section_conditions_title']="CONDICIONES DE USO DEL SISTEMA DE TRACKING EMAKERS";
 $lang['ew_section_conditions_text1']="El sistema de tracking le permite ver el estado actual de su pedido y la fecha y franja prevista para la entrega.";
-$lang['ew_section_conditions_text2']="Si lo desea, puede solicitar un cambio en la fecha  y franja para la recepción del pedido a través del sistema de tracking, facilitando el número de pedido y el correo electrónico o el número de teléfono.";
-$lang['ew_section_conditions_text3']="La solicitud de una nueva franja de entrega debe ser aprobada por el Emakers. En caso de que no se pueda aceptar la solicitud, se le notificará oportunamente.";
+$lang['ew_section_conditions_text2']="Si lo desea, puede solicitar un cambio en el día y la franja para la recepción de su pedido a través del sistema de tracking, introduciendo el número de pedido y el número de teléfono o el correo electrónico asociado al envío.";
+$lang['ew_section_conditions_text3']="La solicitud de una nueva franja de entrega debe ser aprobada por el Emakers. En caso de que no se pueda aceptar la solicitud, se le notificará oportunamente.<br/><br/>Excepcionalmente, durante las campañas de Navidad y Rebajas, algunas franjas no estarán disponibles para la entrega hasta el día siguiente.";
 $lang['ew_section_conditions_text4']="Los horarios límite para solicitar una específica franja de entrega son los siguientes:";
-$lang['ew_section_conditions_text5']="- Franja de Mañana: 08:00h del mismo día.<br/>- Franja de Tarde:  13:00h del mismo día.<br/>- Franja After-work:  17:00h del mismo día.<br/>- Franja mediodía: 11:00h del mismo día.";
+$lang['ew_section_conditions_text5']="- MAÑANA (09:00h a 14:00h): Se puede solicitar esta franja hasta las 08:00h del mismo día.<br/>- TARDE (15:00h a 18:30h): Se puede solicitar esta franja hasta las 13:00h del mismo día.<br/>- NOCHE (19:00h a 22:00h): Se puede solicitar esta franja hasta las 17:00h del mismo día<br/>- DIURNA (12:00h a 17:00h): Se puede solicitar esta franja hasta las 08:00h del mismo día.";
 $lang['ew_section_conditions_close']="Cerrar";
 $lang['ew_section_contacta_title']="Contacta con Emakers";
 $lang['ew_section_contacta_subtitle1']="QUIERO SER CLIENTE";
@@ -141,6 +141,88 @@ $lang['ew_section_contacta_text5']="¿Quieres trabajar con nosotros?<br /><br />
 $lang['ew_section_contacta_title2']="Nuestras agencias";
 
 
+/*TRACKING*/
+// modals
+$lang['ew_tr_consultando'] = 'Estamos consultando los datos de su pedido. Por favor, manténgase a la espera.';
+$lang['ew_tr_cancelar'] = 'Cancelar';
+$lang['ew_tr_cerrar'] = 'Cerrar';
+$lang['ew_tr_solicitud_en_marxa'] = 'Estamos realizando la solicitud de los cambios que ha realizado.<br/>Por favor, manténgase a la espera.';
+$lang['ew_tr_datos_invalidos_title'] = 'Los datos introducidos no son válidos';
+$lang['ew_tr_datos_invalidos_description'] = 'Los datos introducidos en el formulario no son correctos. Por favor, asegúrese de rellenar todos los campos y aceptar las condiciones de uso del sistema de tracking.';
+$lang['ew_tr_error_busqueda_title'] = 'Error en la búsqueda de datos';
+$lang['ew_tr_error_busqueda_description'] = 'No localizamos ningún pedido con los datos introducidos.<br/>Por favor, asegúrese se introducir el número de pedido completo así como el número de teléfono o correo electrónico asociado al pedido.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_error_inesperado_title'] = 'Error inesperado en la solicitud de datos';
+$lang['ew_tr_error_inesperado_description'] = 'Hemos detectado un error inesperado durante la solicitud de los cambios en el pedido con número <font id="error_num_pedido"></font>.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_error_datos_solicitados_title'] = 'Error en los datos solicitados';
+$lang['ew_tr_error_datos_solicitados_description'] = 'Hemos detectado un error en los datos solicitados.<br/>Por favor, asegúrese que la fecha y franja solicitadas sean correctas.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_cambios_pendintes_title'] = 'Hay una solicitud de cambio de su pedido pendiente de ser aprobada. En caso de no poder ser aprobado por algún inconveniente, nos pondremos en contacto con usted.';
+$lang['ew_tr_cambios_datos_pedido'] = 'Datos del pedido';
+$lang['ew_tr_cambios_abonado'] = 'Abonado: ';
+$lang['ew_tr_cambios_fecha_alta'] = 'Datos en sistema desde: ';
+$lang['ew_tr_fecha_entrega'] = 'Fecha de entrega: ';
+$lang['ew_tr_franja_entrega'] = 'Franja de entrega: ';
+$lang['ew_tr_datos_destinatario'] = 'Datos del destinatario';
+$lang['ew_tr_telf'] = 'Teléfono: ';
+$lang['ew_tr_telf2'] = 'Teléfono alternativo: ';
+$lang['ew_tr_email'] = 'Email: ';
+$lang['ew_tr_comentarios'] = 'Comentarios: ';
+$lang['ew_tr_solicitar_nuevos_cambios'] = 'Solicitar nuevos cambios';
+$lang['ew_tr_cambios_correctos'] = 'Los cambios són correctos';
+$lang['ew_tr_solicitud_correcta'] = 'La solicitud de cambios se ha realizado correctamente';
+
+// page
+$lang['ew_tr_title'] = 'Sistema de seguimiento de envíos';
+$lang['ew_tr_slogan'] = 'Quiero conocer el estado actual de mi pedido';
+$lang['ew_tr_description'] = 'Inserte el número de pedido y el número de teléfono o correo electrónico de su pedido para ver su estado actual.';
+$lang['ew_tr_input1'] = 'Número de pedido';
+$lang['ew_tr_input2'] = 'Email o número de teléfono';
+$lang['ew_tr_condiciones1'] = 'Acepto las';
+$lang['ew_tr_condiciones2'] = 'condiciones de uso';
+$lang['ew_tr_consultar'] = 'Consultar';
+
+// content
+$lang['ew_tr_estadp_pedido'] = 'Estado del pedido: ';
+$lang['ew_tr_notas_tipsa_itile'] = 'Notas importantes';
+$lang['ew_tr_notas_tipsa_description'] = 'Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Tipsa más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_notas_notipsa_itile'] = 'Notas importantes';
+$lang['ew_tr_notas_notipsa_description'] = 'Si lo desea, puede modificar el día y la franja de recepción. No olvide que el día de la entrega y dentro de la franja que haya escogido, recibirá un SMS (en el caso de que haya facilitado un número de teléfono móvil) notificándole la ventana horaria prevista de entrega de 60 minutos.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+
+// form
+$lang['ew_tr_form_title'] = 'Si desea aplazar la entrega o programar un nuevo intento, rellene el siguiente formulario con sus preferencias y haga clic en el botón \'Solicitar cambios\'.';
+$lang['ew_tr_form_diaentrega'] = 'Día de entrega:';
+$lang['ew_tr_form_franjaentrega'] = 'Franja deseada:';
+$lang['ew_tr_form_otros_datos'] = 'Otros Datos:';
+$lang['ew_tr_form_telf'] = 'Teléfono:';
+$lang['ew_tr_form_telf2'] = 'Teléfono alternativo:';
+$lang['ew_tr_form_email'] = 'Email:';
+$lang['ew_tr_form_comentarios'] = 'Comentarios:';
+$lang['ew_tr_form_solicitar_cambios'] = 'Solicitar cambios';
+$lang['ew_tr_form_ph_telf'] = 'Número de teléfono';
+$lang['ew_tr_form_ph_telf2'] = 'Número de teléfono alternativo';
+$lang['ew_tr_form_ph_correo'] = 'Dirección de correo';
+$lang['ew_tr_form_ph_comentarios'] = 'Añade tu comentario aquí';
+
+// tracking_soft
+$lang['ew_trs_title'] = 'Sistema de seguimiento de envíos';
+$lang['ew_trs_slogan'] = 'Quiero conocer el estado actual de mi pedido';
+$lang['ew_trs_description'] = 'A continuación puede comprobar el estado actual de su pedido.';
+$lang['ew_trs_datos_pedido'] = 'Datos del pedido';
+$lang['ew_trs_datos_alta'] = 'Datos en sistema desde: ';
+$lang['ew_trs_estado'] = 'Estado del pedido: ';
+$lang['ew_trs_fechaentrega'] = 'Fecha de entrega: ';
+$lang['ew_trs_franjaentrega'] = 'Franja de entrega: ';
+
+$lang['ew_trs_solicitar'] = 'Quiero realizar cambios en la previsión de entrega';
+$lang['ew_trs_notas_importantes'] = '<h3>Notas importantes</h3><p>Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Tipsa más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>';
+
+$lang['ew_trs_error_title'] = 'Error en la búsqueda de datos';
+$lang['ew_trs_error_description'] = 'No localizamos ningún pedido con los datos introducidos.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+
+$lang['ew_trnodv_title'] = 'Emakers - Dispositivo no compatible';
+$lang['ew_trnodv_title2'] = 'Dispositivo no compatible con el sistema de tracking de Emakers.';
+$lang['ew_trnodv_slogan'] = 'Lamentablemente, la plataforma y navegador con el que está accediendo no es compatible con sistema de tracking de Emakers.<br/><br/>Por favor, acceda a través de una plataforma y navegador del siguiente listado: ';
+$lang['ew_trnodv_device_list'] = '<li>Google Chrome para Android, iPhone, iPod, iPad, Mac OSX o Windows</li><li>Safari para iPhone, iPod, iPad, Mac OSX o Windows</li><li>Mozilla Firefox para Windows o Mac OSX</li><li>Opera para Mac OSX o Windows</li><li>IE7+ para Windows</li>';
+$lang['ew_trnodv_contact'] = 'Puede ponerse en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 
 
 /* End of file emakers_lang.php */

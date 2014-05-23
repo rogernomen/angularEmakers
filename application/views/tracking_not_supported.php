@@ -2,18 +2,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Emakers - Dispositivo no compatible</title>
+		<title><?=lang('ew_trnodv_title');?></title>
 	</head>
 	<body>
-		<h2>Dispositivo no compatible con el sistema de tracking de Emakers.</h2>
-		<p>Lamentablemente, la plataforma y navegador con el que está accediendo no es compatible con sistema de tracking de Emakers.<br/><br/>Por favor, acceda a través de una plataforma y navegador del siguiente listado: </p>
+		<h2><?=lang('ew_trnodv_title2');?></h2>
+		<p><?=lang('ew_trnodv_slogan');?></p>
 		<ul>
-		  <li>Google Chrome para Android, iPhone, iPod, iPad, Mac OSX o Windows</li>
-		  <li>Safari para iPhone, iPod, iPad, Mac OSX o Windows</li>
-		  <li>Mozilla Firefox para Windows o Mac OSX</li>
-		  <li>Opera para Mac OSX o Windows</li>
-		  <li>IE7+ para Windows</li>
+			<?=lang('ew_trnodv_device_list');?>
 		</ul>
-		<p>Puede ponerse en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+		<p><?=lang('ew_trnodv_contact');?></p>
 	</body>
 </html>

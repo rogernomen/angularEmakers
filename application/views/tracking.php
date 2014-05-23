@@ -53,12 +53,12 @@
     <div class="modal-content">
       <div class="modal-body">
       	<div class="alert centertext no_mb">
-      		<p>Estamos consultando los datos de su pedido. Por favor, manténgase a la espera.</p>
+      		<p><?=lang('ew_tr_consultando');?></p>
       		<p class="spinnerloading"><img src="<?=base_url();?>img/spinner.gif" /></p>
       	</div>
       </div>
       <div class="modal-footer centertext loadingcancelshape">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:abortRequest();">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="javascript:abortRequest();"><?=lang('ew_tr_cancelar');?></button>
       </div>
     </div>
   </div>
@@ -70,7 +70,7 @@
     <div class="modal-content">
       <div class="modal-body">
       	<div class="alert centertext no_mb">
-      		<p>Estamos realizando la solicitud de los cambios que ha realizado.<br/>Por favor, manténgase a la espera.</p>
+      		<p><?=lang('ew_tr_solicitud_en_marxa');?></p>
       		<p class="spinnerloading"><img src="<?=base_url();?>img/spinner.gif" /></p>
       	</div>
       </div>
@@ -84,15 +84,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Los datos introducidos no son válidos</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_datos_invalidos_title');?></h4>
       </div>
       <div class="modal-body">
       	<div class="alert alert-danger">
-      		<p>Los datos introducidos en el formulario no son correctos. Por favor, asegúrese de introducir todos los campos y aceptar las condiciones de uso del sistema de tracking.</p>
+      		<p><?=lang('ew_tr_datos_invalidos_description');?></p>
       	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
       </div>
     </div>
   </div>
@@ -105,15 +105,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Error en la búsqueda de datos</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_error_busqueda_title');?></h4>
       </div>
       <div class="modal-body">
       	<div class="alert alert-danger">
-      		<p>No localizamos ningún pedido con los datos introducidos.<br/>Por favor, asegúrese se introducir el número de pedido completo así como el número de teléfono o correo electrónico asociado al pedido.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+      		<p><?=lang('ew_tr_error_busqueda_description');?></p>
       	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
       </div>
     </div>
   </div>
@@ -125,15 +125,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Error inesperado en la solicitud de datos</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_error_inesperado_title');?></h4>
       </div>
       <div class="modal-body">
       	<div class="alert alert-danger">
-      		<p>Hemos detectado un error inesperado durante la solicitud de los cambios en el pedido con número <font id="error_num_pedido"></font>.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+      		<p><?=lang('ew_tr_error_inesperado_description');?></p>
       	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
       </div>
     </div>
   </div>
@@ -145,15 +145,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Error en los datos solicitados</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_error_datos_solicitados_title');?></h4>
       </div>
       <div class="modal-body">
       	<div class="alert alert-danger">
-      		<p>Hemos detectado un error en los datos solicitados.<br/>Por favor, asegúrese que la fecha y franja solicitadas sean correctas.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+      		<p><?=lang('ew_tr_error_datos_solicitados_description');?></p>
       	</div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
       </div>
     </div>
   </div>
@@ -164,33 +164,33 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Hay cambios en su pedido, están pendientes de ser aprobados.</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_cambios_pendintes_title');?></h4>
       </div>
       <div class="modal-body">
       	<h2><font id="cp_num_pedido"></font></h2>
-		<h3>Datos del pedido</h3>
-		<p>Abonado: <font id="cp_nombre_abonado"></font></p>
-		<p>Datos en sistema desde: <font id="cp_fecha_alta"></font></p>
-		<p id="cont_cp_fecha">Fecha de entrega: <font id="cp_fecha_entrega_cliente"></font></p>
-		<p id="cont_cp_franja">Franja de entrega: <font id="cp_franja"></font></p>
-		<h3>Datos del destinatario</h3>
+		<h3><?=lang('ew_tr_cambios_datos_pedido');?></h3>
+		<p><?=lang('ew_tr_cambios_abonado');?><font id="cp_nombre_abonado"></font></p>
+		<p><?=lang('ew_tr_cambios_fecha_alta');?><font id="cp_fecha_alta"></font></p>
+		<p id="cont_cp_fecha"><?=lang('ew_tr_fecha_entrega');?><font id="cp_fecha_entrega_cliente"></font></p>
+		<p id="cont_cp_franja"><?=lang('ew_tr_franja_entrega');?><font id="cp_franja"></font></p>
+		<h3><?=lang('ew_tr_datos_destinatario');?></h3>
 		<p id="cp_nombre_destinatario"></p>
 		<address id="cp_direccion_entrega"></address>
-		<p>Teléfono: <font id="cp_telefono1"></font></p>
-		<p>Teléfono alternativo: <font id="cp_telefono2"></font></p>
-		<p>Email: <font id="cp_email"></font></p>
-		<p>Comentarios: <font id="cp_comentarios_cliente"></font></p>
+		<p><?=lang('ew_tr_telf');?><font id="cp_telefono1"></font></p>
+		<p><?=lang('ew_tr_telf2');?><font id="cp_telefono2"></font></p>
+		<p><?=lang('ew_tr_email');?><font id="cp_email"></font></p>
+		<p><?=lang('ew_tr_comentarios');?><font id="cp_comentarios_cliente"></font></p>
       </div>
       <div class="modal-footer">
       	<div class="btn-group btn-group-justified">
       		<div class="btn-group">
-	       	 	<button type="button" class="btn btn-warning" onclick="javascript:solicitarNuevosCambios();">Solicitar nuevos cambios</button>
+	       	 	<button type="button" class="btn btn-warning" onclick="javascript:solicitarNuevosCambios();"><?=lang('ew_tr_solicitar_nuevos_cambios');?></button>
 	       	</div>
 	    </div>
 	    <br/>
 	    <div class="btn-group btn-group-justified">
 	       	<div class="btn-group">
-	       	 	<button type="button" class="btn btn-success" onclick="javascript:cambiosCorrectos();">Los cambios són correctos</button>
+	       	 	<button type="button" class="btn btn-success" onclick="javascript:cambiosCorrectos();"><?=lang('ew_tr_cambios_correctos');?></button>
 	       	</div>
        	</div>
       </div>
@@ -204,25 +204,25 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">La solicitud de cambios se ha realizado correctamente.</h4>
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_solicitud_correcta');?></h4>
       </div>
       <div class="modal-body">
       	<h2><font id="cn_num_pedido"></font></h2>
-		<h3>Datos del pedido</h3>
-		<p>Abonado: <font id="cn_nombre_abonado"></font></p>
-		<p>Datos en sistema desde: <font id="cn_fecha_alta"></font></p>
-		<p id="cont_cn_fecha">Fecha de entrega: <font id="cn_fecha_entrega_cliente"></font></p>
-		<p id="cont_cn_franja">Franja de entrega: <font id="cn_franja"></font></p>
-		<h3>Datos del destinatario</h3>
+		<h3><?=lang('ew_tr_cambios_datos_pedido');?></h3>
+		<p><?=lang('ew_tr_cambios_abonado');?><font id="cn_nombre_abonado"></font></p>
+		<p><?=lang('ew_tr_cambios_fecha_alta');?><font id="cn_fecha_alta"></font></p>
+		<p id="cont_cn_fecha"><?=lang('ew_tr_fecha_entrega');?><font id="cn_fecha_entrega_cliente"></font></p>
+		<p id="cont_cn_franja"><?=lang('ew_tr_franja_entrega');?><font id="cn_franja"></font></p>
+		<h3><?=lang('ew_tr_datos_destinatario');?></h3>
 		<p id="cn_nombre_destinatario"></p>
 		<address id="cn_direccion_entrega"></address>
-		<p>Teléfono: <font id="cn_telefono1"></font></p>
-		<p>Teléfono alternativo: <font id="cn_telefono2"></font></p>
-		<p>Email: <font id="cn_email"></font></p>
-		<p>Comentarios: <font id="cn_comentarios_cliente"></font></p>
+		<p><?=lang('ew_tr_telf');?><font id="cn_telefono1"></font></p>
+		<p><?=lang('ew_tr_telf2');?><font id="cn_telefono2"></font></p>
+		<p><?=lang('ew_tr_email');?><font id="cn_email"></font></p>
+		<p><?=lang('ew_tr_comentarios');?><font id="cn_comentarios_cliente"></font></p>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      	<button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
       </div>
     </div>
   </div>
@@ -262,27 +262,27 @@
 <div class="container margins">
     <div class="row">
     	<div class="col-sm-12">
-    		<h1>Sistema de seguimiento de envíos</h1>
-    		<h3>Quiero conocer el estado actual de mi pedido</h3>
-    		<p>Inserte el número de pedido y el número de teléfono o correo electrónico de su pedido para ver su estado actual.</p>
+    		<h1><?=lang('ew_tr_title');?></h1>
+    		<h3><?=lang('ew_tr_slogan');?></h3>
+    		<p><?=lang('ew_tr_description');?></p>
     	</div>
     	<div class="col-sm-6">
         	<form role="form">
         	  <div class="form-group" id="num_pedido_div">
-        	    <label for="num_pedido">Número de pedido</label>
-        	    <input type="text" class="form-control" id="num_pedido" placeholder="Número de pedido" value="<?php if(isset($num_pedido) && $num_pedido != ''){ echo $num_pedido; } ?>">
+        	    <label for="num_pedido"><?=lang('ew_tr_input1');?></label>
+        	    <input type="text" class="form-control" id="num_pedido" placeholder="<?=lang('ew_tr_input1');?>" value="<?php if(isset($num_pedido) && $num_pedido != ''){ echo $num_pedido; } ?>">
         	  </div>
         	  <div class="form-group" id="mail_or_telf_div">
-        	    <label for="mail_or_telf">Email o número de teléfono</label>
-        	    <input type="text" class="form-control" id="mail_or_telf" placeholder="Email o número de teléfono">
+        	    <label for="mail_or_telf"><?=lang('ew_tr_input2');?></label>
+        	    <input type="text" class="form-control" id="mail_or_telf" placeholder="<?=lang('ew_tr_input2');?>">
         	  </div>
         	  <div class="checkbox">
         	      <label id="lbl_condiciones">
-        	        <input type="checkbox" id="checkCondiciones"> Acepto las <a href="#" data-toggle="modal" data-target="#condiciones">condiciones de uso</a>
+        	        <input type="checkbox" id="checkCondiciones"> <?=lang('ew_tr_condiciones1');?> <a href="#" data-toggle="modal" data-target="#condiciones"><?=lang('ew_tr_condiciones2');?></a>
         	      </label>
         	  </div>
         	</form>
-        	<div class="pull-right"><button data-toggle="modal" class="btn btn-success" onclick="javascript:sendConsulta();">Consultar</button></div>
+        	<div class="pull-right"><button data-toggle="modal" class="btn btn-success" onclick="javascript:sendConsulta();"><?=lang('ew_tr_consultar');?></button></div>
         	<button data-toggle="modal" data-target="#Error" class="btn hideshape" id="triggerErrorShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_busqueda" class="btn hideshape" id="triggerError_busquedaShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_solicitud" class="btn hideshape" id="triggerError_solicitudShape">&nbsp;</button>
@@ -297,54 +297,54 @@
     	<div class="col-sm-6">
 	    	<div class="alert alert-success">
 	    		<h2><font id="tk_num_pedido"></font></h2>
-	    		<h3>Datos del pedido</h3>
-	    		<p>Abonado: <font id="tk_nombre_abonado"></font></p>
-	    		<p>Datos en sistema desde: <font id="tk_fecha_alta"></font></p>
-	    		<p>Estado del pedido: <font id="tk_estado"></font></p>
-	    		<p id="cont_fecha">Fecha de entrega: <font id="tk_fecha_entrega_cliente"></font></p>
-	    		<p id="cont_franja">Franja de entrega: <font id="tk_franja"></font></p>
-	    		<h3>Datos del destinatario</h3>
+	    		<h3><?=lang('ew_tr_cambios_datos_pedido');?></h3>
+	    		<p><?=lang('ew_tr_cambios_abonado');?><font id="tk_nombre_abonado"></font></p>
+	    		<p><?=lang('ew_tr_cambios_fecha_alta');?><font id="tk_fecha_alta"></font></p>
+	    		<p><?=lang('ew_tr_estadp_pedido');?><font id="tk_estado"></font></p>
+	    		<p id="cont_fecha"><?=lang('ew_tr_fecha_entrega');?><font id="tk_fecha_entrega_cliente"></font></p>
+	    		<p id="cont_franja"><?=lang('ew_tr_franja_entrega');?><font id="tk_franja"></font></p>
+	    		<h3><?=lang('ew_tr_datos_destinatario');?></h3>
 	    		<p id="tk_nombre_destinatario"></p>
 	    		<address id="tk_direccion_entrega"></address>
 	    	</div>
 	    	<div class="alert alert-warning" id="notasTipsa">
-	    		<h3>Notas importantes</h3>
-	    		<p>Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Tipsa más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+	    		<h3><?=lang('ew_tr_notas_tipsa_itile');?></h3>
+	    		<p><?=lang('ew_tr_notas_tipsa_description');?></p>
 	    	</div>
 	    	<div class="alert alert-warning" id="notasNOTipsa">
-	    		<h3>Notas importantes</h3>
-	    		<p>Si lo desea, puede modificar el día y la franja de recepción. No olvide que el día de la entrega y dentro de la franja que haya escogido, recibirá un SMS (en el caso de que haya facilitado un número de teléfono móvil) notificándole la ventana horaria prevista de entrega de 60 minutos.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+	    		<h3><?=lang('ew_tr_notas_notipsa_itile');?></h3>
+	    		<p><?=lang('ew_tr_notas_notipsa_description');?></p>
 	    	</div>
     	</div>
     	<div class="col-sm-6" id="cambiosShapeContent">
-    		<p class="mt20">Si desea aplazar la entrega o programar un nuevo intento, rellene el siguiente formulario con sus preferencias y haga clic en el botón 'Solicitar cambios'.</p>
+    		<p class="mt20"><?=lang('ew_tr_form_title');?></p>
     		<form role="form">
-    			<h3>Día de entrega:</h3>
+    			<h3><?=lang('ew_tr_form_diaentrega');?></h3>
     			<div class="form-group">
     				<div class='input-group date' id='diadeentrega'>
     					<input type='text' class="form-control" id="input_dia_entrega" />
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     				</div>
-    				<h3>Franja deseada:</h3>
+    				<h3><?=lang('ew_tr_form_franjaentrega');?></h3>
     				<select id="input_franja_entrega" class="selectpicker show-tick form-control">
                     </select>
-    				<h3>Otros Datos:</h3>
+    				<h3><?=lang('ew_tr_form_otros_datos');?></h3>
     			</div>
     			<div class="form-group">
-    			  <label for="input_telefono1">Teléfono:</label>
-    			  <input type="tel" class="form-control" id="input_telefono1" name="input_telefono1" placeholder="Número de teléfono">
+    			  <label for="input_telefono1"><?=lang('ew_tr_form_telf');?></label>
+    			  <input type="tel" class="form-control" id="input_telefono1" name="input_telefono1" placeholder="<?=lang('ew_tr_form_ph_telf');?>">
     			</div>
     			<div class="form-group">
-    			  <label for="input_telefono2">Teléfono alternativo:</label>
-    			  <input type="tel" class="form-control" id="input_telefono2" name="input_telefono2" placeholder="Número de teléfono alternativo">
+    			  <label for="input_telefono2"><?=lang('ew_tr_form_tel2');?></label>
+    			  <input type="tel" class="form-control" id="input_telefono2" name="input_telefono2" placeholder="<?=lang('ew_tr_form_ph_telf2');?>">
     			</div>
     			<div class="form-group">
-    			  <label for="input_email">Email:</label>
-    			  <input type="email" class="form-control" id="input_email" name="input_email" placeholder="Dirección de correo">
+    			  <label for="input_email"><?=lang('ew_tr_form_email');?></label>
+    			  <input type="email" class="form-control" id="input_email" name="input_email" placeholder="<?=lang('ew_tr_form_ph_correo');?>">
     			</div>
     			<div class="form-group">
-    				<label for="input_comentarios_cliente">Comentarios:</label>	
-    	    		<textarea id="input_comentarios_cliente" name="input_comentarios_cliente" class="form-control" rows="3" placeholder="Añade tu comentario aquí"></textarea>
+    				<label for="input_comentarios_cliente"><?=lang('ew_tr_form_comentarios');?></label>	
+    	    		<textarea id="input_comentarios_cliente" name="input_comentarios_cliente" class="form-control" rows="3" placeholder="<?=lang('ew_tr_form_ph_comentarios');?>"></textarea>
     			</div>
     			<input type="hidden" name="conf_franja" id="conf_franja" value="" />
     			<input type="hidden" name="id2_pedido" id="id2_pedido" value="" />
@@ -352,7 +352,7 @@
     			<input type="hidden" name="num_pedido" id="num_pedido" value="" />
     			<input type="hidden" name="cf_agencia" id="cf_agencia" value="" />
     		</form>
-    		<button data-toggle="modal" class="btn btn-success" onclick="javascript:sendFranjaChange();">Solicitar cambios</button>
+    		<button data-toggle="modal" class="btn btn-success" onclick="javascript:sendFranjaChange();"><?=lang('ew_tr_form_solicitar_cambios');?></button>
     	</div>
     </div>
 </div>
