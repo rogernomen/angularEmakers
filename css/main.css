@@ -577,6 +577,24 @@ section{
 	width: 100%;
 	height: 100%;
 }
+.granada{
+	background: url('../img/ciudades/granada.jpg') 50% 50% no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+.alicante{
+	background: url('../img/ciudades/alicante.jpg') 50% 50% no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	width: 100%;
+	height: 100%;
+}
 .valladolid{
 	background: url('../img/ciudades/valladolid.jpg') 50% 50% no-repeat;
 	background-size: cover;

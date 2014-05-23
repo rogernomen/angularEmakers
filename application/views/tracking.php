@@ -5,6 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	
 	<link rel="icon" href="<?=base_url();?>img/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="<?=base_url();?>img/favicon.ico" type="image/x-icon" />
 	
@@ -25,6 +27,10 @@
 	<link href="<?=base_url();?>css/main_tracking.css" rel="stylesheet">
 	<link href="<?=base_url();?>css/fontello.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?=base_url();?>css/bootstrap-datetimepicker.min.css" />
+
+		
+	<script type="text/javascript" src="<?=base_url();?>js/bootstrap-select.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?=base_url();?>css/bootstrap-select.css">
 	
 	<script>
 		var base_url = '<?= $this->config->item('base_url'); ?>';
@@ -161,7 +167,7 @@
         <h4 class="modal-title" id="myModalLabel">Hay cambios en su pedido, están pendientes de ser aprobados.</h4>
       </div>
       <div class="modal-body">
-      	<h1>Pedido num. <font id="cp_num_pedido"></font></h1>
+      	<h2><font id="cp_num_pedido"></font></h2>
 		<h3>Datos del pedido</h3>
 		<p>Abonado: <font id="cp_nombre_abonado"></font></p>
 		<p>Datos en sistema desde: <font id="cp_fecha_alta"></font></p>
@@ -176,9 +182,17 @@
 		<p>Comentarios: <font id="cp_comentarios_cliente"></font></p>
       </div>
       <div class="modal-footer">
-        <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        <button type="button" class="btn btn-warning" onclick="javascript:solicitarNuevosCambios();">Solicitar nuevos cambios</button>
-        <button type="button" class="btn btn-success" onclick="javascript:cambiosCorrectos();">Los cambios són correctos</button>
+      	<div class="btn-group btn-group-justified">
+      		<div class="btn-group">
+	       	 	<button type="button" class="btn btn-warning" onclick="javascript:solicitarNuevosCambios();">Solicitar nuevos cambios</button>
+	       	</div>
+	    </div>
+	    <br/>
+	    <div class="btn-group btn-group-justified">
+	       	<div class="btn-group">
+	       	 	<button type="button" class="btn btn-success" onclick="javascript:cambiosCorrectos();">Los cambios són correctos</button>
+	       	</div>
+       	</div>
       </div>
     </div>
   </div>
@@ -193,7 +207,7 @@
         <h4 class="modal-title" id="myModalLabel">La solicitud de cambios se ha realizado correctamente.</h4>
       </div>
       <div class="modal-body">
-      	<h1>Pedido num. <font id="cn_num_pedido"></font></h1>
+      	<h2><font id="cn_num_pedido"></font></h2>
 		<h3>Datos del pedido</h3>
 		<p>Abonado: <font id="cn_nombre_abonado"></font></p>
 		<p>Datos en sistema desde: <font id="cn_fecha_alta"></font></p>
@@ -250,13 +264,13 @@
     	<div class="col-sm-12">
     		<h1>Sistema de seguimiento de envíos</h1>
     		<h3>Quiero conocer el estado actual de mi pedido</h3>
-    		<p>Inserte el código de su pedido para ver el estado actual de su envío y si lo desea, puede modificar el día y la franja de recepción. No olvide que el día de la entrega y dentro de la franja que haya escogido, recibirá un SMS (en el caso de que haya facilitado un número de teléfono móvil) notificándole la ventana horaria prevista de entrega de 60 minutos.</p>
+    		<p>Inserte el número de pedido y el número de teléfono o correo electrónico de su pedido para ver su estado actual.</p>
     	</div>
     	<div class="col-sm-6">
         	<form role="form">
         	  <div class="form-group" id="num_pedido_div">
         	    <label for="num_pedido">Número de pedido</label>
-        	    <input type="text" class="form-control" id="num_pedido" placeholder="Número de pedido">
+        	    <input type="text" class="form-control" id="num_pedido" placeholder="Número de pedido" value="<?php if(isset($num_pedido) && $num_pedido != ''){ echo $num_pedido; } ?>">
         	  </div>
         	  <div class="form-group" id="mail_or_telf_div">
         	    <label for="mail_or_telf">Email o número de teléfono</label>
@@ -278,27 +292,11 @@
         	<button data-toggle="modal" data-target="#confirmacion" class="btn hideshape" id="triggerConfirmacionShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#confirmacion_realizada" class="btn hideshape" id="triggerConfirmacion_realizadaShape">&nbsp;</button>
         </div>
-        <!-- 
-        <div class="col-sm-6">
-        	<div class="form-group has-success">
-        	  <label class="control-label" for="inputSuccess1">Input with success</label>
-        	  <input type="text" class="form-control" id="inputSuccess1">
-        	</div>
-        	<div class="form-group has-warning">
-        	  <label class="control-label" for="inputWarning1">Input with warning</label>
-        	  <input type="text" class="form-control" id="inputWarning1">
-        	</div>
-        	<div class="form-group has-error">
-        	  <label class="control-label" for="inputError1">Input with error</label>
-        	  <input type="text" class="form-control" id="inputError1">
-        	</div>
-        </div>
-        -->
     </div>
     <div class="row hideshape" id="generalShapeContent">
     	<div class="col-sm-6">
 	    	<div class="alert alert-success">
-	    		<h1>Pedido num. <font id="tk_num_pedido"></font></h1>
+	    		<h2><font id="tk_num_pedido"></font></h2>
 	    		<h3>Datos del pedido</h3>
 	    		<p>Abonado: <font id="tk_nombre_abonado"></font></p>
 	    		<p>Datos en sistema desde: <font id="tk_fecha_alta"></font></p>
@@ -309,9 +307,17 @@
 	    		<p id="tk_nombre_destinatario"></p>
 	    		<address id="tk_direccion_entrega"></address>
 	    	</div>
+	    	<div class="alert alert-warning" id="notasTipsa">
+	    		<h3>Notas importantes</h3>
+	    		<p>Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Tipsa más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+	    	</div>
+	    	<div class="alert alert-warning" id="notasNOTipsa">
+	    		<h3>Notas importantes</h3>
+	    		<p>Si lo desea, puede modificar el día y la franja de recepción. No olvide que el día de la entrega y dentro de la franja que haya escogido, recibirá un SMS (en el caso de que haya facilitado un número de teléfono móvil) notificándole la ventana horaria prevista de entrega de 60 minutos.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>
+	    	</div>
     	</div>
     	<div class="col-sm-6" id="cambiosShapeContent">
-    		<p class="mt20">Si desea aplazar la entrega o programar un nuevo intento, rellene el siguiente formulario con sus preferencias.</p>
+    		<p class="mt20">Si desea aplazar la entrega o programar un nuevo intento, rellene el siguiente formulario con sus preferencias y haga clic en el botón 'Solicitar cambios'.</p>
     		<form role="form">
     			<h3>Día de entrega:</h3>
     			<div class="form-group">
@@ -320,8 +326,8 @@
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     				</div>
     				<h3>Franja deseada:</h3>
-    				<select class="form-control" id="input_franja_entrega">
-    				</select>
+    				<select id="input_franja_entrega" class="selectpicker show-tick form-control">
+                    </select>
     				<h3>Otros Datos:</h3>
     			</div>
     			<div class="form-group">
@@ -431,7 +437,6 @@
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<?=base_url();?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/moment.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/bootstrap-datetimepicker.min.js"></script>

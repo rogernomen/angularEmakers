@@ -16,8 +16,8 @@
 */
 if(strpos($_SERVER['HTTP_HOST'],'emakers-dev-public-web.es') !== false){
 	
-	$config['base_url']		= 'http://emakers-dev-public-web.es/';
-	$config['ws_base_url'] 	= 'http://emakers-dev-argos-web/ws/server.php?wsdl';
+	$config['base_url']		= 'https://emakers-dev-public-web.es/';
+	$config['ws_base_url'] 	= 'https://emakers-dev-argos-web/ws/server.php?wsdl';
 	$config['ws_login']		= 'admin@gogentle.es';
 	$config['ws_passw']		= 'ciclocargobarna';
 	/*
@@ -35,8 +35,8 @@ if(strpos($_SERVER['HTTP_HOST'],'emakers-dev-public-web.es') !== false){
 
 }else if(strpos($_SERVER['HTTP_HOST'],'emakers-dev-public-web.co.uk') !== false){
 
-	$config['base_url']		= 'http://emakers-dev-public-web.co.uk/';
-	$config['ws_base_url'] 	= 'http://emakers-dev-argos-web/ws/server.php?wsdl';
+	$config['base_url']		= 'https://emakers-dev-public-web.co.uk/';
+	$config['ws_base_url'] 	= 'https://emakers-dev-argos-web/ws/server.php?wsdl';
 	$config['ws_login']		= 'admin@gogentle.es';
 	$config['ws_passw']		= 'ciclocargobarna';
 	

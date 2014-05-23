@@ -1,3 +1,9 @@
+/* CONTROL BUG ANDROID SELECT BOOTSTRAP RADIUS CONTROL */
+var nua = navigator.userAgent
+var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1 && nua.indexOf('AppleWebKit') > -1 && nua.indexOf('Chrome') === -1)
+if (isAndroid) {
+	$('select.form-control').removeClass('form-control').css('width', '100%')
+}
 /* OVERRIDE */
 Object.size = function(obj) {
     var size = 0, key;
@@ -6,6 +12,11 @@ Object.size = function(obj) {
     }
     return size;
 };
+// dd/mm/aaaa
+function parseDate(input) {
+	var parts = input.match(/(\d+)/g);
+	return new Date(parts[2], parts[1]-1, parts[0]);
+}
 
 /*CONSTANTES*/
 var ESTADO_ENTREGA_SIN_ASIGNAR = 0;
@@ -32,16 +43,19 @@ var ESTADO_PRECARGA_EN_ALMACEN = 2;
 var ESTADO_PRECARGA_ORIGEN_NO_PREPARADO = 3;
 var ESTADO_PRECARGA_ALMACEN_ORIGEN = 4;
 
-$(function () {
+$(function () {	
+	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+		$('#input_franja_entrega').selectpicker('mobile');
+    }else{
+	    $('#input_franja_entrega').selectpicker({});
+    }
+	
     $('#diadeentrega').datetimepicker({
         pick12HourFormat: false,
         daysOfWeekDisabled:[0,6],
         language:'es',
         pickTime: false
-    });
-    
-    // Evento de la seleccion de fecha en calendario
-    $("#diadeentrega").on("dp.change",function (e){
+    }).on('dp.change', function(e){
     	// Reformateamos la fecha
     	var now = new Date(e.date);
     	var day_now = now.getDate();
@@ -49,11 +63,10 @@ $(function () {
 		var month_now = (parseInt(now.getMonth())+1);
 		if(month_now < 10){ month_now = '0'+month_now }
 		var date_now = day_now+'/'+month_now+'/'+now.getFullYear();
-		
+			
 		// Calculamos las franjas disponibles
     	calculaFranjasDisponibles($('#conf_franja').val(), date_now);
     });
-    
     var today = new Date();
     var yesterday = new Date(today.getTime() - (24 * 60 * 60 * 1000));
     $('#diadeentrega').data("DateTimePicker").setMinDate(yesterday);
@@ -234,14 +247,14 @@ function loadShapesContent(json){
 				$('#cont_franja').addClass('hideshape');
 				$('#cont_fecha').removeClass('showshape');
 				$('#cont_fecha').addClass('hideshape');
-				$('#tk_estado').html(json.data.estado_entrega+' en fecha '+json.data.fecha_intento);
+				$('#tk_estado').html(json.data.estado_entrega);
 			break;
 			case ESTADO_ENTREGA_DEVUELTO_A_REMITENTE:
 				$('#cont_franja').removeClass('showshape');
 				$('#cont_franja').addClass('hideshape');
 				$('#cont_fecha').removeClass('showshape');
 				$('#cont_fecha').addClass('hideshape');
-				$('#tk_estado').html(json.data.estado_entrega+' en fecha '+json.data.fecha_intento);
+				$('#tk_estado').html(json.data.estado_entrega);
 			break;
 			case ESTADO_ENTREGA_ORIGEN_NO_PREPARADO:
 				$('#cont_franja').removeClass('showshape');
@@ -304,6 +317,23 @@ function loadShapesContent(json){
 		// Escondemos el formulario
 		$('#cambiosShapeContent').removeClass('showshape');
 		$('#cambiosShapeContent').addClass('hideshape');
+		// Si no las mostramos porque el pedido es TIPSA...
+		if(parseInt(json.data.otros_operadores) == 1){
+			// No hay franja posible ni fecha del cambio de estado
+			$('#tk_estado').html(json.data.estado_entrega);
+			$('#cont_franja').removeClass('showshape');
+			$('#cont_franja').addClass('hideshape');
+			$('#notasTipsa').removeClass('hideshape');
+			$('#notasTipsa').addClass('showshape');
+			$('#notasNOTipsa').removeClass('showshape');
+			$('#notasNOTipsa').addClass('hideshape');
+			
+		}else{
+			$('#notasTipsa').removeClass('showshape');
+			$('#notasTipsa').addClass('hideshape');
+			$('#notasNOTipsa').removeClass('hideshape');
+			$('#notasNOTipsa').addClass('showshape');
+		}
 	}else{
 		// Rellenamos el select de franjas segun horario y conf_franja
 		calculaFranjasDisponibles(json.data.conf_franja, json.data.fecha_entrega_cliente);
@@ -317,6 +347,9 @@ function loadShapesContent(json){
 		// Mostramos el formulario
 		$('#cambiosShapeContent').removeClass('hideshape');
 		$('#cambiosShapeContent').addClass('showshape');
+		// Escondemos la capa de pedido tipo TIPSA
+		$('#notasTipsa').removeClass('showshape');
+		$('#notasTipsa').addClass('hideshape');
 		// Si el pedido tiene cambios pendientes, los mostramos
 		if(Object.size(json.cambios) > 0){
 			$('#cp_num_pedido').html(json.data.num_pedido);
@@ -334,6 +367,10 @@ function loadShapesContent(json){
 			}else{
 				$('#cp_direccion_entrega').html(json.data.direccion+' '+json.data.numero+' ('+json.data.otros_direccion+'), '+json.data.cp+' '+json.data.localidad);	
 			}
+			
+			if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+				$('#confirmacion .modal_body').addClass('modal_body_mobile');
+		    }
 			// Abrimos la capa de cambios pendientes de aprobacion
 			$('#triggerConfirmacionShape').trigger('click');
 		}
@@ -344,14 +381,17 @@ function calculaFranjasDisponibles(conf_franja, fecha_entrega_cliente){
 	// Calculamos el horario actual
 	var now = new Date();
 	var now_hora = now.getHours();
-	
 	var day_now = now.getDate();
 	if(day_now < 10){ day_now = '0'+day_now; }
 	var month_now = (parseInt(now.getMonth())+1);
 	if(month_now < 10){ month_now = '0'+month_now }
 	var date_now = day_now+'/'+month_now+'/'+now.getFullYear();
 	
-	var date_diff = (new Date(fecha_entrega_cliente).getTime() - new Date(date_now).getTime());
+	// Parseamos la fecha de entrega del cliente
+	var fecha_cliente_parseada = parseDate(fecha_entrega_cliente);
+	
+	// Calculamos la diferencia entre fechas
+	var date_diff = (fecha_cliente_parseada.getTime() - parseDate(date_now).getTime());
 	
 	// Si la fecha de entrega introducida en el formulario es hoy
 	if(date_diff == 0){
@@ -406,46 +446,61 @@ function calculaFranjasDisponibles(conf_franja, fecha_entrega_cliente){
 function rellenaFranjas_todas(){
 	// Vaciamos el select primero
 	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').removeAttr('disabled');
+	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"1\">MAÑANA (09:00 - 14:00)</option>");
 	$('#input_franja_entrega').append("<option value=\"2\">TARDE (15:00 - 18:30)</option>");
 	$('#input_franja_entrega').append("<option value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	$('#input_franja_entrega').selectpicker('render');
+	$('#input_franja_entrega').selectpicker('refresh');
 }
 
 function rellenaFranjas_tarde(){
 	// Vaciamos el select primero
 	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').removeAttr('disabled');
+	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"2\">TARDE (15:00 - 18:30)</option>");
 	$('#input_franja_entrega').append("<option value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	$('#input_franja_entrega').selectpicker('render');
+	$('#input_franja_entrega').selectpicker('refresh');
 }
 
 function rellenaFranjas_noche(){
 	// Vaciamos el select primero
 	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').removeAttr('disabled');
+	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	$('#input_franja_entrega').selectpicker('render');
+	$('#input_franja_entrega').selectpicker('refresh');
 }
 
 function rellenaFranjas_diurna_todas(){
 	// Vaciamos el select primero
 	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').removeAttr('disabled');
+	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"4\">DIURNA (12:00 - 17:00)</option>");
 	$('#input_franja_entrega').append("<option value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	$('#input_franja_entrega').selectpicker('render');
+	$('#input_franja_entrega').selectpicker('refresh');
 }
 
 function rellenaFranjas_diurna_noche(){
 	// Vaciamos el select primero
 	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').removeAttr('disabled');
+	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	$('#input_franja_entrega').selectpicker('render');
+	$('#input_franja_entrega').selectpicker('refresh');
 }
 
 function sinFranjasDisponibles(){
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"-1\">Sin franjas dipsonibles para la fecha seleccionada</option>");
-	$('#input_franja_entrega').attr('disabled','disabled');
+	$('#input_franja_entrega').prop('disabled',true);
+	$('#input_franja_entrega').selectpicker('render');
+	$('#input_franja_entrega').selectpicker('refresh');
+	
+	$('.btn-group ul').html('');
+	$('.btn-group ul').append('<li><a href="#">aaaaction uh</a></li>');
 }
 
 function reiniciaInputsFormulario(){
@@ -456,6 +511,7 @@ function reiniciaInputsFormulario(){
 	$('#input_email').val('');	
 	$('#input_comentarios_cliente').html('');		
 }
+
 
 function abortRequest(){
 	requestInfo.abort();

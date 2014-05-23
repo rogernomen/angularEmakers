@@ -218,6 +218,29 @@
 	      </div>
 	    </div>
 	    <div class="item">
+	      <div class="valencia"></div>
+	      <div class="carousel-caption">
+	      	<h4>Emakers Valencia</h4>
+	      	<address>Calle Zapateros, 8 46003 Valencia</address>
+	      </div>
+	    </div>
+	    <div class="item">
+	      <div class="granada"></div>
+	      <div class="carousel-caption">
+	      	<h4>Emakers Granada</h4>
+	      	<address>Calle Seminario, 12 18002 Granada</address>
+	      </div>
+	    </div>
+	    <!--
+	    <div class="item">
+	      <div class="alicante"></div>
+	      <div class="carousel-caption">
+	      	<h4>Emakers Alicante</h4>
+	      	<address></address>
+	      </div>
+	    </div> 
+	    -->
+	    <div class="item">
 	      <div class="london"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers London</h4>

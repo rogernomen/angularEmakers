@@ -196,3 +196,12 @@ label.has-error a{ color:#A94442; }
 .loadingcancelshape{ margin-top: 0px !important; }
 .no_mb{ margin-bottom: 0px !important; }
 .mt20{ margin-top: 20px !important; }
+.modal_body_mobile{
+	font-size: 0.8em !important;
+}
+.modal_body_mobile h2{
+	font-size: 0.8em !important;
+}
+.modal_body_mobile h3{
+	font-size: 0.8em !important;
+}
