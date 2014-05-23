@@ -243,9 +243,9 @@
     	<div class="navbar-collapse collapse ">
     		<div class="navbar-scrollspy">
 	    		<ul class="nav navbar-nav">
-	              <li><a href="#emakers"><?=lang('ew_navbar_item1');?></a></li>
-	              <li><a href="#servicios"><?=lang('ew_navbar_item2');?></a></li>
-	              <li><a href="#interaccion"><?=lang('ew_navbar_item3');?></a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#emakers"><?=lang('ew_navbar_item1');?></a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#servicios"><?=lang('ew_navbar_item2');?></a></li>
+	              <li><a href="<?=base_url().$this->lang->lang();?>/#interaccion"><?=lang('ew_navbar_item3');?></a></li>
 	            </ul>
             </div>
     		<ul class="nav navbar-nav navbar-right">
