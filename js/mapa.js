@@ -100,6 +100,24 @@ var markers = [
 		}
 	},
 	{
+		lat: 39.478266,
+		lng: -0.375204,
+		title: 'Emakers Valencia',
+		icon: base_url+'img/marker.png',
+		infoWindow: {
+			content: '<p>Emakers Valencia</p>'
+		}
+	},
+	{
+		lat: 37.88309,
+		lng: -4.77319,
+		title: 'Emakers Granada',
+		icon: base_url+'img/marker.png',
+		infoWindow: {
+			content: '<p>Emakers Granada</p>'
+		}
+	},
+	{
 		lat: 51.516708,
 		lng: -0.125561,
 		title: 'Emakers London',
@@ -154,6 +172,14 @@ var nombres = [
 	{
 		nombre: 'Emakers La Coruña',
 		direccion: 'Calle Fernando Macias, 26 15004 La Coruña',
+	},
+	{
+		nombre: 'Emakers Valencia',
+		direccion: 'Calle Zapateros, 8 46003 Valencia',
+	},
+	{
+		nombre: 'Emakers Granada',
+		direccion: 'Calle Seminario, 12 18002 Granada',
 	},
 	{
 		nombre: 'Emakers London',

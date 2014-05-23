@@ -364,7 +364,7 @@
 	<script src="<?=base_url();?>js/bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 	<script src="<?=base_url();?>js/gmaps.min.js"></script>
-	<script src="<?=base_url();?>js/mapa.min.js"></script>
+	<script src="<?=base_url();?>js/mapa.js"></script>
 	<script src="<?=base_url();?>js/mapscript.min.js"></script>
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
