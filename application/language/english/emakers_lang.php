@@ -123,9 +123,9 @@ $lang['ew_section_privacy_close']="Cerrar";
 $lang['ew_section_conditions_title']="EMAKERS TRACKING SYSTEM TERMS AND CONDITIONS OF USE";
 $lang['ew_section_conditions_text1']="The tracking system allows you to track the current status of your parcel and the estimated delivery date and shift.";
 $lang['ew_section_conditions_text2']="If you wish, you may request a change in the date and the shift of the delivery. Please enter your order number and the telephone number or e-mail associated to the order.";
-$lang['ew_section_conditions_text3']="The requested scheduled deliveries have to be approved by Emakers. In the case that an unexpected event prevents the acceptance of the request, Emakers will duly inform you.<br/><br/>As an exception, during Christmas or Sale seasons, some shifts may not be available until the next weekday.";
-$lang['ew_section_conditions_text4']="The time limit to request a delivery shift are as follow:";
-$lang['ew_section_conditions_text5']="- MORNING (9:00am to 2:00pm): This shift can be requested until 8 am on the same day.<br/>- EVENING (3:00pm to 6:30pm):  This shift can be requested until 1 pm on the same day.<br/>- AFTERWORK (7:00pm to 10:00pm):  This shift can be requested until 5 pm on the same day.<br/>- DAYTIME (12:00am to 5:00pm): This shift can be requested until  8:00 am on the same day.";
+$lang['ew_section_conditions_text3']="The requested re-scheduling have to be approved by Emakers. In the case that an unexpected event prevents the acceptance of the request, Emakers will duly inform you.";
+$lang['ew_section_conditions_text4']="<b>The time limits (*)</b> to request a delivery shift are as follow:";
+$lang['ew_section_conditions_text5']="- <b>MORNING</b> (9:00am to 2:00pm)<br/>This shift can be requested until 8 am on the same day.<br/><br/>- <b>EVENING</b> (3:00pm to 6:30pm)<br/>This shift can be requested until 1 pm on the same day.<br/><br/>- <b>AFTERWORK</b> (7:00pm to 10:00pm)<br/>This shift can be requested until 5 pm on the same day.<br/><br/>- <b>DAYTIME (**)</b> (12:00am to 5:00pm)<br/>This shift can be requested until  8:00 am on the same day.<br/><br/>(*) As an exception, during Christmas or Sale seasons, some shifts may not be available until the next weekday.<br/><br/>(**) This shift is only available for some areas.";
 $lang['ew_section_conditions_close']="Close";
 
 $lang['ew_section_contacta_title']="Contact Emakers";

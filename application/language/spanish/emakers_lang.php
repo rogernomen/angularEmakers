@@ -123,10 +123,11 @@ $lang['ew_section_privacy_close']="Cerrar";
 $lang['ew_section_conditions_title']="CONDICIONES DE USO DEL SISTEMA DE TRACKING EMAKERS";
 $lang['ew_section_conditions_text1']="El sistema de tracking le permite ver el estado actual de su pedido y la fecha y franja prevista para la entrega.";
 $lang['ew_section_conditions_text2']="Si lo desea, puede solicitar un cambio en el día y la franja para la recepción de su pedido a través del sistema de tracking, introduciendo el número de pedido y el número de teléfono o el correo electrónico asociado al envío.";
-$lang['ew_section_conditions_text3']="La solicitud de una nueva franja de entrega debe ser aprobada por el Emakers. En caso de que no se pueda aceptar la solicitud, se le notificará oportunamente.<br/><br/>Excepcionalmente, durante las campañas de Navidad y Rebajas, algunas franjas no estarán disponibles para la entrega hasta el día siguiente.";
-$lang['ew_section_conditions_text4']="Los horarios límite para solicitar una específica franja de entrega son los siguientes:";
-$lang['ew_section_conditions_text5']="- MAÑANA (09:00h a 14:00h): Se puede solicitar esta franja hasta las 08:00h del mismo día.<br/>- TARDE (15:00h a 18:30h): Se puede solicitar esta franja hasta las 13:00h del mismo día.<br/>- NOCHE (19:00h a 22:00h): Se puede solicitar esta franja hasta las 17:00h del mismo día<br/>- DIURNA (12:00h a 17:00h): Se puede solicitar esta franja hasta las 08:00h del mismo día.";
+$lang['ew_section_conditions_text3']="La solicitud de una nueva franja de entrega debe ser aprobada por el Emakers. En caso de que no se pueda aceptar la solicitud, se le notificará oportunamente.";
+$lang['ew_section_conditions_text4']="<b>Los horarios límite (*)</b> para solicitar una franja de entrega son los siguientes:";
+$lang['ew_section_conditions_text5']="- <b>MAÑANA</b> (09:00h a 14:00h)<br/>Se puede solicitar esta franja hasta las 08:00h del mismo día.<br/><br/>- <b>TARDE</b> (15:00h a 18:30h)<br/>Se puede solicitar esta franja hasta las 13:00h del mismo día.<br/><br/>- <b>NOCHE</b> (19:00h a 22:00h)<br/>Se puede solicitar esta franja hasta las 17:00h del mismo día<br/><br/>- <b>DIURNA (**)</b> (12:00h a 17:00h)<br/>Se puede solicitar esta franja hasta las 08:00h del mismo día.<br/><br/>(*) Excepcionalmente, durante las campañas de Navidad y Rebajas, algunas franjas no estarán disponibles para la entrega hasta el día siguiente.<br/><br/>(**) Esta franja solamente está disponible para algunos códigos postales de Barcelona y Madrid.";
 $lang['ew_section_conditions_close']="Cerrar";
+
 $lang['ew_section_contacta_title']="Contacta con Emakers";
 $lang['ew_section_contacta_subtitle1']="QUIERO SER CLIENTE";
 $lang['ew_section_contacta_text1']="¿Quiere saber más?<br />¡No dude en contactar con nosotros!<br />Empezar a trabajar con Emakers es muy fácil<br />";

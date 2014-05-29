@@ -277,7 +277,7 @@ class Tracking extends CI_Controller {
 		// Compatibility
 		$browser = new Browser();
 		// Android Chrome
-		if($browser->getPlatform() == Browser::PLATFORM_ANDROID && $browser->getBrowser() == Browser::BROWSER_FIREFOX){ return true; }
+		if($browser->getPlatform() == Browser::PLATFORM_ANDROID && $browser->getBrowser() == Browser::BROWSER_CHROME){ return true; }
 		// iPhone 
 		if($browser->getPlatform() == Browser::PLATFORM_IPHONE && $browser->getBrowser() == Browser::BROWSER_IPHONE){ return true; }
 		// iPad 
