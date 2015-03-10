@@ -1050,6 +1050,49 @@ section{
 	background: url(../img/clientes/walkwithme_negro.png) 50% 100% no-repeat;
 }
 
+/* 03/11/2014 NUEVOS CLIENTES */
+#clientes .freefood{
+	width: 179px;
+	height: 75px;
+	float: left;
+	background: url(../img/clientes/freefood_gris.png) 50% 100% no-repeat;
+}
+
+#clientes .freefood:hover{
+	background: url(../img/clientes/freefood_negro.png) 50% 100% no-repeat;
+}
+#clientes .gym_company{
+	width: 179px;
+	height: 75px;
+	float: left;
+	background: url(../img/clientes/gym_company_gris.png) 50% 100% no-repeat;
+}
+
+#clientes .gym_company:hover{
+	background: url(../img/clientes/gym_company_negro.png) 50% 100% no-repeat;
+}
+#clientes .nicethings{
+	width: 179px;
+	height: 75px;
+	float: left;
+	background: url(../img/clientes/nicethings_gris.png) 50% 100% no-repeat;
+}
+
+#clientes .nicethings:hover{
+	background: url(../img/clientes/nicethings_negro.png) 50% 100% no-repeat;
+}
+#clientes .xtralife{
+	width: 179px;
+	height: 75px;
+	float: left;
+	background: url(../img/clientes/xtralife_gris.png) 50% 100% no-repeat;
+}
+
+#clientes .xtralife:hover{
+	background: url(../img/clientes/xtralife_negro.png) 50% 100% no-repeat;
+}
+
+
 
 #clientes .limobebe{
 	width: 179px;
@@ -1160,3 +1203,18 @@ address i:hover {
 	margin-top: 15px;
 }
 .h4mapscript{ margin-top: 20px; }
+
+.ratingctn{
+	text-align: center;
+}
+.starrr span{
+	font-size: 30px;
+}
+.starrr{
+	text-align: center;
+}
+.mtop20{
+	margin-top: 20px;
+}
+.talcenter{ text-align: center; }
+.starrr .glyphicon:hover{ cursor: pointer; }

@@ -4,7 +4,7 @@ var $elementOffset = $('.column-detail').offset().top;
 var $element = $('.column-detail');
 var $scrollOffset;
 var $windowHeight = $(window).height();
-var images = ['foto1.jpg', 'foto2.jpg', 'foto3.jpg', 'foto4.jpg', 'foto5.jpg'];
+var images = ['foto1.jpg', 'foto2.jpg', 'foto5.jpg'];
 
 //------------------------------------- Waiting for the entire site to load ------------------------------------------------//
 

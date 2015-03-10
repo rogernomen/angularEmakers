@@ -103,23 +103,32 @@
 			    			switch($info['data']['cf_estado']){
 				    			case ESTADO_ENTREGA_POR_RECOGER:
 				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+				    				if($info['data']['ifMailPre'] == 1){
+					    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+					    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').'</p>';
+				    				}
 				    			break;
 				    			case ESTADO_ENTREGA_RECOGIDO:
 				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+				    				if($info['data']['ifMailPre'] == 1){
+				    					echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    					echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';					    				
+				    				}
+
 				    			break;
 				    			case ESTADO_ENTREGA_EN_ALMACEN_ORIGEN:
 				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+				    				if($info['data']['ifMailPre'] == 1){
+					    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+				    					echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';	
+				    				}
 				    			break;
 				    			case ESTADO_ENTREGA_EN_ALMACEN:
 				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
-				    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
-				    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+				    				if($info['data']['ifMailPre'] == 1){
+					    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+					    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+				    				}
 				    			break;
 				    			case ESTADO_ENTREGA_EN_RUTA:
 				    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
@@ -163,8 +172,10 @@
 			    			}
 		    			}else{
 		    				echo '<p>'.lang('ew_trs_estado').''.$info['data']['estado_entrega'].'</p>';
-			    			echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['estado_entrega'].'</p>';
-				    		echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+		    				if($info['data']['ifMailPre'] == 1){
+			    				echo '<p id="cont_fecha">'.lang('ew_trs_fechaentrega').''.$info['data']['fecha_entrega_cliente'].'</p>';
+			    				echo '<p id="cont_franja">'.lang('ew_trs_franjaentrega').''.$info['data']['franja_entregaDesc'].'</p>';
+		    				}
 		    			}
 		    		}
 	    		?>

@@ -159,45 +159,6 @@
   </div>
 </div>
 
-<!-- Modal Confirmación de cambios pendientes -->
-<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_cambios_pendintes_title');?></h4>
-      </div>
-      <div class="modal-body">
-      	<h2><font id="cp_num_pedido"></font></h2>
-		<h3><?=lang('ew_tr_cambios_datos_pedido');?></h3>
-		<p><?=lang('ew_tr_cambios_abonado');?><font id="cp_nombre_abonado"></font></p>
-		<p><?=lang('ew_tr_cambios_fecha_alta');?><font id="cp_fecha_alta"></font></p>
-		<p id="cont_cp_fecha"><?=lang('ew_tr_fecha_entrega');?><font id="cp_fecha_entrega_cliente"></font></p>
-		<p id="cont_cp_franja"><?=lang('ew_tr_franja_entrega');?><font id="cp_franja"></font></p>
-		<h3><?=lang('ew_tr_datos_destinatario');?></h3>
-		<p id="cp_nombre_destinatario"></p>
-		<address id="cp_direccion_entrega"></address>
-		<p><?=lang('ew_tr_telf');?><font id="cp_telefono1"></font></p>
-		<p><?=lang('ew_tr_telf2');?><font id="cp_telefono2"></font></p>
-		<p><?=lang('ew_tr_email');?><font id="cp_email"></font></p>
-		<p><?=lang('ew_tr_comentarios');?><font id="cp_comentarios_cliente"></font></p>
-      </div>
-      <div class="modal-footer">
-      	<div class="btn-group btn-group-justified">
-      		<div class="btn-group">
-	       	 	<button type="button" class="btn btn-warning" onclick="javascript:solicitarNuevosCambios();"><?=lang('ew_tr_solicitar_nuevos_cambios');?></button>
-	       	</div>
-	    </div>
-	    <br/>
-	    <div class="btn-group btn-group-justified">
-	       	<div class="btn-group">
-	       	 	<button type="button" class="btn btn-success" onclick="javascript:cambiosCorrectos();"><?=lang('ew_tr_cambios_correctos');?></button>
-	       	</div>
-       	</div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!-- Modal Confirmación de cambios realizados -->
 <div class="modal fade" id="confirmacion_realizada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -290,7 +251,6 @@
         	<button data-toggle="modal" data-target="#Error_loading" class="btn hideshape" id="triggerErrorLoading">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_loading_cambios" class="btn hideshape" id="triggerError_cambiosLoading">&nbsp;</button>
         	<button data-toggle="modal" data-target="#confirmacion" class="btn hideshape" id="triggerConfirmacionShape">&nbsp;</button>
-        	<button data-toggle="modal" data-target="#confirmacion_realizada" class="btn hideshape" id="triggerConfirmacion_realizadaShape">&nbsp;</button>
         </div>
     </div>
     <div class="row hideshape" id="generalShapeContent">
@@ -306,6 +266,7 @@
 	    		<h3><?=lang('ew_tr_datos_destinatario');?></h3>
 	    		<p id="tk_nombre_destinatario"></p>
 	    		<address id="tk_direccion_entrega"></address>
+	    		<div class="alert alert-warning hideshape" id="cambiosDetectedShape"><span class="glyphicon glyphicon-exclamation-sign dangerIcon"></span> <b>Pendiente de validar por Emakers.</b> Este pedido tiene cambios recientes pendientes de ser revisados y aprobados.</div>
 	    	</div>
 	    	<div class="alert alert-warning" id="notasTipsa">
 	    		<h3><?=lang('ew_tr_notas_tipsa_itile');?></h3>
@@ -351,9 +312,6 @@
     			<input type="hidden" name="tabla_origen" id="tabla_origen" value="" />
     			<input type="hidden" name="num_pedido" id="num_pedido" value="" />
     			<input type="hidden" name="cf_agencia" id="cf_agencia" value="" />
-    			<input type="hidden" name="cf_estado" id="cf_estado" value="" />
-    			<input type="hidden" name="cf_abonado" id="cf_abonado" value="" />
-    			<input type="hidden" name="ifMailPre" id="ifMailPre" value="" />
     		</form>
     		<button data-toggle="modal" class="btn btn-success" onclick="javascript:sendFranjaChange();"><?=lang('ew_tr_form_solicitar_cambios');?></button>
     	</div>

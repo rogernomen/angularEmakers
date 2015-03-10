@@ -24,7 +24,7 @@
 	
 	<!-- Custom styles for this template -->
 	<link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-	<link href="<?=base_url();?>css/main.min.css" rel="stylesheet">
+	<link href="<?=base_url();?>css/main.css" rel="stylesheet">
 	<link href="<?=base_url();?>css/fontello.min.css" rel="stylesheet">
 	
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,6 +41,13 @@
 		border: 0 solid transparent;
 	}
 	</style>
+	
+	<script>
+		var base_url = '<?= $this->config->item('base_url'); ?>';
+		var lang_site = '<?= $this->lang->lang(); ?>';
+		var starcount = <?php echo $starcount; ?>;
+	</script>
+	
 </head>
 
 <body>
@@ -67,7 +74,7 @@
 
 			<ul class="nav navbar-nav navbar-right">
 	      		<a href="<?=base_url().$this->lang->lang();?>/tracking" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn"><?=lang('ew_navbar_item4');?> <i class="icon-squares"></i></button></a>
-	      		<a href="#" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-active"><?=lang('ew_navbar_item5');?> <i class="icon-squares"></i></button></a>
+	      		<a href="#" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn"><?=lang('ew_navbar_item5');?> <i class="icon-squares"></i></button></a>
 	      		<a href="http://www.linkedin.com/company/emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-linkedin"><i class="icon-linkedin-1"></i></button></a>
 	      		<a href="https://twitter.com/emakers_es" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-twitter"><i class="icon-twitter-2"></i></button></a>
 	      		<a href="https://www.facebook.com/Emakers" target="_blank"><button type="button" class="btn btn-default btn-sm navbar-btn btn-facebook"><i class="icon-facebook"></i></button></a>
@@ -79,150 +86,61 @@
 <!-- Sections
 ================================================== -->
 <!-- contacta -->
-<section id="contacta">
+<section id="rating">
     <div class="container">
 		<div class="row">
-			<div class="col-md-4">
-				<div class="column-detail">
-					<div class="icon">
-						<img src="<?=base_url();?>img/contacta/clientes.png" alt="" />
-					</div>
-					<div class="title">
-						<h4><?=lang('ew_section_contacta_subtitle1');?></h4>
-					</div>
-					<div class="element separator3">
-					</div>
-					<div class="description">
-    					<p><?=lang('ew_section_contacta_text1');?>
-    					<br />
-    					<a href="mailto:clientes@emakers.es">clientes@emakers.es</a><br>
-    					<br />
-    					(+34) 93 624 24 26<br />
-    					(+34) 91 725 05 88<br />
-    					</p>
-					</div>
-				</div>
+			<div class="col-md-2"></div>
+			<div class="col-md-8 ratingctn">
+				<h1><?=lang('rating_title');?></h1>
+				<h2><p class="lead"><?=lang('rating_slogan');?></p></h2>
+				<p><?=lang('rating_description');?></p>
 			</div>
-			<div class="col-md-4">
-				<div class="column-detail">
-					<div class="icon">
-						<img src="<?=base_url();?>img/contacta/atencion.png" alt="" />
-					</div>
-					<div class="title">
-						<h4><?=lang('ew_section_contacta_subtitle2');?></h4>
-					</div>
-					<div class="element separator3">
-					</div>
-					<div class="description">
-						<p><?=lang('ew_section_contacta_text2');?>
-						<br />
-						<a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a><br>
-						<br />
-						(+34) 93 624 24 26<br />
-						(+34) 91 725 05 88<br />
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="column-detail">
-					<div class="icon">
-						<img src="<?=base_url();?>img/contacta/comunicacion.png" alt="" />
-					</div>
-					<div class="title">
-						<h4><?=lang('ew_section_contacta_subtitle3');?></h4>
-					</div>
-					<div class="element separator3">
-					</div>
-					<div class="description">
-						<p><?=lang('ew_section_contacta_text3');?>
-						<br />
-						<a href="mailto:comunicacion@emakers.es">comunicacion@emakers.es</a><br>
-						<br />
-						(+34) 93 624 24 26<br />
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-md-offset-2">
-				<div class="column-detail">
-					<div class="icon">
-						<img src="<?=base_url();?>img/contacta/map.png" alt="" />
-					</div>
-					<div class="title">
-						<h4><?=lang('ew_section_contacta_subtitle4');?></h4>
-					</div>
-					<div class="element separator3">
-					</div>
-					<div class="description">
-						<p><?=lang('ew_section_contacta_text4');?>
-						<br />
-						<a href="mailto:socioslocales@emakers.es">socioslocales@emakers.es</a><br>
-						<br />
-						(+34) 93 624 24 26<br />
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="column-detail">
-					<div class="icon">
-						<img src="<?=base_url();?>img/contacta/jobs.png" alt="" />
-					</div>
-					<div class="title">
-						<h4><?=lang('ew_section_contacta_subtitle5');?></h4>
-					</div>
-					<div class="element separator3">
-					</div>
-					<div class="description">
-						<p><?=lang('ew_section_contacta_text5');?>
-						<br />
-						<a href="mailto:rrhh@emakers.es">rrhh@emakers.es</a><br>
-						<br />
-						(+34) 93 624 24 26<br />
-						</p>
-					</div>
-				</div>
-			</div>
+			<div class="col-md-2"></div>
 		</div>
     </div>
-</section>
-
-<section id="agencias">
-	<div class="container2">
+	<div class="container mtop20">
 		<div class="row">
-			<div class="section-title2">
-				<div class="col-md-12">
-					<h1><?=lang('ew_section_contacta_title2');?></h1>
-					<div class="element separator3">
-					</div>
-				</div>
-			</div>
-			<div id="mapa">
-			</div>
-			<div class="col-md-12">
-				<div id="left">
-					<div class="left-inner">
-						<a><span class="glyphicon glyphicon-chevron-left"></span></a>
-					</div>
-				</div>
-				<div class="center">
-					<div class="center-inner">
-						<h4 class='h4mapscript'>Emakers Barcelona
-							<address>Carrer Comte Urgell, 51 Bis Principal 08011 Barcelona</address>
-						</h4>
-					</div>
-				</div>
-				<div id="right">
-					<div class="right-inner">
-						<a><span class="glyphicon glyphicon-chevron-right"></span></a>
-					</div>
-				</div>
+			<div class="row lead">
+				<div id="stars" class="starrr"></div>
+				<?php
+					if($starcount == 1){
+						echo '<h2 class="talcenter">'.lang('rating_rate1').'</h2>';
+					}else if($starcount == 2){
+						echo '<h2 class="talcenter">'.lang('rating_rate2').'</h2>';
+					}else if($starcount == 3){
+						echo '<h2 class="talcenter">'.lang('rating_rate3').'</h2>';
+					}else if($starcount == 4){
+						echo '<h2 class="talcenter">'.lang('rating_rate4').'</h2>';
+					}else if($starcount == 5){
+						echo '<h2 class="talcenter">'.lang('rating_rate5').'</h2>';
+					}else if($starcount == 0){
+						echo '<h2 class="talcenter">&nbsp;</h2>';
+					}
+				?>
+				
 			</div>
 		</div>
 	</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 ratingctn">
+				<div class="form-group">	
+    	    		<textarea id="input_comentarios_sugerencias" name="input_comentarios_sugerencias" class="form-control" rows="3" placeholder="<?=lang('rating_comments');?>"></textarea>
+    			</div>
+    			<input type="hidden" id="hash_rating" name="hash_rating" value="<?php echo $hash_rating;?>" />
+    			<input type="hidden" id="id_rating" name="id_rating" value="<?php echo $id_rating;?>" />
+    			<input type="hidden" id="rating_value" name="rating_value" value="<?php echo $starcount;?>" />
+    			<p>
+					<button type="button" class="btn btn-warning btn-block" id="rating_save" onclick="javascript:guardaRating();"><span class="glyphicon glyphicon-ok gly_emks"></span> <?=lang('rating_save');?></button>
+					<button type="button" class="btn btn-success btn-block" id="rating_ok" disabled="disabled"><span class="glyphicon glyphicon-ok gly_emks"></span> <?=lang('rating_saved');?></button>
+				</p>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+
 </section>
         
 <!-- FOOTER -->
@@ -243,7 +161,8 @@
 				  Calle Comte Urgell, 51 bis<br>
 				  08011 Barcelona<br>
 				  <br />
-				  (+34) 93 624 24 26
+				  (+34) 93 624 24 26<br />
+				  (+34) 93 419 92 09
 				</address>
 			</div>
 			<!--<div class="clearfix visible-xs"></div>-->
@@ -356,10 +275,7 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script src="<?=base_url();?>js/bootstrap.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-	<script src="<?=base_url();?>js/gmaps.min.js"></script>
-	<script src="<?=base_url();?>js/mapa.js"></script>
-	<script src="<?=base_url();?>js/mapscript.min.js"></script>
+	<script src="<?=base_url();?>js/rating_script.js"></script>
 	<script type="text/javascript">
 	  var _gaq = _gaq || [];
 	  _gaq.push(['_setAccount', 'UA-37509776-3']);

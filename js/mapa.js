@@ -28,8 +28,8 @@ var markers = [
 		}
 	},
 	{
-		lat: 37.39040,
-		lng: -5.98563,
+		lat: 37.38827,
+		lng: -5.98498,
 		title: 'Emakers Sevilla',
 		icon: base_url+'img/marker.png',
 		infoWindow: {
@@ -37,8 +37,8 @@ var markers = [
 		}
 	},
 	{
-		lat: 36.69098,
-		lng: -4.44277,
+		lat: 36.71149,
+		lng: -4.43760,
 		title: 'Emakers Malaga',
 		icon: base_url+'img/marker.png',
 		infoWindow: {
@@ -46,8 +46,8 @@ var markers = [
 		}
 	},
 	{
-		lat: 37.9790701,
-		lng: -1.0727247,
+		lat: 37.98310,
+		lng: -1.12476,
 		title: 'Emakers Murcia',
 		icon: base_url+'img/marker.png',
 		infoWindow: {
@@ -64,8 +64,8 @@ var markers = [
 		}
 	},
 	{
-		lat: 41.64914,
-		lng: -0.92281,
+		lat: 41.64000,
+		lng: -0.89699,
 		title: 'Emakers Zaragoza',
 		icon: base_url+'img/marker.png',
 		infoWindow: {
@@ -73,8 +73,8 @@ var markers = [
 		}
 	},
 	{
-		lat: 41.64010,
-		lng: -4.72162,
+		lat: 41.65192,
+		lng: -4.72370,
 		title: 'Emakers Valladolid',
 		icon: base_url+'img/marker.png',
 		infoWindow: {
@@ -143,15 +143,15 @@ var nombres = [
 	},
 	{
 		nombre: 'Emakers Sevilla',
-		direccion: 'Calle Muro de los Navarros, 25 Bajos 41003 Sevilla',
+		direccion: 'Avenida de Menéndez Pelayo, 43-45 41003 Sevilla',
 	},
 	{
 		nombre: 'Emakers Malaga',
-		direccion: 'Calle Francisco de cossio, 20 Local 1 29004 Malaga',
+		direccion: 'Calle La Unión, 28 29006 Malaga',
 	},
 	{
 		nombre: 'Emakers Murcia',
-		direccion: 'C/ Maria Matas 2, Beniajan 30570',
+		direccion: 'C/ Poeta Ramírez Pagan 4 30003 Murcia',
 	},
 	{
 		nombre: 'Emakers Bilbao',
@@ -159,11 +159,11 @@ var nombres = [
 	},
 	{
 		nombre: 'Emakers Zaragoza',
-		direccion: 'Calle Conde de Sobradiel, 6 50011 Zaragoza',
+		direccion: 'Calle del Arzobispo Apaolaza, 12, 50009 Zaragoza',
 	},
 	{
 		nombre: 'Emakers Valladolid',
-		direccion: 'Calle Embajadores, 1 47013 Valladolid',
+		direccion: 'Calle Nuñez de Arce, 12 47002 Valladolid',
 	},
 	{
 		nombre: 'Emakers Córdoba',
@@ -183,7 +183,7 @@ var nombres = [
 	},
 	{
 		nombre: 'Emakers London',
-		direccion: 'West Central Street, 13 WC1A1AB London',
+		direccion: '13 West Central Street WC1A1AB London',
 	}
 	
 ];

@@ -225,5 +225,18 @@ $lang['ew_trnodv_slogan'] = 'We are sorry, the platform or browser that you are 
 $lang['ew_trnodv_device_list'] = '<li>Google Chrome for Android, iPhone, iPod, iPad, Mac OSX or Windows</li><li>Safari for iPhone, iPod, iPad, Mac OSX or Windows</li><li>Mozilla Firefox for Windows or Mac OSX</li><li>Opera for Mac OSX or Windows</li><li>IE7+ for Windows</li>';
 $lang['ew_trnodv_contact'] = 'You may also contact us:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 
+/* RATING */
+$lang['rating_title'] = 'Thanks for your vote!';
+$lang['rating_slogan'] = 'Your opinion matters';
+$lang['rating_description'] = 'If you wish, you can add any comments or suggestions about our service. You may also add  other information that you want us to carry on to the online store where you made ​​your purchase.';
+$lang['rating_rate1'] = 'Very Bad';
+$lang['rating_rate2'] = 'Bad';
+$lang['rating_rate3'] = 'Normal';
+$lang['rating_rate4'] = 'Very Good';
+$lang['rating_rate5'] = 'Excellent';
+$lang['rating_comments'] = 'Write here comments and suggestions';
+$lang['rating_save'] = 'Save comments and suggestions';
+$lang['rating_saved'] = 'Comments and suggestions saved';
+
 /* End of file emakers_lang.php */
 /* Location: ./application/language/spanish/emakers_lang.php */

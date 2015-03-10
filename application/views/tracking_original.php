@@ -351,9 +351,6 @@
     			<input type="hidden" name="tabla_origen" id="tabla_origen" value="" />
     			<input type="hidden" name="num_pedido" id="num_pedido" value="" />
     			<input type="hidden" name="cf_agencia" id="cf_agencia" value="" />
-    			<input type="hidden" name="cf_estado" id="cf_estado" value="" />
-    			<input type="hidden" name="cf_abonado" id="cf_abonado" value="" />
-    			<input type="hidden" name="ifMailPre" id="ifMailPre" value="" />
     		</form>
     		<button data-toggle="modal" class="btn btn-success" onclick="javascript:sendFranjaChange();"><?=lang('ew_tr_form_solicitar_cambios');?></button>
     	</div>

@@ -136,44 +136,45 @@
 	      <div class="barcelona"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Barcelona</h4>
-	      	<address>Calle Comte Urgell, 51 bis 08011 Barcelona</address>
+	      	<address>Calle Comte Urgell 51 bis, 08011 Barcelona</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="madrid"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Madrid</h4>
-	      	<address>Calle Marqués de Monteagudo, 22 Bajos 28028 Madrid</address>
+	      	<address>Calle Marqués de Monteagudo 22 Bajos, 28028 Madrid</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="san-sebastian"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers San Sebastián</h4>
-	      	<address>Calle Duque de Mandas, 28 Bajos 20009 San Sebastian</address>
+	      	<address>Calle Duque de Mandas 28 Bajos, 20009 San Sebastian</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="sevilla"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Sevilla</h4>
-	      	<address>Calle Muro de los Navarros, 25 Bajos 41003 Sevilla</address>
+	      	<address>Avenida de Menéndez Pelayo 43-45, 41003 Sevilla</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="malaga"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Málaga</h4>
-	      	<address>Calle Francisco de Cossio, 20 Local 1 29004 Malaga</address>
+	      	<address>Calle la Unión 28, 29006 Malaga</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="murcia"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Murcia</h4>
-	      	<address>Calle Maria Matas 2, Beniajan 30570</address>
+	      	<address>Calle Poeta Ramírez Pagan 4, 30003 Murcia</address>
 	      </div>
 	    </div>
+	    <!--
 	    <div class="item">
 	      <div class="bilbao"></div>
 	      <div class="carousel-caption">
@@ -181,11 +182,12 @@
 	      	<address>Calle Ribera, 16 48005 Bilbao</address>
 	      </div>
 	    </div>
+	    -->
 	    <div class="item">
 	      <div class="zaragoza"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Zaragoza</h4>
-	      	<address>Calle Conde de sobradiel, 6 50011 Zaragoza</address>
+	      	<address>Calle del Arzobispo Apaolaza 12, 50009 Zaragoza</address>
 	      </div>
 	    </div>
 	    <!-- 
@@ -200,35 +202,35 @@
 	      <div class="valladolid"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Valladolid</h4>
-	      	<address>Calle Embajadores, 1 47013 Valladolid</address>
+	      	<address>Calle Nuñez de Arce 12, 47002 Valladolid</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="cordoba"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Córdoba</h4>
-	      	<address>Plaza de Almagra, 7 14002 Cordoba</address>
+	      	<address>Plaza de Almagra 7, 14002 Cordoba</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="coruna"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers La Coruña</h4>
-	      	<address>Calle Fernando Macias, 26 15004 La Coruña</address>
+	      	<address>Calle Fernando Macias 26, 15004 La Coruña</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="valencia"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Valencia</h4>
-	      	<address>Calle Zapateros, 8 46003 Valencia</address>
+	      	<address>Calle Zapateros 8, 46003 Valencia</address>
 	      </div>
 	    </div>
 	    <div class="item">
 	      <div class="granada"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers Granada</h4>
-	      	<address>Calle Seminario, 12 18002 Granada</address>
+	      	<address>Calle Seminario 12, 18002 Granada</address>
 	      </div>
 	    </div>
 	    <!--
@@ -244,7 +246,7 @@
 	      <div class="london"></div>
 	      <div class="carousel-caption">
 	      	<h4>Emakers London</h4>
-	      	<address>West Central Street, 13 WC1A1AB London</address>
+	      	<address>13 West Central Street WC1A1AB London</address>
 	      </div>
 	    </div>
 	  </div>
@@ -559,8 +561,12 @@
 					<a href="http://www.verticoutdoor.com/" target="_blank"><div class="vertic"></div></a>
 					<a href="http://www.limobebe.com/xcart/home.php" target="_blank"><div class="limobebe"></div></a>
 					<a href="http://www.browniespain.com" target="_blank"><div class="brownie"></div></a>
-					<!-- <a href="http://www.zubidesign.com" target="_blank"><div class="zubi"></div></a> -->
 					<a href="http://www.walkwithme.es/" target="_blank"><div class="walk"></div></a>
+					<a href="http://www.freefood.es" target="_blank"><div class="freefood"></div></a> 
+					<a href="http://www.gymcompany.es" target="_blank"><div class="gym_company"></div></a> 
+					<a href="http://www.nicethingspalomas.com" target="_blank"><div class="nicethings"></div></a> 
+					<a href="http://www.zubidesign.com" target="_blank"><div class="zubi"></div></a>
+					<a href="http://www.xtralife.es" target="_blank"><div class="xtralife"></div></a>
 				</div>
 			</div>
 		</div>
@@ -703,7 +709,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="<?=base_url();?>js/jquery.backstretch.min.js" type="text/javascript"></script>
 <script src="<?=base_url();?>js/bootstrap.min.js"></script>
-<script src="<?=base_url();?>js/script.min.js"></script>
+<script src="<?=base_url();?>js/script.js"></script>
 <script type="text/javascript">
 	var base_url = '<?=base_url();?>';
 	var lang = '<?=$this->lang->lang();?>';

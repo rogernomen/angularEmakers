@@ -117,6 +117,157 @@ class Tracking extends CI_Controller {
 		}
 	}
 	
+	public function order($expedicion = false){
+		if($this->_checkCompatibility()){
+			$data = array();
+			
+			if(!$expedicion){
+				$data = array(
+					'status' 	=> 'KO',
+					'msg'		=> 'Numero de pedido no encontrado'
+				);
+			}else{
+				// $data = la funcion de ws que toque
+				// Mount params array
+				$params = array(
+						'username' 		=> $this->config->item('ws_login'),
+						'password' 		=> $this->config->item('ws_passw'),
+						'expedicion' 	=> $expedicion
+						
+				);
+										
+				// Connect to the nusoap server
+				$this->nusoap_client = new nusoap_client($this->config->item('ws_base_url'));
+				
+				$response = array();
+				
+				if($this->nusoap_client->fault){
+					$text = 'Error: '.$this->nusoap_client->fault;
+						$data =  json_encode(array(
+								'status'=> 'KO',
+								'msg' 	=> $text
+						));
+					
+				}else{
+					if ($this->nusoap_client->getError()){
+						$text = 'Error: '.$this->nusoap_client->getError();
+						
+						$data =  json_encode(array(
+								'status'=> 'KO',
+								'msg' 	=> $text
+						));
+						
+					}else{
+						$text = 'Connection OK';
+							
+						// Call the function to get data
+						$row = $this->nusoap_client->call('getDataFromTrackingSoft', $params);
+						
+						//hay que parsear las fechas con que se pasan por el json
+						$json_final = json_decode($row,true);					
+						
+						//si devuelve ko devolvemos solo el mensaje
+						if(is_null($json_final) || $json_final["status"] == "KO" || $row == false){
+							$data =  array(
+									'status'=> 'KO',
+									'msg' 	=> 'Error inesperado en la búsqueda de datos.'
+							);
+						}else{
+							// Por defecto mostramos el boton para solicitar nuevos intentos de entrega
+							$json_final['data']['show_opciones'] = 1;
+							$json_final = $this->_parseMsgOutput($json_final);
+							$data['info'] = $json_final ;
+							$data['status'] = "OK";
+						}					
+					}
+				}
+			}
+			$this->load->view('tracking_soft', $data);
+		}else{
+			redirect('tracking/no_soportado');
+		}
+	}
+	
+	// ************************************************************************** //
+	// estad de num_pedido segun abonado
+	// ************************************************************************** //
+	public function abonado($abonado_slug = false, $num_pedido = false){
+		if($this->_checkCompatibility()){
+			$data = array();
+			
+			if($num_pedido == false){
+				$data = array(
+					'status' 	=> 'KO',
+					'msg'		=> 'Numero de pedido no encontrado'
+				);
+			}else if($abonado_slug == false){
+				$data = array(
+					'status' 	=> 'KO',
+					'msg'		=> 'Numero de pedido no encontrado'
+				);
+			}else{
+				// $data = la funcion de ws que toque
+				// Mount params array
+				$params = array(
+						'username' 		=> $this->config->item('ws_login'),
+						'password' 		=> $this->config->item('ws_passw'),
+						'abonado_slug' 	=> $abonado_slug,
+						'num_pedido' 	=> $num_pedido
+						
+				);
+										
+				// Connect to the nusoap server
+				$this->nusoap_client = new nusoap_client($this->config->item('ws_base_url'));
+				
+				$response = array();
+				
+				if($this->nusoap_client->fault){
+					$text = 'Error: '.$this->nusoap_client->fault;
+						$data =  json_encode(array(
+								'status'=> 'KO1',
+								'msg' 	=> $text
+						));
+					
+				}else{
+					if ($this->nusoap_client->getError()){
+						$text = 'Error: '.$this->nusoap_client->getError();
+						
+						$data =  json_encode(array(
+								'status'=> 'KO2',
+								'msg' 	=> $text
+						));
+						
+					}else{
+						$text = 'Connection OK';
+							
+						// Call the function to get data
+						$row = $this->nusoap_client->call('getDataFromTrackingSoftAboado', $params);
+						
+						//hay que parsear las fechas con que se pasan por el json
+						$json_final = json_decode($row,true);					
+						
+						//si devuelve ko devolvemos solo el mensaje
+						if(is_null($json_final) || $json_final["status"] == "KO" || $row == false){
+							$data =  array(
+									'status'=> 'KO3',
+									'msg' 	=> 'Error inesperado en la búsqueda de datos.'
+							);
+						}else{
+							// Por defecto mostramos el boton para solicitar nuevos intentos de entrega
+							$json_final['data']['show_opciones'] = 1;
+							$json_final = $this->_parseMsgOutput($json_final);
+							$data['info'] = $json_final ;
+							$data['status'] = "OK";
+						}					
+					}
+				}
+			}
+			$this->load->view('tracking_soft', $data);
+		}else{
+			redirect('tracking/no_soportado');
+		}
+	}
+	
 	
 	// ************************************************************************** //
 	// checkDataTracking - Busqueda de los datos de un pedido
@@ -312,6 +463,8 @@ class Tracking extends CI_Controller {
 		if($browser->getPlatform() == Browser::PLATFORM_WINDOWS && $browser->getBrowser() == Browser::BROWSER_IE){ return true; }
 		// Windows Opera
 		if($browser->getPlatform() == Browser::PLATFORM_WINDOWS && $browser->getBrowser() == Browser::BROWSER_OPERA){ return true; }
+		// Linux Firefox
+		if($browser->getPlatform() == Browser::PLATFORM_LINUX && $browser->getBrowser() == Browser::BROWSER_FIREFOX){ return true; }
 		
 		return false;
 	}
