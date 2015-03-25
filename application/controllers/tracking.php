@@ -312,8 +312,10 @@ class Tracking extends CI_Controller {
 												
 					// Call the function to get data				
 					$row = $this->nusoap_client->call('getDataFromTracking', $params);
+					
 					//hay que parsear las fechas con que se pasan por el json
 					$json_final = json_decode($row,true);
+					
 					//si devuelve ko devolvemos solo el mensaje
 					if(is_null($json_final) || $json_final["status"] == "KO" || $row == false){
 						echo json_encode(array(
@@ -372,47 +374,129 @@ class Tracking extends CI_Controller {
 	}
 	public function setFranjaChange(){
 		if($this->_checkCompatibility()){
-			// Mount params array
-			$params = array(
-					'username' 				=> $this->config->item('ws_login'),
-					'password' 				=> $this->config->item('ws_passw'),
-					"id2"					=> $this->input->post("id2"),
-					"cf_agencia"			=> $this->input->post("cf_agencia"),
-					"num_pedido"			=> $this->input->post("num_pedido"),
-					"fecha_entrega"			=> $this->input->post("fecha_entrega"),
-					"id_franja_entrega"		=> $this->input->post("id_franja_entrega"),
-					"comentarios_cliente"	=> $this->input->post("comentarios_cliente"),
-					"telefono"				=> $this->input->post("telefono"),
-					"telefono2"				=> $this->input->post("telefono2"),
-					"mail"					=> $this->input->post("email"),
-					"tabla_origen"			=> $this->input->post("tabla_origen")
-			);
-	
-			// Connect to the nusoap server
-			$this->nusoap_client = new nusoap_client($this->config->item('ws_base_url'));
-	
-			if($this->nusoap_client->fault){
-				$text = 'Error: '.$this->nusoap_client->fault;
-				echo json_encode(array(
+			// Check wich form is
+			$idForm = $this->input->post("idForm");
+			
+			switch($idForm){
+				case 1:
+					// Mount params array
+					$params = array(
+						"username" 				=> $this->config->item("ws_login"),
+						"password" 				=> $this->config->item("ws_passw"),
+						"id2"					=> $this->input->post("id2"),
+						"cf_agencia"			=> $this->input->post("cf_agencia"),
+						"num_pedido"			=> $this->input->post("num_pedido"),
+						"tabla_origen"			=> $this->input->post("tabla_origen"),
+						"fecha_entrega"			=> $this->input->post("fecha_entrega"),
+						"id_franja_entrega"		=> $this->input->post("id_franja_entrega"),
+						"hora1_inicio"			=> $this->input->post("hora1_inicio"),
+						"hora1_final"			=> $this->input->post("hora1_final"),
+						"hora2_inicio"			=> $this->input->post("hora2_inicio"),
+						"hora2_final"			=> $this->input->post("hora2_final")
+					);
+					
+					// Function to call
+					$WSFunction = 'changeFranja';
+				break;
+				case 12:
+					// Mount params array
+					$params = array(
+						"username" 				=> $this->config->item("ws_login"),
+						"password" 				=> $this->config->item("ws_passw"),
+						"id2"					=> $this->input->post("id2"),
+						"cf_agencia"			=> $this->input->post("cf_agencia"),
+						"num_pedido"			=> $this->input->post("num_pedido"),
+						"tabla_origen"			=> $this->input->post("tabla_origen"),
+						"fecha_entrega"			=> false,
+						"id_franja_entrega"		=> false,
+						"hora1_inicio"			=> $this->input->post("hora1_inicio"),
+						"hora1_final"			=> $this->input->post("hora1_final"),
+						"hora2_inicio"			=> $this->input->post("hora2_inicio"),
+						"hora2_final"			=> $this->input->post("hora2_final")
+					);
+					
+					// Function to call
+					$WSFunction = 'changeFranja';
+				break;
+				case 2:
+					// Mount params array
+					$params = array(
+						"username" 				=> $this->config->item("ws_login"),
+						"password" 				=> $this->config->item("ws_passw"),
+						"id2"					=> $this->input->post("id2"),
+						"cf_agencia"			=> $this->input->post("cf_agencia"),
+						"num_pedido"			=> $this->input->post("num_pedido"),
+						"tabla_origen"			=> $this->input->post("tabla_origen"),
+						"telefono"				=> $this->input->post("telefono"),
+						"telefono2"				=> $this->input->post("telefono2"),
+						"email"					=> $this->input->post("email"),
+						"ifCOM10"				=> $this->input->post("ifCOM10"),
+						"ifCOMPre"				=> $this->input->post("ifCOMPre"),
+						"ifCOMPost"				=> $this->input->post("ifCOMPost"),
+						"ifCOMAus"				=> $this->input->post("ifCOMAus"),
+						"ifCOMDir"				=> $this->input->post("ifCOMDir")
+					);
+					
+					// Function to call
+					$WSFunction = 'changeCOMS';
+				break;
+				case 3:
+					// Mount params array
+					$params = array(
+						"username" 				=> $this->config->item("ws_login"),
+						"password" 				=> $this->config->item("ws_passw"),
+						"id2"					=> $this->input->post("id2"),
+						"cf_agencia"			=> $this->input->post("cf_agencia"),
+						"num_pedido"			=> $this->input->post("num_pedido"),
+						"tabla_origen"			=> $this->input->post("tabla_origen"),
+						"cf_tipo_via"			=> $this->input->post("cf_tipo_via"),
+						"ip_direccion"			=> $this->input->post("ip_direccion"),
+						"ip_numero"				=> $this->input->post("ip_numero"),
+						"ip_cp"					=> $this->input->post("ip_cp"),
+						"ip_otros_direccion"	=> $this->input->post("ip_otros_direccion"),
+						"comentarios_cliente"	=> $this->input->post("comentarios_cliente"),
+						"ifPorteria"			=> $this->input->post("ifPorteria"),
+						"ifVecino"				=> $this->input->post("ifVecino"),
+						"vecino_desc"			=> $this->input->post("vecino_desc")
+					);
+					
+					// Function to call
+					$WSFunction = 'changeDir';
+				break;
+				default:
+					echo json_encode(array(
 						'status'=> 'KO',
-						'msg' 	=> $text
-				));
-			}else{
-				if($this->nusoap_client->getError()){
-					$text = 'Error: '.$this->nusoap_client->getError();
+						'msg' 	=> 'Error en la recepción de los datos.'
+					));
+				break;
+			}
+			
+			if($idForm == 1 || $idForm == 12 || $idForm == 2 || $idForm == 3){
+				// Connect to the nusoap server
+				$this->nusoap_client = new nusoap_client($this->config->item('ws_base_url'));
+				
+				if($this->nusoap_client->fault){
+					$text = 'Error: '.$this->nusoap_client->fault;
 					echo json_encode(array(
 							'status'=> 'KO',
 							'msg' 	=> $text
 					));
 				}else{
-					$text = 'Connection OK';
-					// Call the function 
-					$row = $this->nusoap_client->call('changeFranja', $params);
-					
-					echo json_encode(array(
-							'status'	=> 'OK',
-							'msg' 		=> 'Cambios solicitados correctamente'
-					));
+					if($this->nusoap_client->getError()){
+						$text = 'Error: '.$this->nusoap_client->getError();
+						echo json_encode(array(
+								'status'=> 'KO',
+								'msg' 	=> $text
+						));
+					}else{
+						$text = 'Connection OK';
+						// Call the function 
+						$row = $this->nusoap_client->call($WSFunction, $params);
+						echo json_encode(array(
+								'status'	=> 'OK',
+								'msg' 		=> 'Cambios solicitados correctamente'
+						));
+					}
 				}
 			}
 		}else{
@@ -428,7 +512,7 @@ class Tracking extends CI_Controller {
 		// Compatibility
 		$browser = new Browser();
 		// Android Chrome
-		if($browser->getPlatform() == Browser::PLATFORM_ANDROID && $browser->getBrowser() == Browser::BROWSER_CHROME){ return true; }
+		if($browser->getPlatform() == Browser::PLATFORM_ANDROID){ return true; }
 		// iPhone 
 		if($browser->getPlatform() == Browser::PLATFORM_IPHONE && $browser->getBrowser() == Browser::BROWSER_IPHONE){ return true; }
 		// iPad 
@@ -464,7 +548,7 @@ class Tracking extends CI_Controller {
 		// Windows Opera
 		if($browser->getPlatform() == Browser::PLATFORM_WINDOWS && $browser->getBrowser() == Browser::BROWSER_OPERA){ return true; }
 		// Linux Firefox
-		if($browser->getPlatform() == Browser::PLATFORM_LINUX && $browser->getBrowser() == Browser::BROWSER_FIREFOX){ return true; }
+		if($browser->getPlatform() == Browser::PLATFORM_LINUX){ return true; }
 		
 		return false;
 	}

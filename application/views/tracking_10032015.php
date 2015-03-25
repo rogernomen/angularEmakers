@@ -1,17 +1,4 @@
 <!DOCTYPE html>
-<?php
-	$today = date('N');
-	$dia_proximo = 1;
-	switch($today){
-		case 5:
-			$dia_proximo = 3;
-		break;
-		case 6:
-			$dia_proximo = 2;
-		break;
-	}
-	$dia_proximo = date('d/m/Y', strtotime("now +".$dia_proximo." day"));
-?>
 <html lang="es">
 <head>
 	<meta charset="utf-8">
@@ -111,25 +98,6 @@
   </div>
 </div>
 
-<!-- Modal SaveOK -->
-<div class="modal fade" id="SaveOK" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_datos_guardados_title');?></h4>
-      </div>
-      <div class="modal-body">
-      	<div class="alert alert-success">
-      		<p><?=lang('ew_tr_datos_guardados_description');?></p>
-      	</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Modal no se encuentra el pedido -->
 <div class="modal fade" id="Error_busqueda" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -182,26 +150,6 @@
       <div class="modal-body">
       	<div class="alert alert-danger">
       		<p><?=lang('ew_tr_error_datos_solicitados_description');?></p>
-      	</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?=lang('ew_tr_cerrar');?></button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal no hay dia / franja correctos en la solicitud -->
-<div class="modal fade" id="Error_horarios" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_tr_error_datos_solicitados_title');?></h4>
-      </div>
-      <div class="modal-body">
-      	<div class="alert alert-danger">
-      		<p><?=lang('ew_tr_error_datos_solicitados_description2');?></p>
       	</div>
       </div>
       <div class="modal-footer">
@@ -336,11 +284,9 @@
         	</form>
         	<div class="pull-right"><button data-toggle="modal" class="btn btn-success" onclick="javascript:sendConsulta();"><?=lang('ew_tr_consultar');?></button></div>
         	<button data-toggle="modal" data-target="#Error" class="btn hideshape" id="triggerErrorShape">&nbsp;</button>
-        	<button data-toggle="modal" data-target="#SaveOK" class="btn hideshape" id="triggerSaveShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_busqueda" class="btn hideshape" id="triggerError_busquedaShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_solicitud" class="btn hideshape" id="triggerError_solicitudShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_fecha_franja" class="btn hideshape" id="triggerError_fecha_franjaShape">&nbsp;</button>
-        	<button data-toggle="modal" data-target="#Error_horarios" class="btn hideshape" id="triggerError_horarios_franjaShape">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_loading" class="btn hideshape" id="triggerErrorLoading">&nbsp;</button>
         	<button data-toggle="modal" data-target="#Error_loading_cambios" class="btn hideshape" id="triggerError_cambiosLoading">&nbsp;</button>
         	<button data-toggle="modal" data-target="#confirmacion" class="btn hideshape" id="triggerConfirmacionShape">&nbsp;</button>
@@ -348,264 +294,69 @@
         </div>
     </div>
     <div class="row hideshape" id="generalShapeContent">
-    	<!-- DATOS COL IZQ -->
     	<div class="col-sm-6">
 	    	<div class="alert alert-success">
-	    		<h2 class="hideshape"><font id="tk_num_pedido"></font></h2>
+	    		<h2><font id="tk_num_pedido"></font></h2>
 	    		<h3><?=lang('ew_tr_cambios_datos_pedido');?></h3>
-	    		<p id="cont_fecha"><?=lang('ew_tr_fecha_entrega');?> <b><font id="tk_fecha_entrega_cliente"></font></b></p>
-	    		<p id="cont_franja"><?=lang('ew_tr_franja_entrega');?> <b><font id="tk_franja"></font></b></p>
-	    		<p><?=lang('ew_tr_estadp_pedido');?> <b><font id="tk_estado"></font></b></p>
-	    		<br/>
 	    		<p><?=lang('ew_tr_cambios_abonado');?><font id="tk_nombre_abonado"></font></p>
 	    		<p><?=lang('ew_tr_cambios_fecha_alta');?><font id="tk_fecha_alta"></font></p>
-	    		
-	    		
+	    		<p><?=lang('ew_tr_estadp_pedido');?><font id="tk_estado"></font></p>
+	    		<p id="cont_fecha"><?=lang('ew_tr_fecha_entrega');?><font id="tk_fecha_entrega_cliente"></font></p>
+	    		<p id="cont_franja"><?=lang('ew_tr_franja_entrega');?><font id="tk_franja"></font></p>
 	    		<h3><?=lang('ew_tr_datos_destinatario');?></h3>
 	    		<p id="tk_nombre_destinatario"></p>
 	    		<address id="tk_direccion_entrega"></address>
-	    		<div class="alert alert-danger tjustify hideshape" id="alert_dir_mal">
-					<b>¡Atención! DIRECCIÓN INCOMPLETA / INCORRECTA</b><br/>Su pedido se encuentra actualmente con DIRECCIÓN INCOMPLETA o INCORRECTA. Para revisar y corregir los datos y la dirección de entrega de su pedido, utilice los controles de la derecha.<br/><br/>Para más información puede contactar con <a href="mailto:infoenvios@emakers.es" class="alert-link">infoenvios@emakers.es</a>
-				</div>
-				<div class="alert alert-warning tjustify hideshape" id="alert_cambios_pendientes">
-					<span class="glyphicon glyphicon-exclamation-sign alert-danger" aria-hidden="true"></span> <b>¡Atención!</b><br/>Se han solicitado cambios en su pedido que serán revisados por el equipo de Emakers y se le confirmará la aprobación de su solicitud.
-				</div>
-
 	    	</div>
-	    	<div class="alert alert-warning tjustify" id="notasTipsa">
+	    	<div class="alert alert-warning" id="notasTipsa">
 	    		<h3><?=lang('ew_tr_notas_tipsa_itile');?></h3>
 	    		<p><?=lang('ew_tr_notas_tipsa_description');?></p>
 	    	</div>
-	    	<div class="alert alert-warning tjustify" id="notasNOTipsa">
+	    	<div class="alert alert-warning" id="notasNOTipsa">
 	    		<h3><?=lang('ew_tr_notas_notipsa_itile');?></h3>
 	    		<p><?=lang('ew_tr_notas_notipsa_description');?></p>
 	    	</div>
     	</div>
-    	<!-- FIN DATOS COL IZQ -->
-    	
-    	<!-- CONTROLES -->
-    	<div class="col-sm-6" id="controlsShapeContent">
-    		<h3>¿Qué desea hacer con su pedido?</h3>
-    		<p class="controlText2">Las siguientes opciones le ofrecen la posibilidad de controlar en todo momento el estado y la previsión de entrega de su pedido. Si lo desea, también puede definir una nueva dirección de entrega y escoger las notificaciones que desea recibir y dónde desea recibirlas.</p>
-    		<div id="ctrop1" class="ctrop">
-				<button type="button" class="btn btn-primary btn-block" onclick="javascript:controlOp(1);"><span class="glyphicon glyphicon-calendar gly_emks"></span> CAMBIAR LA FECHA O FRANJA DE ENTREGA</button>
-				<p class="controlText">Puede cambiar la fecha de entrega de <b>su pedido y escoger el día y la franja que más le convenga.</b> Vea las <a href="#" data-toggle="modal" data-target="#condiciones"><?=lang('ew_footer_condiciones');?></a> si quiere ampliar la información.</p>
-    		</div>
-	    	
-	    	<div id="ctrop2" class="ctrop">
-	    		<button type="button" class="btn btn-info btn-block" onclick="javascript:controlOp(2);"><span class="glyphicon glyphicon-comment gly_emks"></span> CAMBIAR TELÉFONO O EMAIL DE NOTIFICACIONES</button>
-				<p class="controlText">Decida <b>qué notificaciones recibir y en qué correo o número de teléfono</b> recibirlas. Recuerde que las notificaciones de tipo SMS sólo están disponibles para los avisos de pre-entrega del día anterior y del mismo día de la entrega.</p>
-	    	</div>
-	    	
-	    	<div id="ctrop3" class="ctrop">
-	    		<button type="button" class="btn btn-warning btn-block" onclick="javascript:controlOp(3);"><span class="glyphicon glyphicon-map-marker gly_emks"></span> CAMBIAR DIRECCIÓN O INDICACIONES DE ENTREGA</button>
-				<p class="controlText">Puede <b>editar la dirección de entrega</b> y proponer un nuevo destino para recibir su pedido. Si lo desea, puede <b>autorizar para que se lo entreguemos al portero o al vecino</b> en caso de ausencia en el momento de entrega.</p>
-			</div>
-    	</div>
-    	<!-- FIN CONTROLES -->
-    	
-    	<!-- FORMULARIO FECHA Y FRAJA -->
-    	<div class="col-sm-6 hideshape" id="cambiosForm1">
+    	<div class="col-sm-6" id="cambiosShapeContent">
+    		<p class="mt20"><?=lang('ew_tr_form_title');?></p>
     		<form role="form">
+    			<h3><?=lang('ew_tr_form_diaentrega');?></h3>
     			<div class="form-group">
-    				<label for="input_dia_entrega"><?=lang('ew_tr_form_diaentrega');?></label>
     				<div class='input-group date' id='diadeentrega'>
-    					<input type='text' class="form-control" id="input_dia_entrega" name="input_dia_entrega" />
+    					<input type='text' class="form-control" id="input_dia_entrega" />
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     				</div>
+    				<h3><?=lang('ew_tr_form_franjaentrega');?></h3>
+    				<select id="input_franja_entrega" class="selectpicker show-tick form-control">
+                    </select>
+    				<h3><?=lang('ew_tr_form_otros_datos');?></h3>
     			</div>
     			<div class="form-group">
-    				<label for="input_franja_entrega"><?=lang('ew_tr_form_franjaentrega');?></label>
-    				<select id="input_franja_entrega" name="input_franja_entrega" class="selectpicker show-tick form-control"></select>
+    			  <label for="input_telefono1"><?=lang('ew_tr_form_telf');?></label>
+    			  <input type="tel" class="form-control" id="input_telefono1" name="input_telefono1" placeholder="<?=lang('ew_tr_form_ph_telf');?>">
     			</div>
-    			
-    			<p class="tjustify">Si tiene una disponibilidad que no se ajusta a las franjas propuestas o la dirección de destino corresponde a un local comercial u oficinas, puede proponer el horario más se ajuste a sus necesidades. Emakers intentará que la hora prevista de entrega esté siempre dentro del horario de disponibilidad definido aquí.</p>
-    			
-    			<div class="form-group col-sm-6 nopaddingleft">
-	    			<label for="hora1_inicio">Disponibilidad por las mañanas</label>
-	    			<input class="form-control" id="hora1_inicio" name="hora1_inicio" placeholder="Hora inicial (hh:mm)">
-	    		</div>
-	    		<div class="form-group col-sm-6 nopaddingright">
-	    			<label for="hora1_final">&nbsp;</label>
-	    			<input class="form-control" id="hora1_final" name="hora1_final" placeholder="Hora final (hh:mm)">
-	    		</div>
-	    		
-	    		<div class="form-group col-sm-6 nopaddingleft">
-	    			<label for="hora2_inicio">Disponibilidad por las tardes</label>
-	    			<input class="form-control" id="hora2_inicio" name="hora2_inicio" placeholder="Hora inicial (hh:mm)">
-	    		</div>
-	    		<div class="form-group col-sm-6 nopaddingright">
-	    			<label for="hora2_final">&nbsp;</label>
-	    			<input class="form-control" id="hora2_final" name="hora2_final" placeholder="Hora final (hh:mm)">
-	    		</div>
-	    		<p>* La franja propuesta debe cubrir, como mínimo, 3 horas de margen.<br/><font class="fs10">(recibirá un SMS con una franja de 60 minutos dentro de esta franja)</font></p>
-    			<div class="form-group col-sm-12 nopadding">
-    				<p class="svcnclbtns">
-						<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(1);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
-						<button type="button" class="btn btn-default btn-block" onclick="javascript:controlOpShowdown();"><span class="glyphicon glyphicon-remove gly_emks"></span> Cancelar / Volver</button>
-					</p>
-    			</div>
-    		</form>
-    	</div>
-    	
-    	<!-- FORMULARIO DATOS Y COMENTARIOS -->
-    	<div class="col-sm-6 hideshape" id="cambiosForm2">
-    		<form role="form">
     			<div class="form-group">
-    				<div class="form-group">
-						<label for="input_telefono1"><?=lang('ew_tr_form_telf');?></label>
-		    			<input type="tel" class="form-control" id="input_telefono1" name="input_telefono1" placeholder="<?=lang('ew_tr_form_ph_telf');?>">
-		    		</div>
-		    		<div class="form-group">
-		    			<label for="input_telefono2"><?=lang('ew_tr_form_telf2');?></label>
-		    			<input type="tel" class="form-control" id="input_telefono2" name="input_telefono2" placeholder="<?=lang('ew_tr_form_ph_telf2');?>">
-		    		</div>
-		    		<div class="form-group">
-		    			<label for="input_email"><?=lang('ew_tr_form_email');?></label>
-		    			<input type="email" class="form-control" id="input_email" name="input_email" placeholder="<?=lang('ew_tr_form_ph_correo');?>">
-		    		</div>
-		    		
-		    		<div class="checkbox">
-					    <label>
-					    	<input type="checkbox" checked="checked" id="ifCOM10" name="ifCOM10"> Recibir SMS el mismo día de entrega <br/><font class="fs10">(se le informará de una ventana de 60 minutos en la que se prevé entregar su pedido)</font>
-					    </label>
-					</div>
-		    		
-		    		<div class="checkbox">
-					    <label>
-					    	<input type="checkbox" checked="checked" id="ifCOMPre" name="ifCOMPre"> Recibir correo o SMS el día antes de la entrega
-					    </label>
-					</div>
-					
-					<div class="checkbox">
-					    <label>
-					    	<input type="checkbox" id="ifCOMPost" name="ifCOMPost"> Recibir correo de confirmación de entrega
-					    </label>
-					</div>
-					
-					<div class="checkbox">
-					    <label>
-					    	<input type="checkbox" checked="checked" id="ifCOMAus" name="ifCOMAus"> Recibir correo de aviso de ausencia durante la entrega
-					    </label>
-					</div>
-					
-					<div class="checkbox">
-					    <label>
-					    	<input type="checkbox" checked="checked" id="ifCOMDir" name="ifCOMDir"> Recibir correo de aviso de errores en la dirección
-					    </label>
-					</div>
-		    		
-    				<p class="svcnclbtns">
-						<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(2);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
-						<button type="button" class="btn btn-default btn-block" onclick="javascript:controlOpShowdown();"><span class="glyphicon glyphicon-remove gly_emks"></span> Cancelar / Volver</button>
-					</p>
+    			  <label for="input_telefono2"><?=lang('ew_tr_form_tel2');?></label>
+    			  <input type="tel" class="form-control" id="input_telefono2" name="input_telefono2" placeholder="<?=lang('ew_tr_form_ph_telf2');?>">
     			</div>
-    		</form>
-    	</div>
-    	
-    	<!-- FORMULARIO CAMBIO DIRECCION -->
-    	<div class="col-sm-6 hideshape" id="cambiosForm3">
-    		<form role="form">
     			<div class="form-group">
-    				<div class="form-group col-sm-12">
-						<label for="ip_cf_tipo_via">Selecciona el tipo de via</label>
-		    			<select id="ip_cf_tipo_via" name="ip_cf_tipo_via" class="selectpicker show-tick form-control">
-			    			<option value="0">NO DEFINIDA</option>
-			    			<option value="1">CALLE</option>
-			    			<option value="2">AVENIDA</option>
-			    			<option value="3">PASEO</option>
-			    			<option value="4">PLAZA</option>
-			    			<option value="5">PASAJE</option>
-		    			</select>
-		    		</div>
-		    		<div class="form-group col-sm-6">
-		    			<label for="ip_direccion">Nombre de la calle / via</label>
-		    			<input class="form-control" id="ip_direccion" name="ip_direccion" placeholder="Nombre de la calle / via">
-		    		</div>
-		    		<div class="form-group col-sm-3">
-		    			<label for="ip_numero">Número</label>
-		    			<input class="form-control" id="ip_numero" name="ip_numero" placeholder="Número">
-		    		</div>
-		    		<div class="form-group col-sm-3">
-		    			<label for="ip_cp">CP</label>
-		    			<input class="form-control" id="ip_cp" name="ip_cp" placeholder="CP">
-		    		</div>
-		    		<div class="form-group col-sm-12">
-		    			<label for="ip_otros_direccion">Escalera, piso, puerta ...</label>
-		    			<input class="form-control" id="ip_otros_direccion" name="ip_otros_direccion" placeholder="Escalera, piso, puerta ...">
-		    		</div>
-		    		<div class="form-group col-sm-12">
-		    			<label for="input_comentarios_cliente">Comentarios</label>
-		    			<input class="form-control" id="input_comentarios_cliente" name="input_comentarios_cliente" placeholder="Comentarios">
-		    		</div>
-		    		<div class="form-group col-sm-12">
-			    		<div class="checkbox">
-						    <label>
-						    	<input type="checkbox" name="ifPorteria" id="ifPorteria"> Se puede entregar en portería o recepción
-						    </label>
-						</div>
-						<div class="checkbox">
-						    <label>
-						    	<input type="checkbox" name="ifVecino" id="ifVecino"> Se puede entregar al vecino o local próximo
-						    </label>
-						</div>
-						<input class="form-control" id="vecino_desc" name="vecino_desc" placeholder="Indícanos algún dato sobre el vecino o local">
-					</div>
-		    		
-		    		<div class="col-sm-12">
-		    			<div class="alert alert-danger tjustify">
-							<b>¡Atención!</b><br/>No se permiten cambios que impliquen la entrega en otra localidad. <br/>Para realizar un cambio de dirección a otra localidad, puede contactar con <a href="mailto:infoenvios@emakers.es" class="alert-link">infoenvios@emakers.es</a>
-						</div>
-		    			<div class="alert alert-warning tjustify hideshape" id="alert_en_ruta">
-							<b>¡Atención! Pedido EN RUTA</b><br/>Su pedido se encuentra actualmente <b>EN RUTA</b> hacia su dirección actual. Cualquier modificación de la dirección implica entregar el pedido a partir del día <b><?=$dia_proximo?></b>.<br/>Para más información puede contactar con <a href="mailto:infoenvios@emakers.es" class="alert-link">infoenvios@emakers.es</a>
-						</div>
-						
-						<div class="alert alert-warning tjustify hideshape" id="alert_contrareembolso">
-							<b>¡Atención! Pedido con contrarrembolso</b><br/>Su pedido lleva asociado un reembolso de <b><font id="valor_reembolso_txt"></font>€</b>. Esto significa que en el momento de entrega, nuestro repartidor deberá cobrar la cantidad correspondiente. Recuerde avisar a la persona que va a recibir su pedido que debe abonar el importe del reembolso si quiere recibir el pedido. En caso contrario, el repartidor no efectuará la entrega.<br/><br/>Para más información contacte con <a href="mailto:infoenvios@emakers.es" class="alert-link">infoenvios@emakers.es</a>
-						</div>
-		    			
-	    				<p class="svcnclbtns">
-							<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(3);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
-							<button type="button" class="btn btn-default btn-block" onclick="javascript:controlOpShowdown();"><span class="glyphicon glyphicon-remove gly_emks"></span> Cancelar / Volver</button>
-						</p>
-					</div>
+    			  <label for="input_email"><?=lang('ew_tr_form_email');?></label>
+    			  <input type="email" class="form-control" id="input_email" name="input_email" placeholder="<?=lang('ew_tr_form_ph_correo');?>">
     			</div>
+    			<div class="form-group">
+    				<label for="input_comentarios_cliente"><?=lang('ew_tr_form_comentarios');?></label>	
+    	    		<textarea id="input_comentarios_cliente" name="input_comentarios_cliente" class="form-control" rows="3" placeholder="<?=lang('ew_tr_form_ph_comentarios');?>"></textarea>
+    			</div>
+    			<input type="hidden" name="conf_franja" id="conf_franja" value="" />
+    			<input type="hidden" name="id2_pedido" id="id2_pedido" value="" />
+    			<input type="hidden" name="tabla_origen" id="tabla_origen" value="" />
+    			<input type="hidden" name="num_pedido" id="num_pedido" value="" />
+    			<input type="hidden" name="cf_agencia" id="cf_agencia" value="" />
+    			<input type="hidden" name="cf_estado" id="cf_estado" value="" />
+    			<input type="hidden" name="cf_abonado" id="cf_abonado" value="" />
+    			<input type="hidden" name="ifMailPre" id="ifMailPre" value="" />
     		</form>
+    		<button data-toggle="modal" class="btn btn-success" onclick="javascript:sendFranjaChange();"><?=lang('ew_tr_form_solicitar_cambios');?></button>
     	</div>
-    	<input type="hidden" name="conf_franja" id="conf_franja" value="" />
-		<input type="hidden" name="id2_pedido" id="id2_pedido" value="" />
-		<input type="hidden" name="tabla_origen" id="tabla_origen" value="" />
-		<input type="hidden" name="num_pedido" id="num_pedido" value="" />
-		<input type="hidden" name="cf_agencia" id="cf_agencia" value="" />
-		<input type="hidden" name="cf_estado" id="cf_estado" value="" />
-		<input type="hidden" name="cf_abonado" id="cf_abonado" value="" />
-		<input type="hidden" name="ifMailPre" id="ifMailPre" value="" />
-		<input type="hidden" name="valor_reembolso" id="valor_reembolso" value="" />
-		
-		<!-- datos originales -->
-		<input type="hidden" name="fecha_original" id="fecha_original" value="" />
-		<input type="hidden" name="franja_original" id="franja_original" value="" />
-		<input type="hidden" name="cf_tipo_via_original" id="cf_tipo_via_original" value="" />
-		<input type="hidden" name="direccion_original" id="direccion_original" value="" />
-		<input type="hidden" name="numero_original" id="numero_original" value="" />
-		<input type="hidden" name="cp_original" id="cp_original" value="" />
-		<input type="hidden" name="localidad_original" id="localidad_original" value="" />
-		<input type="hidden" name="horario1_inicio_original" id="horario1_inicio_original" value="" />
-		<input type="hidden" name="horario1_fin_original" id="horario1_fin_original" value="" />
-		<input type="hidden" name="horario2_inicio_original" id="horario2_inicio_original" value="" />
-		<input type="hidden" name="horario2_fin_original" id="horario2_fin_original" value="" />
-		
-		<!-- constantes -->
-		<input type="hidden" name="franja_desc1" id="franja_desc1" value="MAÑANA (09:00 - 14:00)" />
-		<input type="hidden" name="franja_desc2" id="franja_desc2" value="TARDE (15:00 - 18:30)" />
-		<input type="hidden" name="franja_desc3" id="franja_desc3" value="NOCHE (19:00 - 22:00)" />
-		<input type="hidden" name="franja_desc4" id="franja_desc4" value="DIURNA (09:00 - 17:00)" />
-		
-		<input type="hidden" name="tipovia_desc1" id="tipovia_desc1" value="CALLE" />
-		<input type="hidden" name="tipovia_desc2" id="tipovia_desc2" value="AVENIDA" />
-		<input type="hidden" name="tipovia_desc3" id="tipovia_desc3" value="PASEO" />
-		<input type="hidden" name="tipovia_desc4" id="tipovia_desc4" value="PLAZA" />
-		<input type="hidden" name="tipovia_desc5" id="tipovia_desc5" value="PASAJE" />
     </div>
 </div>
 
@@ -666,7 +417,6 @@
 	</div>
 </footer>
 
-<!-- MODAL CONDICIONES DE USO -->
 <div class="modal fade" id="condiciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -688,7 +438,8 @@
   </div>
 </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<?=base_url();?>js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/moment.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/bootstrap-datetimepicker.min.js"></script>
