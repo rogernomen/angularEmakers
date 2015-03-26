@@ -525,6 +525,7 @@ function loadShapesContent(json){
 		$('#direccion_original').val(json.data.direccion);
 		$('#numero_original').val(json.data.numero);
 		$('#cp_original').val(json.data.cp);
+		$('#otros_direccion_original').val(json.data.otros_direccion);
 		$('#fecha_original').val(json.data.fecha_entrega_cliente);
 		$('#franja_original').val(json.data.conf_franja);
 		$('#localidad_original').val(json.data.localidad);
@@ -565,6 +566,7 @@ function loadShapesContent(json){
 				$('#direccion_original').val(json.cambios.direccion);
 				$('#numero_original').val(json.cambios.numero);
 				$('#cp_original').val(json.cambios.cp);
+				$('#otros_direccion_original').val(json.cambios.otros_direccion);
 			}
 			
 			// Si tiene cambios de prevision de entrega
@@ -607,36 +609,8 @@ function calculaFranjasDisponibles(conf_franja, fecha_entrega_cliente){
 	
 	// Si la fecha de entrega introducida en el formulario es hoy
 	if(date_diff == 0){
-		// Configuraciones INTRARADIO
-		if(conf_franja == 1){
-			// Segun el horario actual, mostraremos unas franjas u otras
-			if(now_hora < 8){
-				// Rellenamos con todas las franjas
-				rellenaFranjas_todas();
-			}else if(now_hora >= 8 && now_hora < 13){
-				// Rellenamos con las franjas a partir de la tarde
-				rellenaFranjas_tarde();
-			}else if(now_hora >= 13 && now_hora < 17){
-				// Rellenamos con las franjas a partir de la noche
-				rellenaFranjas_noche();
-			}else{
-				// No hay frnjas disponibles
-				sinFranjasDisponibles();
-			}
-		
-		// Configuraciones EXTRARADIO
-		}else{
-			if(now_hora < 11){
-				// Rellenamos con las franjas de diurna
-				rellenaFranjas_diurna_todas();
-			}else if(now_hora >= 11 && now_hora < 17){
-				// Rellenamos con las franjas a partir de la noche
-				rellenaFranjas_diurna_noche();
-			}else{
-				// No hay frnjas disponibles
-				sinFranjasDisponibles();
-			}
-		}
+		// No hay frnjas disponibles
+		sinFranjasDisponibles();
 	
 	// Si la fecha introducida en el formulario es anterior a hoy
 	}else if(date_diff < 0){
@@ -930,6 +904,7 @@ function guardaFormOp(idForm){
 	var franjaSolicitada = $("#input_franja_entrega option:selected").text();
 	var nombreDestinatario = $('#tk_nombre_destinatario').html();
 	var direccionDestinatario = $('#tk_direccion_entrega').html();
+	
 	// segun el formulario activado, comprovamos...
 	// Formulario de fecha y franja
 	if(idForm == 1){
@@ -1074,12 +1049,12 @@ function guardaFormOp(idForm){
 			var d1 = t1f.getTime() - t1i.getTime();
 			var d2 = t2f.getTime() - t2i.getTime();
 			
-			if( d1 < (3*3600*1000) ){
+			if( d1 < (4*3600*1000) ){
 				$('#triggerError_horarios_franjaShape').trigger('click');
 				return;
 			}
 			
-			if( d2 < (3*3600*1000) ){
+			if( d2 < (4*3600*1000) ){
 				$('#triggerError_horarios_franjaShape').trigger('click');
 				return;
 			}
@@ -1267,12 +1242,31 @@ function guardaFormOp(idForm){
 		var ip_cp = $("#ip_cp").val();
 		var ip_otros_direccion = $("#ip_otros_direccion").val();
 		var input_comentarios_cliente = $("#input_comentarios_cliente").val();
-		var ifPorteria = $("#ifPorteria").val();
-		var ifVecino = $("#ifVecino").val();
+		var ifPorteria = 0;
+		if($('#ifPorteria').is(":checked")){
+			ifPorteria = 1;
+		}
+		var ifVecino = 0;
+		if($('#ifVecino').is(":checked")){
+			ifVecino = 1;
+		}
 		var vecino_desc = $("#vecino_desc").val();
+		
+		// Recuperamos los datos de direccion originales
+		var cf_tipo_via_ori = $("#cf_tipo_via_original").val();
+		var ip_direccion_ori = $("#direccion_original").val();
+		var ip_numero_ori = $("#numero_original").val();
+		var ip_cp_ori = $("#cp_original").val();
+		var ip_otros_direccion_ori = $("#otros_direccion_original").val();
+		
+		// Si no ha cambiado la direccion pero si otros datos, no guardaremos solicitudes
+		if(cf_tipo_via == cf_tipo_via_ori && ip_direccion == ip_direccion_ori && ip_cp == ip_cp_ori && ip_otros_direccion == ip_otros_direccion_ori){
+			idForm = 13;
+		}
 		
 		// mount data post
 		var datapost = "cf_tipo_via="+cf_tipo_via+
+				  "&num_pedido="+num_pedido+
 				  "&ip_direccion="+ip_direccion+
 				  "&ip_numero="+ip_numero+
 				  "&ip_cp="+ip_cp+
@@ -1332,7 +1326,7 @@ function guardaFormOp(idForm){
 						$('#alert_cambios_pendientes').addClass('showshape');
 					}
 				}
-				if(idForm == 3){
+				if(idForm == 3 || idForm == 13){
 					// Si hay cambios en la dirección de entrega
 					if( (cf_tipo_via_original != cf_tipo_via) || (direccion_original != ip_direccion) || (numero_original != ip_numero) || (cp_original != ip_cp) ){
 						var tipo_viaDesc = $('#tipovia_desc'+cf_tipo_via).val();

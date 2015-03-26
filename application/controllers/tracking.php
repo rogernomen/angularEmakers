@@ -463,6 +463,29 @@ class Tracking extends CI_Controller {
 					// Function to call
 					$WSFunction = 'changeDir';
 				break;
+				case 13:
+					// Mount params array
+					$params = array(
+						"username" 				=> $this->config->item("ws_login"),
+						"password" 				=> $this->config->item("ws_passw"),
+						"id2"					=> $this->input->post("id2"),
+						"cf_agencia"			=> $this->input->post("cf_agencia"),
+						"num_pedido"			=> $this->input->post("num_pedido"),
+						"tabla_origen"			=> $this->input->post("tabla_origen"),
+						"cf_tipo_via"			=> false,
+						"ip_direccion"			=> false,
+						"ip_numero"				=> false,
+						"ip_cp"					=> false,
+						"ip_otros_direccion"	=> false,
+						"comentarios_cliente"	=> $this->input->post("comentarios_cliente"),
+						"ifPorteria"			=> $this->input->post("ifPorteria"),
+						"ifVecino"				=> $this->input->post("ifVecino"),
+						"vecino_desc"			=> $this->input->post("vecino_desc")
+					);
+					
+					// Function to call
+					$WSFunction = 'changeDir';
+				break;
 				default:
 					echo json_encode(array(
 						'status'=> 'KO',
@@ -471,7 +494,7 @@ class Tracking extends CI_Controller {
 				break;
 			}
 			
-			if($idForm == 1 || $idForm == 12 || $idForm == 2 || $idForm == 3){
+			if($idForm == 1 || $idForm == 12 || $idForm == 2 || $idForm == 3 || $idForm == 13){
 				// Connect to the nusoap server
 				$this->nusoap_client = new nusoap_client($this->config->item('ws_base_url'));
 				

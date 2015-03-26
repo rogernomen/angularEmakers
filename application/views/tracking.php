@@ -388,17 +388,17 @@
     		<h3>¿Qué desea hacer con su pedido?</h3>
     		<p class="controlText2">Las siguientes opciones le ofrecen la posibilidad de controlar en todo momento el estado y la previsión de entrega de su pedido. Si lo desea, también puede definir una nueva dirección de entrega y escoger las notificaciones que desea recibir y dónde desea recibirlas.</p>
     		<div id="ctrop1" class="ctrop">
-				<button type="button" class="btn btn-primary btn-block" onclick="javascript:controlOp(1);"><span class="glyphicon glyphicon-calendar gly_emks"></span> CAMBIAR LA FECHA O FRANJA DE ENTREGA</button>
+				<button type="button" class="btn btn-primary btn-block" onclick="javascript:controlOp(1);"><span class="glyphicon glyphicon-calendar gly_emks"></span> FECHA Y FRANJA</button>
 				<p class="controlText">Puede cambiar la fecha de entrega de <b>su pedido y escoger el día y la franja que más le convenga.</b> Vea las <a href="#" data-toggle="modal" data-target="#condiciones"><?=lang('ew_footer_condiciones');?></a> si quiere ampliar la información.</p>
     		</div>
 	    	
 	    	<div id="ctrop2" class="ctrop">
-	    		<button type="button" class="btn btn-info btn-block" onclick="javascript:controlOp(2);"><span class="glyphicon glyphicon-comment gly_emks"></span> CAMBIAR TELÉFONO O EMAIL DE NOTIFICACIONES</button>
+	    		<button type="button" class="btn btn-info btn-block" onclick="javascript:controlOp(2);"><span class="glyphicon glyphicon-comment gly_emks"></span> DATOS DE CONTACTO</button>
 				<p class="controlText">Decida <b>qué notificaciones recibir y en qué correo o número de teléfono</b> recibirlas. Recuerde que las notificaciones de tipo SMS sólo están disponibles para los avisos de pre-entrega del día anterior y del mismo día de la entrega.</p>
 	    	</div>
 	    	
 	    	<div id="ctrop3" class="ctrop">
-	    		<button type="button" class="btn btn-warning btn-block" onclick="javascript:controlOp(3);"><span class="glyphicon glyphicon-map-marker gly_emks"></span> CAMBIAR DIRECCIÓN O INDICACIONES DE ENTREGA</button>
+	    		<button type="button" class="btn btn-warning btn-block" onclick="javascript:controlOp(3);"><span class="glyphicon glyphicon-map-marker gly_emks"></span> DIRECCIÓN / INDICACIONES</button>
 				<p class="controlText">Puede <b>editar la dirección de entrega</b> y proponer un nuevo destino para recibir su pedido. Si lo desea, puede <b>autorizar para que se lo entreguemos al portero o al vecino</b> en caso de ausencia en el momento de entrega.</p>
 			</div>
     	</div>
@@ -410,7 +410,7 @@
     			<div class="form-group">
     				<label for="input_dia_entrega"><?=lang('ew_tr_form_diaentrega');?></label>
     				<div class='input-group date' id='diadeentrega'>
-    					<input type='text' class="form-control" id="input_dia_entrega" name="input_dia_entrega" />
+    					<input type='text' class="form-control" id="input_dia_entrega" name="input_dia_entrega" readonly=""/>
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     				</div>
     			</div>
@@ -438,7 +438,7 @@
 	    			<label for="hora2_final">&nbsp;</label>
 	    			<input class="form-control" id="hora2_final" name="hora2_final" placeholder="Hora final (hh:mm)">
 	    		</div>
-	    		<p>* La franja propuesta debe cubrir, como mínimo, 3 horas de margen.<br/><font class="fs10">(recibirá un SMS con una franja de 60 minutos dentro de esta franja)</font></p>
+	    		<p>* La franja propuesta debe cubrir, como mínimo, 4 horas de margen.<br/><font class="fs10">(recibirá un SMS con una franja de 60 minutos dentro de esta franja)</font></p>
     			<div class="form-group col-sm-12 nopadding">
     				<p class="svcnclbtns">
 						<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(1);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
@@ -589,6 +589,7 @@
 		<input type="hidden" name="direccion_original" id="direccion_original" value="" />
 		<input type="hidden" name="numero_original" id="numero_original" value="" />
 		<input type="hidden" name="cp_original" id="cp_original" value="" />
+		<input type="hidden" name="otros_direccion_original" id="otros_direccion_original" value="" />
 		<input type="hidden" name="localidad_original" id="localidad_original" value="" />
 		<input type="hidden" name="horario1_inicio_original" id="horario1_inicio_original" value="" />
 		<input type="hidden" name="horario1_fin_original" id="horario1_fin_original" value="" />
