@@ -419,7 +419,7 @@
     				<select id="input_franja_entrega" name="input_franja_entrega" class="selectpicker show-tick form-control"></select>
     			</div>
     			
-    			<p class="tjustify">Si tiene una disponibilidad que no se ajusta a las franjas propuestas o la dirección de destino corresponde a un local comercial u oficinas, puede proponer el horario más se ajuste a sus necesidades. Emakers intentará que la hora prevista de entrega esté siempre dentro del horario de disponibilidad definido aquí.</p>
+    			<p class="tjustify">Si la dirección de entrega es una oficina/tienda/empresa, por favor indique el horario de apertura. Por favor, tenga en cuenta que las franjas deben ser de 4 horas o más.</p>
     			
     			<div class="form-group col-sm-6 nopaddingleft">
 	    			<label for="hora1_inicio">Disponibilidad por las mañanas</label>
