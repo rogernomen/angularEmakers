@@ -70,8 +70,19 @@ $(function () {
 		var cf_agencia = $('#cf_agencia').val();
 		var cf_abonado = $('#cf_abonado').val();
 		
-		// Calculamos las franjas disponibles
-		calculaFranjasDisponibles($('#conf_franja').val(), date_now);
+		// Festivos Semana Sanata
+		// 02/04/2015 Festivo en todas las agencies excepto BCN
+		if(date_now == '02/04/2015' && cf_agencia != 1){
+			sinFranjasDisponibles();
+			
+		// 06/04/2015 Festivo únicamente en BCN
+		}else if(date_now == '06/04/2015' && cf_agencia == 1){
+			sinFranjasDisponibles();
+		}else{
+			// Calculamos las franjas disponibles
+			calculaFranjasDisponibles($('#conf_franja').val(), date_now);
+		}
+		
     });
     var today = new Date();
     var today2 = new Date(today.getTime());
