@@ -220,7 +220,7 @@ $lang['ew_trs_fechaentrega'] = 'Fecha de entrega: ';
 $lang['ew_trs_franjaentrega'] = 'Franja de entrega: ';
 
 $lang['ew_trs_solicitar'] = 'Quiero realizar cambios en la previsión de entrega';
-$lang['ew_trs_notas_importantes'] = '<h3>Notas importantes</h3><p>Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Tipsa más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>';
+$lang['ew_trs_notas_importantes'] = '<h3>Notas importantes</h3><p>Dada la localización de entrega de su pedido, el servicio de entrega lo realizará la agencia de Correos Express más cercana a su domicilio.<br/><br/>Si usted tiene cualquier duda o necesita realizar cualquier gestión sobre su pedido, póngase en contacto con nuestro servicio de atención al cliente:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>';
 
 $lang['ew_trs_error_title'] = 'Error en la búsqueda de datos';
 $lang['ew_trs_error_description'] = 'No localizamos ningún pedido con los datos introducidos.<br/><br/>Si el problema persiste, póngase en contacto con Emakers:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
