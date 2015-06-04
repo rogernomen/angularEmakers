@@ -4,6 +4,8 @@ var isAndroid = (nua.indexOf('Mozilla/5.0') > -1 && nua.indexOf('Android ') > -1
 if (isAndroid) {
 	$('select.form-control').removeClass('form-control').css('width', '100%')
 }
+var festivos = [];
+
 /* OVERRIDE */
 Object.size = function(obj) {
     var size = 0, key;
@@ -36,6 +38,12 @@ var ESTADO_ENTREGA_DESTINATARIO_APLAZA_ENTREGA = 14;
 var ESTADO_ENTREGA_DEVUELTO_A_REMITENTE = 15;
 var ESTADO_ENTREGA_ORIGEN_NO_PREPARADO = 16;
 var ESTADO_ENTREGA_EN_ALMACEN_ORIGEN = 17;
+
+var ESTADO_ENTREGA_DEFINITIVAMENTE_EXTRAVIADO = 18;
+var ESTADO_ENTREGA_EN_TRANSITO = 19;
+var ESTADO_ENTREGA_NO_ENLAZADO = 20;
+var ESTADO_ENTREGA_REPROGRAMADA = 21;
+var ESTADO_DIRECCION_MAL_GEOLOCALIZADA = 22;
 
 var ESTADO_PRECARGA_POR_RECOGER = 0;
 var ESTADO_PRECARGA_RECOGIDO = 1;
@@ -70,14 +78,17 @@ $(function () {
 		var cf_agencia = $('#cf_agencia').val();
 		var cf_abonado = $('#cf_abonado').val();
 		
-		// Festivos Semana Sanata
-		// 02/04/2015 Festivo en todas las agencies excepto BCN
-		if(date_now == '02/04/2015' && cf_agencia != 1){
+		// Festivos 
+		var controlFestivos = false;
+		for	(index = 0; index < festivos.length; index++) {
+		    if(festivos[index] == date_now){
+			   controlFestivos = true;
+		    } 
+		} 
+		
+		if(controlFestivos == true){
 			sinFranjasDisponibles();
 			
-		// 06/04/2015 Festivo únicamente en BCN
-		}else if(date_now == '06/04/2015' && cf_agencia == 1){
-			sinFranjasDisponibles();
 		}else{
 			// Calculamos las franjas disponibles
 			calculaFranjasDisponibles($('#conf_franja').val(), date_now);
@@ -186,6 +197,12 @@ function loadShapesContent(json){
 	$('#valor_reembolso').val(json.data.valor_reembolso);
 	$('#valor_reembolso_txt').html(json.data.valor_reembolso);
 	
+	// Cargamos los festivos
+	festivos = [];
+	for	(index = 0; index < json.festivos.length; index++) {
+	    festivos.push(json.festivos[index]);   
+	} 
+	
 	// Controlamos el contenido segun tabla de origen & estado del pedido
 	// EXPEDICIONES
 	if(json.data.tabla == 'argos_entregas'){
@@ -256,6 +273,15 @@ function loadShapesContent(json){
 				}
 			break;
 			case ESTADO_ENTREGA_DESTINATARIO_APLAZA_ENTREGA:
+				$('#cont_franja').removeClass('hideshape');
+				$('#cont_franja').addClass('showshape');
+				$('#cont_fecha').removeClass('hideshape');
+				$('#cont_fecha').addClass('showshape');
+				$('#tk_estado').html(json.data.estado_entrega);
+				$('#tk_franja').html(json.data.franja_entregaDesc);
+			break;
+			
+			case ESTADO_ENTREGA_REPROGRAMADA:
 				$('#cont_franja').removeClass('hideshape');
 				$('#cont_franja').addClass('showshape');
 				$('#cont_fecha').removeClass('hideshape');
