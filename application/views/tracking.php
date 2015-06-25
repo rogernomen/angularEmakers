@@ -414,37 +414,124 @@
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
     				</div>
     			</div>
-    			<div class="form-group">
-    				<label for="input_franja_entrega"><?=lang('ew_tr_form_franjaentrega');?></label>
-    				<select id="input_franja_entrega" name="input_franja_entrega" class="selectpicker show-tick form-control"></select>
-    			</div>
     			
-    			<p class="tjustify">Si la dirección de entrega es una oficina/tienda/empresa, por favor indique el horario de apertura. Por favor, tenga en cuenta que las franjas deben ser de 4 horas o más.</p>
     			
-    			<div class="form-group col-sm-6 nopaddingleft">
-	    			<label for="hora1_inicio">Disponibilidad por las mañanas</label>
-	    			<input class="form-control" id="hora1_inicio" name="hora1_inicio" placeholder="Hora inicial (hh:mm)">
-	    		</div>
-	    		<div class="form-group col-sm-6 nopaddingright">
-	    			<label for="hora1_final">&nbsp;</label>
-	    			<input class="form-control" id="hora1_final" name="hora1_final" placeholder="Hora final (hh:mm)">
-	    		</div>
-	    		
-	    		<div class="form-group col-sm-6 nopaddingleft">
-	    			<label for="hora2_inicio">Disponibilidad por las tardes</label>
-	    			<input class="form-control" id="hora2_inicio" name="hora2_inicio" placeholder="Hora inicial (hh:mm)">
-	    		</div>
-	    		<div class="form-group col-sm-6 nopaddingright">
-	    			<label for="hora2_final">&nbsp;</label>
-	    			<input class="form-control" id="hora2_final" name="hora2_final" placeholder="Hora final (hh:mm)">
-	    		</div>
-	    		<p>* La franja propuesta debe cubrir, como mínimo, 4 horas de margen.<br/><font class="fs10">(recibirá un SMS con una franja de 60 minutos dentro de esta franja)</font></p>
-    			<div class="form-group col-sm-12 nopadding">
-    				<p class="svcnclbtns">
-						<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(1);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
-						<button type="button" class="btn btn-default btn-block" onclick="javascript:controlOpShowdown();"><span class="glyphicon glyphicon-remove gly_emks"></span> Cancelar / Volver</button>
-					</p>
+    			<div id="capa_franjas_premium">
+    				<div class="form-group">
+	    				<label for="input_franja_entrega_premium"><?=lang('ew_tr_form_franjaentrega');?></label>
+	    				<p class="tjustify">Por favor, escoja la franja de entrega deseada. Tenga en cuenta que el servicio Emakers Premium puede implicar un sobrecoste.</p>
+	    				<div class="alert alert-warning">
+							El servicio Emakers Premium deberá abonarse en el momento de la entrega en efectivo y con el importe exacto al repartidor. Estamos trabajando en ofrecer otros métodos de pago. 
+						</div>
+		    				
+						<div class="row">
+						 	<div class="col-sm-6" id="input_franja_entrega_premium_col">
+						 		<label class="lbl_franjas">Franjas Emakers PREMIUM<!-- <a class="makehover" data-toggle="popover" title="Popover Header" data-content="Some content inside the popover"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span></a>--></label>
+						 		<div class="btn-group-vertical btn-block" id="input_franja_entrega_premium">
+									<button id="fr_pr_1" type="button" class="btn btn-default">09:00 a 10:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_2" type="button" class="btn btn-default">10:00 - 11:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_3" type="button" class="btn btn-default">11:00 - 12:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_4" type="button" class="btn btn-default">12:00 - 13:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_5" type="button" class="btn btn-default">13:00 - 14:00 <font style="color:red;">(2.99€)</font></button>
+									
+									<button id="fr_pr_6" type="button" class="btn btn-default active">15:00 - 16:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_7" type="button" class="btn btn-default">16:00 - 17:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_8" type="button" class="btn btn-default">17:00 - 18:00 <font style="color:red;">(2.99€)</font></button>
+									
+									<button id="fr_pr_9" type="button" class="btn btn-default">19:00 - 20:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_10" type="button" class="btn btn-default">20:00 - 21:00 <font style="color:red;">(2.99€)</font></button>
+									<button id="fr_pr_11" type="button" class="btn btn-default">21:00 - 22:00 <font style="color:red;">(2.99€)</font></button>
+									
+									<input type="hidden" id="input_franja_entrega_premium" value="" />
+								</div>
+							</div>
+						 	<div class="col-sm-6" id="input_franja_entrega_premium_normales_col">
+						 		<label class="lbl_franjas">Franjas Emakers GRATUITAS</label>
+							 	
+						 		<div id="content_conf_franjas_1">
+						 			<div class="btn-group-vertical btn-block" id="input_franja_entrega_premium_normales">
+							 			<button id="fr_gr_1" type="button" class="btn btn-default h_franja_manana">MAÑANA (09:00 - 14:00)<br/>(sin coste adicional)</button>
+							 			<button id="fr_gr_2" type="button" class="btn btn-default h_franja_tarde">TARDE (15:00 - 18:00)<br/>(sin coste adicional)</button>
+							 			<button id="fr_gr_3" type="button" class="btn btn-default h_franja_aw">AFTER-WORK (19:00 - 22:00)<br/>(sin coste adicional)</button>
+							 		</div>
+						 		</div>
+						 		
+							 	<div id="content_conf_franjas_2">
+							 		<div class="btn-group-vertical btn-block" id="input_franja_entrega_premium_normales">
+							 			<button id="fr_gr_4" type="button" class="btn btn-default h_franja_diurna"><font id="btn_diurna_text">DIURNA (09:00 - 18:00)<br/>(sin coste adicional)</font></button>
+							 			<button id="fr_gr_33" type="button" class="btn btn-default h_franja_diurna_aw">AFTER-WORK (19:00 - 22:00)<br/>(sin coste adicional)</button>
+						 			</div>
+							 	</div>
+							 	<input type="hidden" id="input_franja_entrega_normal" value="" />
+								
+						 	</div>
+						</div>
+						
+						<div id="content_horarios">
+							<p class="tjustify">Si la dirección de entrega es una oficina/tienda/empresa, por favor indique el horario de apertura. Por favor, tenga en cuenta que las franjas deben ser de 4 horas o más.</p>
+    			
+			    			<div class="form-group col-sm-6 nopaddingleft">
+				    			<label for="hora1_inicio">Disponibilidad por las mañanas</label>
+				    			<input class="form-control" id="hora1_inicio_form4" name="hora1_inicio_form4" placeholder="Hora inicial (hh:mm)">
+				    		</div>
+				    		<div class="form-group col-sm-6 nopaddingright">
+				    			<label for="hora1_final">&nbsp;</label>
+				    			<input class="form-control" id="hora1_final_form4" name="hora1_final_form4" placeholder="Hora final (hh:mm)">
+				    		</div>
+				    		
+				    		<div class="form-group col-sm-6 nopaddingleft">
+				    			<label for="hora2_inicio">Disponibilidad por las tardes</label>
+				    			<input class="form-control" id="hora2_inicio_form4" name="hora2_inicio_form4" placeholder="Hora inicial (hh:mm)">
+				    		</div>
+				    		<div class="form-group col-sm-6 nopaddingright">
+				    			<label for="hora2_final">&nbsp;</label>
+				    			<input class="form-control" id="hora2_final_form4" name="hora2_final_form4" placeholder="Hora final (hh:mm)">
+				    		</div>
+				    		<p>* La franja propuesta debe cubrir, como mínimo, 4 horas de margen.<br/><font class="fs10">(recibirá un SMS con una franja de 60 minutos dentro de esta franja)</font></p>
+						</div>
+						
+	    			</div>
+	    			
+	    			<div class="form-group col-sm-12 nopadding">
+	    				<p class="svcnclbtns">
+							<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(4);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
+							<button type="button" class="btn btn-default btn-block" onclick="javascript:controlOpShowdown();"><span class="glyphicon glyphicon-remove gly_emks"></span> Cancelar / Volver</button>
+						</p>
+	    			</div>
     			</div>
+    			<div id="capa_franjas_gratuitas">
+	    			<div class="form-group">
+	    				<label for="input_franja_entrega"><?=lang('ew_tr_form_franjaentrega');?></label>
+	    				<select id="input_franja_entrega" name="input_franja_entrega" class="selectpicker show-tick form-control"></select>
+	    			</div>
+    			
+	    			<p class="tjustify">Si la dirección de entrega es una oficina/tienda/empresa, por favor indique el horario de apertura. Por favor, tenga en cuenta que las franjas deben ser de 4 horas o más.</p>
+    			
+	    			<div class="form-group col-sm-6 nopaddingleft">
+		    			<label for="hora1_inicio">Disponibilidad por las mañanas</label>
+		    			<input class="form-control" id="hora1_inicio" name="hora1_inicio" placeholder="Hora inicial (hh:mm)">
+		    		</div>
+		    		<div class="form-group col-sm-6 nopaddingright">
+		    			<label for="hora1_final">&nbsp;</label>
+		    			<input class="form-control" id="hora1_final" name="hora1_final" placeholder="Hora final (hh:mm)">
+		    		</div>
+		    		
+		    		<div class="form-group col-sm-6 nopaddingleft">
+		    			<label for="hora2_inicio">Disponibilidad por las tardes</label>
+		    			<input class="form-control" id="hora2_inicio" name="hora2_inicio" placeholder="Hora inicial (hh:mm)">
+		    		</div>
+		    		<div class="form-group col-sm-6 nopaddingright">
+		    			<label for="hora2_final">&nbsp;</label>
+		    			<input class="form-control" id="hora2_final" name="hora2_final" placeholder="Hora final (hh:mm)">
+		    		</div>
+		    		<p>* La franja propuesta debe cubrir, como mínimo, 4 horas de margen.<br/><font class="fs10">(recibirá un SMS con una franja de 60 minutos dentro de esta franja)</font></p>
+	    			<div class="form-group col-sm-12 nopadding">
+	    				<p class="svcnclbtns">
+							<button type="button" class="btn btn-success btn-block" onclick="javascript:guardaFormOp(1);"><span class="glyphicon glyphicon-ok gly_emks"></span> Guardar cambios</button>
+							<button type="button" class="btn btn-default btn-block" onclick="javascript:controlOpShowdown();"><span class="glyphicon glyphicon-remove gly_emks"></span> Cancelar / Volver</button>
+						</p>
+	    			</div>
+	    		</div>
     		</form>
     	</div>
     	
@@ -585,6 +672,7 @@
 		<!-- datos originales -->
 		<input type="hidden" name="fecha_original" id="fecha_original" value="" />
 		<input type="hidden" name="franja_original" id="franja_original" value="" />
+		<input type="hidden" name="franja_pr_original" id="franja_pr_original" value="" />
 		<input type="hidden" name="cf_tipo_via_original" id="cf_tipo_via_original" value="" />
 		<input type="hidden" name="direccion_original" id="direccion_original" value="" />
 		<input type="hidden" name="numero_original" id="numero_original" value="" />
@@ -682,8 +770,17 @@
         <p><?=lang('ew_section_conditions_text4');?></p>
         <p><?=lang('ew_section_conditions_text5');?></p>
       </div>
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel"><?=lang('ew_section_conditions_title_premium');?></h4>
+      </div>
+      <div class="modal-body">
+        <p><?=lang('ew_section_conditions_text1_premium');?></p>
+        <p><?=lang('ew_section_conditions_text2_premium');?></p>
+        <p><?=lang('ew_section_conditions_text3_premium');?></p>
+        <p><?=lang('ew_section_conditions_text4_premium');?></p>
+      </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger btn-xs" data-dismiss="modal"><?=lang('ew_section_conditions_close');?></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><?=lang('ew_section_conditions_close');?></button>
       </div>
     </div>
   </div>
@@ -694,6 +791,8 @@
 <script type="text/javascript" src="<?=base_url();?>js/moment.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/bootstrap-datetimepicker.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/bootstrap-datetimepicker.es.js"></script>
+<script src="http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-tooltip.js"></script>
+<script src="http://w3resource.com/twitter-bootstrap/twitter-bootstrap-v2/js/bootstrap-popover.js"></script>
 <script type="text/javascript" src="<?=base_url();?>js/script_tracking.js"></script>
 </body>
 </html>

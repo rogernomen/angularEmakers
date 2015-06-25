@@ -128,6 +128,12 @@ $lang['ew_section_conditions_text4']="<b>The time limits (*)</b> to request a de
 $lang['ew_section_conditions_text5']="- <b>MORNING</b> (9:00am to 2:00pm)<br/>This shift can be requested until 8 am on the same day.<br/><br/>- <b>EVENING</b> (3:00pm to 6:30pm)<br/>This shift can be requested until 1 pm on the same day.<br/><br/>- <b>AFTERWORK</b> (7:00pm to 10:00pm)<br/>This shift can be requested until 5 pm on the same day.<br/><br/>- <b>DAYTIME (**)</b> (12:00am to 5:00pm)<br/>This shift can be requested until  8:00 am on the same day.<br/><br/>(*) As an exception, during Christmas or Sale seasons, some shifts may not be available until the next weekday.<br/><br/>(**) This shift is only available for some areas.";
 $lang['ew_section_conditions_close']="Close";
 
+$lang['ew_section_conditions_title_premium']="CONDICIONES DE USO DE EMAKERS PREMIUM";
+$lang['ew_section_conditions_text1_premium']="El servicio Emakers Premium permite escoger una franja de una hora para la entrega. El servicio Emakers Premium se ofrece sólo en algunos códigos postales. Emakers se reserva el derecho a suspender o activar el servicio en función de la época del año.";
+$lang['ew_section_conditions_text2_premium']="El método de pago será en efectivo en el momento de la entrega. El mensajero no está obligado a llevar cambio, y por lo tanto se deberá pagar con el importe exacto.";
+$lang['ew_section_conditions_text3_premium']="En caso de incumplimiento de la franja por parte de Emakers, el destinatario no estará obligado a pagar por el servicio. No obstante en caso de lluvia o temporal, la entrega se podrá retrasar un máximo de 30 minutos. ";
+$lang['ew_section_conditions_text4_premium']="En caso de que la entrega no se pueda realizar por ausencia del destinatario, éste deberá escoger una nueva franja de entrega a través del sistema de tracking. En caso de volver a escoger el servicio Emakers Premium, el coste será acumulativo.";
+
 $lang['ew_section_contacta_title']="Contact Emakers";
 $lang['ew_section_contacta_subtitle1']="I WANT TO BE A COSTUMER";
 $lang['ew_section_contacta_text1']="Do you want to know more?<br />Don't hesitate to contact us. Delivering with Emakers is really easy!<br />";

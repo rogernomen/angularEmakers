@@ -50,8 +50,48 @@ var ESTADO_PRECARGA_RECOGIDO = 1;
 var ESTADO_PRECARGA_EN_ALMACEN = 2;
 var ESTADO_PRECARGA_ORIGEN_NO_PREPARADO = 3;
 var ESTADO_PRECARGA_ALMACEN_ORIGEN = 4;
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+$(function () {
+	$('#content_horarios').removeClass('showshape');
+	$('#content_horarios').addClass('hideshape');
+    // configuracion de botonera de seleccion de franjas premium
+    $('#input_franja_entrega_premium > button').click(function(){
 
-$(function () {	
+    	// reiniciamos los estados active de los demas botones
+	    $('#input_franja_entrega_premium > button').removeClass('active');
+	    $('#input_franja_entrega_premium_normales > button').removeClass('active');
+	    
+	    // escondemos la capa de horarios
+	    $('#content_horarios').removeClass('showshape');
+	    $('#content_horarios').addClass('hideshape');
+	    
+	    // activamos el boton clicado
+	    $(this).addClass('active');
+	    
+	    // ponemos los valores en los campos
+	    $('#input_franja_entrega_normal').val(0);
+	    $('#input_franja_entrega_premium').val($(this).attr('id').split('fr_pr_')[1]);
+    });
+    // configuracion de botonera de seleccion de franjas gratuitas
+    $('#input_franja_entrega_premium_normales > button').click(function(){
+    
+    	// reiniciamos los estados active de los demas botones
+	    $('#input_franja_entrega_premium > button').removeClass('active');
+	    $('#input_franja_entrega_premium_normales > button').removeClass('active');
+	    
+	    // mostramos la capa de horarios
+	    $('#content_horarios').removeClass('hideshape');
+	    $('#content_horarios').addClass('showshape');
+	    
+	    // activamos el boton clicado
+	    $(this).addClass('active');
+	    
+	    // ponemos los valores en los campos
+	    $('#input_franja_entrega_premium').val(0);
+	    $('#input_franja_entrega_normal').val($(this).attr('id').split('fr_gr_')[1]);
+    });
 	if(/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
 		$('#input_franja_entrega').selectpicker('mobile');
 		$('#ip_cf_tipo_via').selectpicker({});
@@ -100,11 +140,14 @@ $(function () {
     var yesterday = new Date(today.getTime() - (24 * 60 * 60 * 1000));
     
     $('#diadeentrega').data("DateTimePicker").setMinDate(today2);
+    
+    
 });
 
 function sendConsulta(){
+	$('#content_horarios').removeClass('showshape');
+	$('#content_horarios').addClass('hideshape');
 	var error = false;
-	
 	// Escondemos la capa general de contenido y reiniciamos las laterales
 	$('#generalShapeContent').addClass('hideshape');
 	// Escondemos todos los formularios
@@ -474,6 +517,12 @@ function loadShapesContent(json){
 		$('#hora2_inicio').val(json.data.horario2_inicio);	
 		$('#hora2_final').val(json.data.horario2_final);
 		
+		// tambien en el formulario 4
+		$('#hora1_inicio_form4').val(json.data.horario1_inicio);	
+		$('#hora1_final_form4').val(json.data.horario1_final);	
+		$('#hora2_inicio_form4').val(json.data.horario2_inicio);	
+		$('#hora2_final_form4').val(json.data.horario2_final);
+		
 		// Ponemos los datos de horarios en datos originales
 		$('#horario1_inicio_original').val(json.data.horario1_inicio);	
 		$('#horario1_fin_original').val(json.data.horario1_final);	
@@ -564,8 +613,85 @@ function loadShapesContent(json){
 		$('#cp_original').val(json.data.cp);
 		$('#otros_direccion_original').val(json.data.otros_direccion);
 		$('#fecha_original').val(json.data.fecha_entrega_cliente);
-		$('#franja_original').val(json.data.conf_franja);
+		$('#franja_original').val(json.data.cf_franja);
+		$('#franja_pr_original').val(json.data.cf_franja_premium);
 		$('#localidad_original').val(json.data.localidad);
+		
+		// Miramos si hay franjas premium para mostrar la capa correcta de franjas
+		if(json.data.ifFranjaPremium == 1 && json.data.ifFranjaPremiumCP == 1){
+			$('#capa_franjas_premium').removeClass('hideshape');
+			$('#capa_franjas_premium').addClass('showshape');
+			
+			$('#capa_franjas_gratuitas').removeClass('showshape');
+			$('#capa_franjas_gratuitas').addClass('hideshape');
+			
+			// Si hay franjas premium, mostramos las franjas gratuitas segun conf_franja
+			if(json.data.conf_franja == 1){
+				$('#content_conf_franjas_1').removeClass('hideshape');
+				$('#content_conf_franjas_1').addClass('showshape');
+			
+				$('#content_conf_franjas_2').removeClass('showshape');
+				$('#content_conf_franjas_2').addClass('hideshape');
+			}else{
+				$('#content_conf_franjas_2').removeClass('hideshape');
+				$('#content_conf_franjas_2').addClass('showshape');
+			
+				$('#content_conf_franjas_1').removeClass('showshape');
+				$('#content_conf_franjas_1').addClass('hideshape');
+			}
+			
+			// Seteamos las botoneras
+			$('#input_franja_entrega_premium > button').removeClass('active');
+			$('#input_franja_entrega_premium_normales > button').removeClass('active');
+			
+			// Si viene con datos de franja normal y no premium...
+			if(json.data.cf_franja_premium == 0 && json.data.cf_franja != 0){
+				$('#fr_gr_'+json.data.cf_franja).addClass('active');
+				if(json.data.cf_franja == 3){
+					$('#fr_gr_33').addClass('active');
+				}
+				
+				// ponemos los valores en los campos
+			    $('#input_franja_entrega_premium').val(0);
+			    $('#input_franja_entrega_normal').val(json.data.cf_franja);
+			    
+			    // Mostramos la capa de horarios
+			    $('#content_horarios').removeClass('hideshape');
+			    $('#content_horarios').addClass('showshape');
+			}
+			
+			// Si viene con datos de franja premium y no normal...
+			else if(json.data.cf_franja_premium != 0 && json.data.cf_franja == 0){
+				$('#fr_pr_'+json.data.cf_franja_premium).addClass('active');
+				
+				// ponemos los valores en los campos
+			    $('#input_franja_entrega_premium').val(0);
+			    $('#input_franja_entrega_normal').val(json.data.cf_franja_premium);
+			    
+			    // Escondemos la capa de horarios
+			    $('#content_horarios').removeClass('showshape');
+			    $('#content_horarios').addClass('hideshape');
+			}
+			
+			// En caso de error lo dejaremos todo a 0
+			else{
+				// ponemos los valores en los campos
+			    $('#input_franja_entrega_premium').val(0);
+			    $('#input_franja_entrega_normal').val(0);
+			    
+			    // Escondemos la capa de horarios
+			    $('#content_horarios').removeClass('showshape');
+			    $('#content_horarios').addClass('hideshape');
+			}
+			
+		// Los controles de formulario son para franjas gratuitas
+		}else{
+			$('#capa_franjas_premium').removeClass('showshape');
+			$('#capa_franjas_premium').addClass('hideshape');
+			
+			$('#capa_franjas_gratuitas').removeClass('hideshape');
+			$('#capa_franjas_gratuitas').addClass('showshape');
+		}
 		
 		// Si el pedido tiene cambios pendientes, los mostramos
 		if(json.cambios.cambios_direccion == 1 || json.cambios.cambios_prevision == 1){
@@ -702,28 +828,124 @@ function rellenaFranjas_todas(){
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"1\">MAÑANA (09:00 - 14:00)</option>");
 	$('#input_franja_entrega').append("<option value=\"2\">TARDE (15:00 - 18:30)</option>");
-	$('#input_franja_entrega').append("<option value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	if($('#cf_agencia').val() != 9){
+		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
+	}
 	$('#input_franja_entrega').selectpicker('render');
 	$('#input_franja_entrega').selectpicker('refresh');
+	
+	// SISTEMA PREMIUM
+	// activamos todo
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	
+	// Reiniciamos los hiddens
+	$("#input_franja_entrega_normal").val(0);
+	$("#input_franja_entrega_premium").val(0);
+	
+	// Especial Zaragoza --> NO HAY AFTERWORK
+	if($('#cf_agencia').val() == 9){
+		$('#input_franja_entrega_premium > button').each(function(){
+			/* id's 9 ... 11 */
+			var id_premium = $(this).attr('id').split('fr_pr_')[1];
+			if(id_premium >= 9 && id_premium <= 11){
+				$(this).addClass('disabled');
+			}
+		});
+		$('#fr_gr_3').addClass('disabled');
+		$('#fr_gr_33').addClass('disabled');
+	}
 }
 
 function rellenaFranjas_tarde(){
 	// Vaciamos el select primero
+	// FRANJAS NORMALES
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"2\">TARDE (15:00 - 18:30)</option>");
-	$('#input_franja_entrega').append("<option value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	if($('#cf_agencia').val() != 9){
+		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
+	}
 	$('#input_franja_entrega').selectpicker('render');
 	$('#input_franja_entrega').selectpicker('refresh');
+	
+	// SISTEMA PREMIUM
+	// activamos todo
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	// desactivamos premium mañana
+	$('#input_franja_entrega_premium > button').each(function(){
+		/* id's 1 ... 5 */
+		var id_premium = $(this).attr('id').split('fr_pr_')[1];
+		if(id_premium >= 1 && id_premium <= 5){
+			$(this).addClass('disabled');
+		}
+	});
+	// desactivamos normal mañana
+	$('#fr_gr_1').addClass('disabled');
+	
+	// Reiniciamos los hiddens
+	$("#input_franja_entrega_normal").val(0);
+	$("#input_franja_entrega_premium").val(0);
+	
+	// Especial Zaragoza --> NO HAY AFTERWORK
+	if($('#cf_agencia').val() == 9){
+		$('#input_franja_entrega_premium > button').each(function(){
+			/* id's 9 ... 11 */
+			var id_premium = $(this).attr('id').split('fr_pr_')[1];
+			if(id_premium >= 9 && id_premium <= 11){
+				$(this).addClass('disabled');
+			}
+		});
+		$('#fr_gr_3').addClass('disabled');
+		$('#fr_gr_33').addClass('disabled');
+	}
 }
 
 function rellenaFranjas_noche(){
-	// Vaciamos el select primero
-	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').prop('disabled',false);
-	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"3\">NOCHE (19:00 - 22:00)</option>");
-	$('#input_franja_entrega').selectpicker('render');
-	$('#input_franja_entrega').selectpicker('refresh');
+	if($('#cf_agencia').val() != 9){
+		// Vaciamos el select primero
+		$('#input_franja_entrega').html('');
+		$('#input_franja_entrega').prop('disabled',false);
+		$('#input_franja_entrega').append("<option selected=\"selected\" value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
+		$('#input_franja_entrega').selectpicker('render');
+		$('#input_franja_entrega').selectpicker('refresh');
+		
+		// SISTEMA PREMIUM
+		// activamos todo
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+		// desactivamos premium mañana
+		$('#input_franja_entrega_premium > button').each(function(){
+			/* id's 1 ... 8 */
+			var id_premium = $(this).attr('id').split('fr_pr_')[1];
+			if(id_premium >= 1 && id_premium <= 8){
+				$(this).addClass('disabled');
+			}
+		});
+		// desactivamos normal mañana
+		$('#fr_gr_1').addClass('disabled');
+		$('#fr_gr_2').addClass('disabled');
+		$('#fr_gr_4').addClass('disabled');
+		
+		// Reiniciamos los hiddens
+		$("#input_franja_entrega_normal").val(0);
+		$("#input_franja_entrega_premium").val(0);
+	}else{
+		sinFranjasDisponibles();
+	}
 }
 
 function rellenaFranjas_diurna_todas(){
@@ -731,18 +953,76 @@ function rellenaFranjas_diurna_todas(){
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"4\">DIURNA (12:00 - 17:00)</option>");
-	$('#input_franja_entrega').append("<option value=\"3\">NOCHE (19:00 - 22:00)</option>");
+	if($('#cf_agencia').val() != 9){
+		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
+	}
 	$('#input_franja_entrega').selectpicker('render');
 	$('#input_franja_entrega').selectpicker('refresh');
+	
+	// SISTEMA PREMIUM
+	// activamos todo
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	
+	// Reiniciamos los hiddens
+	$("#input_franja_entrega_normal").val(0);
+	$("#input_franja_entrega_premium").val(0);
+	
+	// Especial Zaragoza --> NO HAY AFTERWORK
+	if($('#cf_agencia').val() == 9){
+		$('#input_franja_entrega_premium > button').each(function(){
+			/* id's 9 ... 11 */
+			var id_premium = $(this).attr('id').split('fr_pr_')[1];
+			if(id_premium >= 9 && id_premium <= 11){
+				$(this).addClass('disabled');
+			}
+		});
+		$('#fr_gr_3').addClass('disabled');
+		$('#fr_gr_33').addClass('disabled');
+	}
 }
 
 function rellenaFranjas_diurna_noche(){
-	// Vaciamos el select primero
-	$('#input_franja_entrega').html('');
-	$('#input_franja_entrega').prop('disabled',false);
-	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"3\">NOCHE (19:00 - 22:00)</option>");
-	$('#input_franja_entrega').selectpicker('render');
-	$('#input_franja_entrega').selectpicker('refresh');
+	if($('#cf_agencia').val() != 9){
+		// Vaciamos el select primero
+		$('#input_franja_entrega').html('');
+		$('#input_franja_entrega').prop('disabled',false);
+		$('#input_franja_entrega').append("<option selected=\"selected\" value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
+		$('#input_franja_entrega').selectpicker('render');
+		$('#input_franja_entrega').selectpicker('refresh');
+		
+		// SISTEMA PREMIUM
+		// activamos todo
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+		// desactivamos premium mañana
+		$('#input_franja_entrega_premium > button').each(function(){
+			/* id's 1 ... 8 */
+			var id_premium = $(this).attr('id').split('fr_pr_')[1];
+			if(id_premium >= 1 && id_premium <= 8){
+				$(this).addClass('disabled');
+			}
+		});
+		// desactivamos normal mañana
+		$('#fr_gr_1').addClass('disabled');
+		$('#fr_gr_2').addClass('disabled');
+		$('#fr_gr_4').addClass('disabled');
+		
+		// Reiniciamos los hiddens
+		$("#input_franja_entrega_normal").val(0);
+		$("#input_franja_entrega_premium").val(0);
+		
+	}else{
+		sinFranjasDisponibles();
+	}
 }
 
 function sinFranjasDisponibles(){
@@ -751,6 +1031,23 @@ function sinFranjasDisponibles(){
 	$('#input_franja_entrega').prop('disabled',true);
 	$('#input_franja_entrega').selectpicker('render');
 	$('#input_franja_entrega').selectpicker('refresh');
+	
+	// SISTEMA PREMIUM
+	// activamos todo
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	// desactivamos todo
+	$('#input_franja_entrega_premium > button').each(function(){$(this).addClass('disabled');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).addClass('disabled');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).addClass('disabled');});
+	
+	// Reiniciamos los hiddens
+	$("#input_franja_entrega_normal").val(0);
+	$("#input_franja_entrega_premium").val(0);
 }
 
 function reiniciaInputsFormulario(){
@@ -768,25 +1065,34 @@ function abortRequest(){
 }
 
 function sendFranjaChange(){
-	//num pedido
-	var num_pedido = $("#num_pedido").val();
-	// agencia destino
-	var cf_agencia = $("#cf_agencia").val();
-	//get dia entrega
-	var fecha_entrega = $("#input_dia_entrega").val();
-	//get franja entrega
-	var id_franja = $("#input_franja_entrega").val();
-	//get numero de telefono
-	var telefono = $("#input_telefono1").val();
-	var telefono2 = $("#input_telefono2").val();
-	//get comentarios
-	var comentarios = $("#input_comentarios_cliente").val();
-	//get comentarios
-	var mail = $("#input_email").val();
 	//get id2
 	var id2 = $("#id2_pedido").val();
 	// get tabla origen
 	var tabla_origen = $('#tabla_origen').val();
+	//num pedido
+	var num_pedido = $("#num_pedido").val();
+	
+	// agencia destino
+	var cf_agencia = $("#cf_agencia").val();
+	
+	//get dia entrega
+	var fecha_entrega = $("#input_dia_entrega").val()
+	;
+	//get franja entrega
+	var id_franja = $("#input_franja_entrega").val();
+	//get franja entrega gratuita
+	var id_franja_gr = $("#input_franja_entrega_normal").val();
+	//get franja entrega premium
+	var id_franja_pr = $("#input_franja_entrega_premium").val();
+	
+	//get numero de telefono
+	var telefono = $("#input_telefono1").val();
+	var telefono2 = $("#input_telefono2").val();
+	
+	//get comentarios
+	var comentarios = $("#input_comentarios_cliente").val();
+	//get mail
+	var mail = $("#input_email").val();
 	
 	// Otros datos
 	var abonado = $('#tk_nombre_abonado').html();
@@ -1161,6 +1467,183 @@ function guardaFormOp(idForm){
 				}
 			}
 			
+			// Comprovamos que los horarios son correctos y tienen una franja de 4h minimo si es que no estan vacios y cumplen el formato
+			var y = '2015';
+			var m = '01';
+			var d = '01';
+			
+			var h1i = hora1_inicio.split(':')[0];
+			var m1i = hora1_inicio.split(':')[1];
+			var h1f = hora1_final.split(':')[0];
+			var m1f = hora1_final.split(':')[1];
+			
+			var h2i = hora2_inicio.split(':')[0];
+			var m2i = hora2_inicio.split(':')[1];
+			var h2f = hora2_final.split(':')[0];
+			var m2f = hora2_final.split(':')[1];
+			
+			var t1i = new Date(y, m, d, h1i, m1i);
+			var t1f = new Date(y, m, d, h1f, m1f);
+			
+			var t2i = new Date(y, m, d, h2i, m2i);
+			var t2f = new Date(y, m, d, h2f, m2f);
+			
+			// Si las horas fins son superiores a las horas inicio.... error
+			if(h1i > h1f){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			if(h2i > h2f){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			
+			var d1 = t1f.getTime() - t1i.getTime();
+			var d2 = t2f.getTime() - t2i.getTime();
+			
+			if( d1 < (4*3600*1000) ){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			
+			if( d2 < (4*3600*1000) ){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			// Comprovamos que la fecha seleccionada sea como minimo la fecha de hoy
+			// Debemos comprovar que la franja seleccionada sea > 1
+			if(date_diff < 0|| id_franja <= 0){
+				$('#triggerError_fecha_franjaShape').trigger('click');
+				return;
+			}else{
+				// mount data post
+				var datapost = "fecha_entrega="+fecha_entrega+
+					  "&num_pedido="+num_pedido+
+					  "&id_franja_entrega="+id_franja+
+					  "&hora1_inicio="+hora1_inicio+
+					  "&hora1_final="+hora1_final+
+					  "&hora2_inicio="+hora2_inicio+
+					  "&hora2_final="+hora2_final+
+					  "&id2="+id2+
+					  "&cf_agencia="+cf_agencia+
+					  "&idForm="+idForm+
+					  "&tabla_origen="+tabla_origen;
+			}
+		}
+		
+	// Formulario de datos y comentarios
+	}else if(idForm == 4){
+		//get dia entrega
+		var fecha_entrega = $("#input_dia_entrega").val();
+		
+		//get franja entrega gratuita
+		var id_franja_gr = $("#input_franja_entrega_normal").val();
+		//get franja entrega premium
+		var id_franja_pr = $("#input_franja_entrega_premium").val();
+		
+		// Calculamos la fecha de hoy
+		var now = new Date();
+		var day_now = now.getDate();
+		if(day_now < 10){ day_now = '0'+day_now; }
+		var month_now = (parseInt(now.getMonth())+1);
+		if(month_now < 10){ month_now = '0'+month_now }
+		var date_now = day_now+'/'+month_now+'/'+now.getFullYear();
+		
+		// Comparamos la fecha seleccionada con la fecha de hoy
+		var date_diff = (new Date(fecha_entrega).getTime() - new Date(date_now).getTime());
+		
+		// Pillamos los datos de horario
+		var hora1_inicio = $('#hora1_inicio_form4').val();
+		var hora1_final = $('#hora1_final_form4').val();
+		var hora2_inicio = $('#hora2_inicio_form4').val();
+		var hora2_final = $('#hora2_final_form4').val();
+		
+		// Recuperamos los datos de horario originales
+		var horario1_inicio_original = $('#horario1_inicio_original').val();	
+		var horario1_fin_original = $('#horario1_fin_original').val();	
+		var horario2_inicio_original = $('#horario2_inicio_original').val();	
+		var horario2_fin_original = $('#horario2_fin_original').val();
+		
+		// Recuperamos tambien los datos originales de fecha y franja
+		var fecha_original = $('#fecha_original').val();
+		var franja_original = $('#franja_original').val();
+		var franja_pr_original = $('#franja_pr_original').val();
+		
+		// Podemos enviar solo los datos de los horarios o todo el formulario al completo...
+		// Si los datos de horario no han cambiado, comprovamos la validez de la fecha & franja
+		if(hora1_inicio == horario1_inicio_original && hora1_final == horario1_fin_original && hora2_inicio == horario2_inicio_original && hora2_final == horario2_fin_original){
+			if(date_diff < 0 || (id_franja_pr == 0 && id_franja_gr == 0)){
+				$('#triggerError_fecha_franjaShape').trigger('click');
+				return;
+			}else{
+				// mount data post
+				var datapost = "fecha_entrega="+fecha_entrega+
+					  "&num_pedido="+num_pedido+
+					  "&id_franja_entrega="+id_franja_gr+
+					  "&id_franja_pr="+id_franja_pr+
+					  "&hora1_inicio="+hora1_inicio+
+					  "&hora1_final="+hora1_final+
+					  "&hora2_inicio="+hora2_inicio+
+					  "&hora2_final="+hora2_final+
+					  "&id2="+id2+
+					  "&cf_agencia="+cf_agencia+
+					  "&idForm="+idForm+
+					  "&tabla_origen="+tabla_origen;
+			}
+			
+		// Si los datos de los horarios si han cambiado, se debe permitir enviar el formulario (si la fecha & franja no han cambiado)
+		}else if(fecha_original == fecha_entrega && (franja_original == id_franja || id_franja == -1)){
+			// Comprovamos tambien que si hay definido un horario, su parejo tambien debe estar definido
+			if(hora1_inicio == '' && hora1_final != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; } // triggerError_horarios_franjaShape
+			if(hora1_final == '' && hora1_inicio != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; }
+			if(hora2_inicio == '' && hora2_final != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; }
+			if(hora2_final == '' && hora2_inicio != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; }
+			
+			// Deben ener el caracter ':' para asegurar el formato
+			if(hora1_inicio != ''){
+				if(hora1_inicio.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora1_inicio.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			if(hora1_final != ''){
+				if(hora1_final.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora1_final.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			if(hora2_inicio != ''){
+				if(hora2_inicio.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora2_inicio.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			if(hora2_final != ''){
+				if(hora2_final.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora2_final.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
 			// Comprovamos que los horarios son correctos y tienen una franja de 3h minimo si es que no estan vacios y cumplen el formato
 			var y = '2015';
 			var m = '01';
@@ -1195,25 +1678,135 @@ function guardaFormOp(idForm){
 			var d1 = t1f.getTime() - t1i.getTime();
 			var d2 = t2f.getTime() - t2i.getTime();
 			
-			if( d1 < (3*3600*1000) ){
+			if( d1 < (4*3600*1000) ){
 				$('#triggerError_horarios_franjaShape').trigger('click');
 				return;
 			}
 			
-			if( d2 < (3*3600*1000) ){
+			if( d2 < (4*3600*1000) ){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			
+			idForm = 12;
+			// mount data post
+			var datapost = "num_pedido="+num_pedido+
+			  "&hora1_inicio="+hora1_inicio+
+			  "&hora1_final="+hora1_final+
+			  "&hora2_inicio="+hora2_inicio+
+			  "&hora2_final="+hora2_final+
+			  "&id2="+id2+
+			  "&cf_agencia="+cf_agencia+
+			  "&idForm="+idForm+
+			  "&tabla_origen="+tabla_origen;
+
+		// En cualquier otro caso, han cambiado tanto horarios como fecha / franja
+		}else{
+			// Comprovamos tambien que si hay definido un horario, su parejo tambien debe estar definido
+			if(hora1_inicio == '' && hora1_final != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; } // triggerError_horarios_franjaShape
+			if(hora1_final == '' && hora1_inicio != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; }
+			if(hora2_inicio == '' && hora2_final != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; }
+			if(hora2_final == '' && hora2_inicio != ''){ $('#triggerError_horarios_franjaShape').trigger('click'); return; }
+			
+			// Deben ener el caracter ':' para asegurar el formato
+			if(hora1_inicio != ''){
+				if(hora1_inicio.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora1_inicio.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			if(hora1_final != ''){
+				if(hora1_final.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora1_final.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			if(hora2_inicio != ''){
+				if(hora2_inicio.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora2_inicio.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			if(hora2_final != ''){
+				if(hora2_final.length != 5){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+				if(hora2_final.indexOf(':') === -1){
+					$('#triggerError_horarios_franjaShape').trigger('click');
+					return;
+				}
+			}
+			
+			// Comprovamos que los horarios son correctos y tienen una franja de 4h minimo si es que no estan vacios y cumplen el formato
+			var y = '2015';
+			var m = '01';
+			var d = '01';
+			
+			var h1i = hora1_inicio.split(':')[0];
+			var m1i = hora1_inicio.split(':')[1];
+			var h1f = hora1_final.split(':')[0];
+			var m1f = hora1_final.split(':')[1];
+			
+			var h2i = hora2_inicio.split(':')[0];
+			var m2i = hora2_inicio.split(':')[1];
+			var h2f = hora2_final.split(':')[0];
+			var m2f = hora2_final.split(':')[1];
+			
+			var t1i = new Date(y, m, d, h1i, m1i);
+			var t1f = new Date(y, m, d, h1f, m1f);
+			
+			var t2i = new Date(y, m, d, h2i, m2i);
+			var t2f = new Date(y, m, d, h2f, m2f);
+			
+			// Si las horas fins son superiores a las horas inicio.... error
+			if(h1i > h1f){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			if(h2i > h2f){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			
+			var d1 = t1f.getTime() - t1i.getTime();
+			var d2 = t2f.getTime() - t2i.getTime();
+			
+			if( d1 < (4*3600*1000) ){
+				$('#triggerError_horarios_franjaShape').trigger('click');
+				return;
+			}
+			
+			if( d2 < (4*3600*1000) ){
 				$('#triggerError_horarios_franjaShape').trigger('click');
 				return;
 			}
 			// Comprovamos que la fecha seleccionada sea como minimo la fecha de hoy
 			// Debemos comprovar que la franja seleccionada sea > 1
-			if(date_diff < 0|| id_franja <= 0){
+			if(date_diff < 0 || (id_franja_pr == 0 && id_franja_gr == 0)){
 				$('#triggerError_fecha_franjaShape').trigger('click');
 				return;
 			}else{
 				// mount data post
 				var datapost = "fecha_entrega="+fecha_entrega+
 					  "&num_pedido="+num_pedido+
-					  "&id_franja_entrega="+id_franja+
+					  "&id_franja_entrega="+id_franja_gr+
+					  "&id_franja_pr="+id_franja_pr+
 					  "&hora1_inicio="+hora1_inicio+
 					  "&hora1_final="+hora1_final+
 					  "&hora2_inicio="+hora2_inicio+

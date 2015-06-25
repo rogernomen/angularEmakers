@@ -253,3 +253,38 @@ font.fs10{
 .nopaddingright{
 	padding-right: 0px;
 }
+#input_franja_entrega_premium > a, #input_franja_entrega_premium_normales > a {text-align: center; cursor: pointer;}
+
+#input_franja_entrega_premium_col{
+	/*padding-right: 2px !important;*/
+	margin-bottom: 15px;
+}
+#input_franja_entrega_premium_normales_col{
+	/*padding-left: 2px !important;*/
+	margin-bottom: 15px;
+}
+.h_franja_diurna{
+	height: 266px;
+}
+.h_franja_diurna_aw{
+	height: 99px;
+}
+.h_franja_manana{
+	height: 166px;
+}
+.h_franja_tarde{
+	height: 100px;
+}
+.h_franja_aw{
+	height: 100px;
+}
+#btn_diurna_text{
+	vertical-align: middle;
+}
+.lbl_franjas{
+	width: 100%;
+	text-align: center;
+}
+.makehover{
+	cursor: pointer;
+}

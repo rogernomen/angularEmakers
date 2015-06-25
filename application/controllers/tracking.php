@@ -389,6 +389,7 @@ class Tracking extends CI_Controller {
 						"tabla_origen"			=> $this->input->post("tabla_origen"),
 						"fecha_entrega"			=> $this->input->post("fecha_entrega"),
 						"id_franja_entrega"		=> $this->input->post("id_franja_entrega"),
+						"id_franja_pr"			=> false,
 						"hora1_inicio"			=> $this->input->post("hora1_inicio"),
 						"hora1_final"			=> $this->input->post("hora1_final"),
 						"hora2_inicio"			=> $this->input->post("hora2_inicio"),
@@ -409,6 +410,7 @@ class Tracking extends CI_Controller {
 						"tabla_origen"			=> $this->input->post("tabla_origen"),
 						"fecha_entrega"			=> false,
 						"id_franja_entrega"		=> false,
+						"id_franja_pr"			=> false,
 						"hora1_inicio"			=> $this->input->post("hora1_inicio"),
 						"hora1_final"			=> $this->input->post("hora1_final"),
 						"hora2_inicio"			=> $this->input->post("hora2_inicio"),
@@ -463,6 +465,27 @@ class Tracking extends CI_Controller {
 					// Function to call
 					$WSFunction = 'changeDir';
 				break;
+				case 4:
+					// Mount params array
+					$params = array(
+						"username" 				=> $this->config->item("ws_login"),
+						"password" 				=> $this->config->item("ws_passw"),
+						"id2"					=> $this->input->post("id2"),
+						"cf_agencia"			=> $this->input->post("cf_agencia"),
+						"num_pedido"			=> $this->input->post("num_pedido"),
+						"tabla_origen"			=> $this->input->post("tabla_origen"),
+						"fecha_entrega"			=> $this->input->post("fecha_entrega"),
+						"id_franja_entrega"		=> $this->input->post("id_franja_entrega"),
+						"id_franja_pr"			=> $this->input->post("id_franja_pr"),
+						"hora1_inicio"			=> $this->input->post("hora1_inicio"),
+						"hora1_final"			=> $this->input->post("hora1_final"),
+						"hora2_inicio"			=> $this->input->post("hora2_inicio"),
+						"hora2_final"			=> $this->input->post("hora2_final")
+					);
+					
+					// Function to call
+					$WSFunction = 'changeFranja';
+				break;
 				case 13:
 					// Mount params array
 					$params = array(
@@ -494,7 +517,7 @@ class Tracking extends CI_Controller {
 				break;
 			}
 			
-			if($idForm == 1 || $idForm == 12 || $idForm == 2 || $idForm == 3 || $idForm == 13){
+			if($idForm == 1 || $idForm == 12 || $idForm == 2 || $idForm == 3 || $idForm == 4 || $idForm == 13){
 				// Connect to the nusoap server
 				$this->nusoap_client = new nusoap_client($this->config->item('ws_base_url'));
 				
