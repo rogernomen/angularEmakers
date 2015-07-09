@@ -559,7 +559,7 @@
 					<a href="http://www.sibarit.us/" target="_blank"><div class="sibaritus"></div></a>
 					<a href="https://www.quedeflores.com/" target="_blank"><div class="quedeflores"></div></a>
 					<a href="http://www.verticoutdoor.com/" target="_blank"><div class="vertic"></div></a>
-					<a href="http://www.limobebe.com/xcart/home.php" target="_blank"><div class="limobebe"></div></a>
+					<a href="http://www.1pasomas.com/" target="_blank"><div class="unpasomas"></div></a>
 					<a href="http://www.browniespain.com" target="_blank"><div class="brownie"></div></a>
 					<a href="http://www.walkwithme.es/" target="_blank"><div class="walk"></div></a>
 					<a href="http://www.freefood.es" target="_blank"><div class="freefood"></div></a> 
@@ -595,11 +595,21 @@
 				  Calle Comte Urgell, 51 bis<br>
 				  08011 Barcelona<br>
 				  <br />
-				  (+34) 93 624 24 26<br />
-				  (+34) 93 419 92 09
+				  (+34) 93 365 78 85
+				</address>
+			</div>
+			<div class="col-md-5 col-sm-5 col-xs-12">
+				<address>
+				  <strong>Madrid</strong><br>
+				  <a href="mailto:contacta@emakers.es">contacta@emakers.es</a><br>
+				  Calle Marqués de Monteagudo, 22<br>
+				  28028 Madrid<br>
+				  <br />
+				  (+34) 81 051 45 63
 				</address>
 			</div>
 			<!--<div class="clearfix visible-xs"></div>-->
+			<!-- 
 			<div class="col-md-5 col-sm-5 col-xs-12">
 				<address>
 					<strong><?=lang('ew_footer_resumen_title');?></strong><br />
@@ -610,6 +620,7 @@
 					<a href="#ademas"><?=lang('ew_footer_resumen_ademas');?></a><br />
 				</address>
 			</div>
+			-->
 			<div class="col-md-3 col-sm-3 col-xs-12 col-sm-offset-1 col-md-offset-1">
 				<address>
 					<strong><?=lang('ew_footer_siguenos');?></strong><br />

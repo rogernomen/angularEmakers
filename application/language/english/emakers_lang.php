@@ -86,7 +86,7 @@ $lang['ew_footer_resumen_interaccion']="- We interact with your customers, REALL
 $lang['ew_footer_resumen_entregas']="- We inform of a &plusmn;30 minute delivery window.";
 $lang['ew_footer_resumen_ademas']="- On top of that, we are green!";
 $lang['ew_footer_siguenos']="Follow us on";
-$lang['ew_footer_copy']="&copy; 2014 EMAKERS. All rights reserved.";
+$lang['ew_footer_copy']="&copy; 2015 EMAKERS. All rights reserved.";
 $lang['ew_footer_politica']="Privacy policy";
 $lang['ew_footer_condiciones']="Terms of use";
 $lang['ew_footer_lenguage']="Hablamos tu idioma";
@@ -157,11 +157,11 @@ $lang['ew_tr_solicitud_en_marxa'] = 'The request is being processed.<br/>Please 
 $lang['ew_tr_datos_invalidos_title'] = 'Data entered are invalid';
 $lang['ew_tr_datos_invalidos_description'] = 'The data entered is not correct. Please, make sure to fill all the fields and accept the terms of use of the tracking system.';
 $lang['ew_tr_error_busqueda_title'] = 'Data search error';
-$lang['ew_tr_error_busqueda_description'] = 'The data entered does not correspond to any order.<br/>Please, remember to enter all the digits of the order number and a telephone number or an e-mail linked to the order.<br/><br/>  If the problem persists, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_error_busqueda_description'] = 'The data entered does not correspond to any order.<br/>Please, remember to enter all the digits of the order number and a telephone number or an e-mail linked to the order.<br/><br/>  If the problem persists, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 93 365 78 85 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 $lang['ew_tr_error_inesperado_title'] = 'Unexpected error in the request';
-$lang['ew_tr_error_inesperado_description'] = 'An error has been detected during the request referring to the order with number <font id="error_num_pedido"></font>.<br/><br/>  If the problem remains, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_error_inesperado_description'] = 'An error has been detected during the request referring to the order with number <font id="error_num_pedido"></font>.<br/><br/>  If the problem remains, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 $lang['ew_tr_error_datos_solicitados_title'] = '  Error in the request';
-$lang['ew_tr_error_datos_solicitados_description'] = 'We have detected an error in the request.<br/>Please make sure that the requested date and shift are correct.<br/><br/>If the problem remains, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_error_datos_solicitados_description'] = 'We have detected an error in the request.<br/>Please make sure that the requested date and shift are correct.<br/><br/>If the problem remains, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 $lang['ew_tr_cambios_pendintes_title'] = 'A current request is in process of approval. In the case that an unexpected event prevents the acceptance of the request, Emakers will duly inform you.';
 $lang['ew_tr_cambios_datos_pedido'] = 'Order data';
 $lang['ew_tr_cambios_abonado'] = 'Subscriber: ';
@@ -190,9 +190,9 @@ $lang['ew_tr_consultar'] = 'Search';
 // content
 $lang['ew_tr_estadp_pedido'] = 'Order status: ';
 $lang['ew_tr_notas_tipsa_itile'] = 'Important  notes';
-$lang['ew_tr_notas_tipsa_description'] = 'Due to the location of your order, another courier will take care of the delivery.<br/><br/>In the case that you need additional information, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_notas_tipsa_description'] = 'Due to the location of your order, another courier will take care of the delivery.<br/><br/>In the case that you need additional information, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 $lang['ew_tr_notas_notipsa_itile'] = 'Important notes';
-$lang['ew_tr_notas_notipsa_description'] = 'Si lo desea, puede modificar el día y la franja de recepción. Remember that you will receive an SMS with a 60 minute deilvery window.<br/><br/>In the case that you need additional information, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_notas_notipsa_description'] = 'Si lo desea, puede modificar el día y la franja de recepción. Remember that you will receive an SMS with a 60 minute deilvery window.<br/><br/>In the case that you need additional information, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 
 // form
 $lang['ew_tr_form_title'] = 'If you wish to re-schedule a new delivery, fill this form with your preferences.';
@@ -220,16 +220,16 @@ $lang['ew_trs_fechaentrega'] = 'Delivery day: ';
 $lang['ew_trs_franjaentrega'] = 'Shift: ';
 
 $lang['ew_trs_solicitar'] = 'I want to make changes to the delivery schedule';
-$lang['ew_trs_notas_importantes'] = '<h3>Important notes</h3><p>Due to the location of your order, another courier will take care of the delivery.<br/><br/>  In the case that you need additional information, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>';
+$lang['ew_trs_notas_importantes'] = '<h3>Important notes</h3><p>Due to the location of your order, another courier will take care of the delivery.<br/><br/>  In the case that you need additional information, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a></p>';
 
 $lang['ew_trs_error_title'] = 'Data search error';
-$lang['ew_trs_error_description'] = 'The data entered does not correspond to any order.<br/><br/>  If the problem persists, please contact our support team:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_trs_error_description'] = 'The data entered does not correspond to any order.<br/><br/>  If the problem persists, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 
 $lang['ew_trnodv_title'] = 'Emakers - Device not compatible';
 $lang['ew_trnodv_title2'] = 'This device is not compatible with Emakers tracking system.';
 $lang['ew_trnodv_slogan'] = 'We are sorry, the platform or browser that you are currently using is not compatible with Emakers tracking system.<br/><br/>Please, acces through a platform or browser from this list: ';
 $lang['ew_trnodv_device_list'] = '<li>Google Chrome for Android, iPhone, iPod, iPad, Mac OSX or Windows</li><li>Safari for iPhone, iPod, iPad, Mac OSX or Windows</li><li>Mozilla Firefox for Windows or Mac OSX</li><li>Opera for Mac OSX or Windows</li><li>IE7+ for Windows</li>';
-$lang['ew_trnodv_contact'] = 'You may also contact us:<br/><br/>(+34) 93 624 24 26 - Emakers Barcelona<br/>(+34) 93 419 92 09 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_trnodv_contact'] = 'You may also contact us:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 
 /* RATING */
 $lang['rating_title'] = 'Thanks for your vote!';

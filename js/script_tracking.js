@@ -828,7 +828,7 @@ function rellenaFranjas_todas(){
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"1\">MAÑANA (09:00 - 14:00)</option>");
 	$('#input_franja_entrega').append("<option value=\"2\">TARDE (15:00 - 18:30)</option>");
-	if($('#cf_agencia').val() != 9){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
 		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
 	}
 	$('#input_franja_entrega').selectpicker('render');
@@ -848,7 +848,7 @@ function rellenaFranjas_todas(){
 	$("#input_franja_entrega_premium").val(0);
 	
 	// Especial Zaragoza --> NO HAY AFTERWORK
-	if($('#cf_agencia').val() == 9){
+	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10){
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 9 ... 11 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
@@ -867,7 +867,7 @@ function rellenaFranjas_tarde(){
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"2\">TARDE (15:00 - 18:30)</option>");
-	if($('#cf_agencia').val() != 9){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
 		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
 	}
 	$('#input_franja_entrega').selectpicker('render');
@@ -897,7 +897,7 @@ function rellenaFranjas_tarde(){
 	$("#input_franja_entrega_premium").val(0);
 	
 	// Especial Zaragoza --> NO HAY AFTERWORK
-	if($('#cf_agencia').val() == 9){
+	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10){
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 9 ... 11 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
@@ -911,7 +911,7 @@ function rellenaFranjas_tarde(){
 }
 
 function rellenaFranjas_noche(){
-	if($('#cf_agencia').val() != 9){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
 		// Vaciamos el select primero
 		$('#input_franja_entrega').html('');
 		$('#input_franja_entrega').prop('disabled',false);
@@ -953,7 +953,7 @@ function rellenaFranjas_diurna_todas(){
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"4\">DIURNA (12:00 - 17:00)</option>");
-	if($('#cf_agencia').val() != 9){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
 		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
 	}
 	$('#input_franja_entrega').selectpicker('render');
@@ -973,7 +973,7 @@ function rellenaFranjas_diurna_todas(){
 	$("#input_franja_entrega_premium").val(0);
 	
 	// Especial Zaragoza --> NO HAY AFTERWORK
-	if($('#cf_agencia').val() == 9){
+	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10){
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 9 ... 11 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
@@ -987,7 +987,7 @@ function rellenaFranjas_diurna_todas(){
 }
 
 function rellenaFranjas_diurna_noche(){
-	if($('#cf_agencia').val() != 9){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
 		// Vaciamos el select primero
 		$('#input_franja_entrega').html('');
 		$('#input_franja_entrega').prop('disabled',false);
@@ -1253,6 +1253,7 @@ function guardaFormOp(idForm){
 	if(idForm == 1){
 		//get dia entrega
 		var fecha_entrega = $("#input_dia_entrega").val();
+		var fecha_entrega_for_diff = fecha_entrega.split('/')[1]+'/'+fecha_entrega.split('/')[0]+'/'+fecha_entrega.split('/')[2];
 		
 		//get franja entrega
 		var id_franja = $("#input_franja_entrega").val();
@@ -1264,9 +1265,10 @@ function guardaFormOp(idForm){
 		var month_now = (parseInt(now.getMonth())+1);
 		if(month_now < 10){ month_now = '0'+month_now }
 		var date_now = day_now+'/'+month_now+'/'+now.getFullYear();
+		var date_now_for_diff = month_now+'/'+day_now+'/'+now.getFullYear();
 		
 		// Comparamos la fecha seleccionada con la fecha de hoy
-		var date_diff = (new Date(fecha_entrega).getTime() - new Date(date_now).getTime());
+		var date_diff = (new Date(fecha_entrega_for_diff).getTime() - new Date(date_now_for_diff).getTime());
 		
 		// Pillamos los datos de horario
 		var hora1_inicio = $('#hora1_inicio').val();
@@ -1535,6 +1537,7 @@ function guardaFormOp(idForm){
 	}else if(idForm == 4){
 		//get dia entrega
 		var fecha_entrega = $("#input_dia_entrega").val();
+		var fecha_entrega_for_diff = fecha_entrega.split('/')[1]+'/'+fecha_entrega.split('/')[0]+'/'+fecha_entrega.split('/')[2];
 		
 		//get franja entrega gratuita
 		var id_franja_gr = $("#input_franja_entrega_normal").val();
@@ -1548,9 +1551,10 @@ function guardaFormOp(idForm){
 		var month_now = (parseInt(now.getMonth())+1);
 		if(month_now < 10){ month_now = '0'+month_now }
 		var date_now = day_now+'/'+month_now+'/'+now.getFullYear();
+		var date_now_for_diff = month_now+'/'+day_now+'/'+now.getFullYear();
 		
 		// Comparamos la fecha seleccionada con la fecha de hoy
-		var date_diff = (new Date(fecha_entrega).getTime() - new Date(date_now).getTime());
+		var date_diff = (new Date(fecha_entrega_for_diff).getTime() - new Date(date_now_for_diff).getTime());
 		
 		// Pillamos los datos de horario
 		var hora1_inicio = $('#hora1_inicio_form4').val();
