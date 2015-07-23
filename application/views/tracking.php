@@ -409,6 +409,7 @@
     		<form role="form">
     			<div class="form-group">
     				<label for="input_dia_entrega"><?=lang('ew_tr_form_diaentrega');?></label>
+    				<p class="tjustify">Por favor, escoja primero el día deseado de entrega. Tenga en cuenta que la disponibilidad de las franjas dependen del día escogido.</p>
     				<div class='input-group date' id='diadeentrega'>
     					<input type='text' class="form-control" id="input_dia_entrega" name="input_dia_entrega" readonly=""/>
     					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -422,6 +423,10 @@
 	    				<p class="tjustify">Por favor, escoja la franja de entrega deseada. Tenga en cuenta que el servicio Emakers Premium puede implicar un sobrecoste.</p>
 	    				<div class="alert alert-warning">
 							El servicio Emakers Premium deberá abonarse en el momento de la entrega en efectivo y con el importe exacto al repartidor. Estamos trabajando en ofrecer otros métodos de pago. 
+						</div>
+						
+						<div class="alert alert-danger hideshape" id="txt_so_franja">
+							No hay franjas disponibles para la fecha seleccionada.<br/>Por favor, escoja otro <b>día de entrega</b>.
 						</div>
 		    				
 						<div class="row">
@@ -717,21 +722,36 @@
 				  Calle Comte Urgell, 51 bis<br>
 				  08011 Barcelona<br>
 				  <br />
-				  (+34) 93 624 24 26<br />
-				  (+34) 93 419 92 09
+				  (+34) 93 365 78 85
+				  <br/>
+				  <font style="font-size:10px;">Teléfonos de tarificación normal.</font>
 				</address>
 			</div>
-			
+			<div class="col-md-5 col-sm-5 col-xs-12">
+				<address>
+				  <strong>Madrid</strong><br>
+				  <a href="mailto:contacta@emakers.es">contacta@emakers.es</a><br>
+				  Calle Marqués de Monteagudo, 22<br>
+				  28028 Madrid<br>
+				  <br />
+				  (+34) 81 051 45 63
+				  <br/>
+				  <font style="font-size:10px;">Teléfonos de tarificación normal.</font>
+				</address>
+			</div>
+			<!--<div class="clearfix visible-xs"></div>-->
+			<!-- 
 			<div class="col-md-5 col-sm-5 col-xs-12">
 				<address>
 					<strong><?=lang('ew_footer_resumen_title');?></strong><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#emakers"><?=lang('ew_footer_resumen_emakers');?></a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#servicios"><?=lang('ew_footer_resumen_servicios');?></a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#interaccion"><?=lang('ew_footer_resumen_interaccion');?></a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#entregas"><?=lang('ew_footer_resumen_entregas');?></a><br />
-					<a href="<?=base_url().$this->lang->lang()?>/#ademas"><?=lang('ew_footer_resumen_ademas');?></a><br />
+					<a href="#emakers"><?=lang('ew_footer_resumen_emakers');?></a><br />
+					<a href="#servicios"><?=lang('ew_footer_resumen_servicios');?></a><br />
+					<a href="#interaccion"><?=lang('ew_footer_resumen_interaccion');?></a><br />
+					<a href="#entregas"><?=lang('ew_footer_resumen_entregas');?></a><br />
+					<a href="#ademas"><?=lang('ew_footer_resumen_ademas');?></a><br />
 				</address>
 			</div>
+			-->
 			<div class="col-md-3 col-sm-3 col-xs-12 col-sm-offset-1 col-md-offset-1">
 				<address>
 					<strong><?=lang('ew_footer_siguenos');?></strong><br />
@@ -744,9 +764,9 @@
 		<div class="row">
    			<div class="col-md-12 col-sm-12 col-xs-12">
    				<div class="rights-footer">
-	   				<p class="pull-right"><?=anchor($this->lang->switch_uri(($this->lang->lang() == 'es') ? 'en' : 'es'),lang('ew_footer_lenguage'));?></p>
-		        	<p>
-		        		<?=lang('ew_footer_copy');?>
+		   			<p class="pull-right"><?=anchor($this->lang->switch_uri(($this->lang->lang() == 'es') ? 'en' : 'es'),lang('ew_footer_lenguage'));?></p>
+		        	<p><?=lang('ew_footer_copy');?> 
+		        		<!-- <a href="#" data-toggle="modal" data-target="#politica"><?=lang('ew_footer_politica');?></a> y -->
 		        		<a href="#" data-toggle="modal" data-target="#condiciones"><?=lang('ew_footer_condiciones');?></a>
 		        	</p>
 	        	</div>

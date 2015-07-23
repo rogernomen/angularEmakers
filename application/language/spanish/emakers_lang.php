@@ -125,7 +125,7 @@ $lang['ew_section_conditions_text1']="El sistema de tracking le permite ver el e
 $lang['ew_section_conditions_text2']="Si lo desea, puede solicitar un cambio en el día y la franja para la recepción de su pedido a través del sistema de tracking, introduciendo el número de pedido y el número de teléfono o el correo electrónico asociado al envío.";
 $lang['ew_section_conditions_text3']="La solicitud de una nueva franja de entrega debe ser aprobada por el equipo de Emakers. En caso de que no se pueda aceptar la solicitud, se le notificará oportunamente.";
 $lang['ew_section_conditions_text4']="<b>Los horarios límite (*)</b> para solicitar una franja de entrega son los siguientes:";
-$lang['ew_section_conditions_text5']="- <b>MAÑANA</b> (09:00h a 14:00h)<br/>Se puede solicitar esta franja hasta las 18:00h del día anterior.<br/><br/>- <b>TARDE</b> (15:00h a 18:30h)<br/>Se puede solicitar esta franja hasta las 20:00h del día anterior.<br/><br/>- <b>AFTER-WORK</b> (19:00h a 22:00h)<br/>Se puede solicitar esta franja hasta las 22:00h del día anterior.<br/><br/>- <b>DIURNA (**)</b> (12:00h a 17:00h)<br/>Se puede solicitar esta franja hasta las 18:00h del día anterior.<br/><br/>(*) Excepcionalmente, durante las campañas de Navidad y Rebajas, algunas franjas pueden verse restringidas.<br/><br/>(**) Esta franja solamente está disponible para algunos códigos postales de Barcelona y Madrid.";
+$lang['ew_section_conditions_text5']="- <b>MAÑANA</b> (09:00h a 14:00h)<br/>Se puede solicitar esta franja hasta las 18:00h del día anterior.<br/><br/>- <b>TARDE</b> (15:00h a 18:30h)<br/>Se puede solicitar esta franja hasta las 20:00h del día anterior.<br/><br/>- <b>AFTER-WORK</b> (19:00h a 22:00h)<br/>Se puede solicitar esta franja hasta las 22:00h del día anterior.<br/><br/>- <b>DIURNA (**)</b> (09:00h a 17:00h)<br/>Se puede solicitar esta franja hasta las 18:00h del día anterior.<br/><br/>(*) Excepcionalmente, durante las campañas de Navidad y Rebajas, algunas franjas pueden verse restringidas.<br/><br/>(**) Esta franja solamente está disponible para algunos códigos postales de Barcelona y Madrid.";
 
 $lang['ew_section_conditions_title_premium']="CONDICIONES DE USO DE EMAKERS PREMIUM";
 $lang['ew_section_conditions_text1_premium']="El servicio Emakers Premium permite escoger una franja de una hora para la entrega. El servicio Emakers Premium se ofrece sólo en algunos códigos postales. Emakers se reserva el derecho a suspender o activar el servicio en función de la época del año.";
@@ -203,8 +203,8 @@ $lang['ew_tr_notas_notipsa_description'] = 'Si lo desea, puede modificar el día
 
 // form
 $lang['ew_tr_form_title'] = 'Si desea aplazar la entrega o programar un nuevo intento, rellene el siguiente formulario con sus preferencias y haga clic en el botón \'Solicitar cambios\'.';
-$lang['ew_tr_form_diaentrega'] = 'Día de entrega:';
-$lang['ew_tr_form_franjaentrega'] = 'Franja deseada:';
+$lang['ew_tr_form_diaentrega'] = 'PASO 1 - Escoger día de entrega:';
+$lang['ew_tr_form_franjaentrega'] = 'PASO 2 - Escoger franja de entrega deseada:';
 $lang['ew_tr_form_otros_datos'] = 'Otros Datos:';
 $lang['ew_tr_form_telf'] = 'Teléfono:';
 $lang['ew_tr_form_telf2'] = 'Teléfono alternativo:';

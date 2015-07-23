@@ -157,7 +157,7 @@ $lang['ew_tr_solicitud_en_marxa'] = 'The request is being processed.<br/>Please 
 $lang['ew_tr_datos_invalidos_title'] = 'Data entered are invalid';
 $lang['ew_tr_datos_invalidos_description'] = 'The data entered is not correct. Please, make sure to fill all the fields and accept the terms of use of the tracking system.';
 $lang['ew_tr_error_busqueda_title'] = 'Data search error';
-$lang['ew_tr_error_busqueda_description'] = 'The data entered does not correspond to any order.<br/>Please, remember to enter all the digits of the order number and a telephone number or an e-mail linked to the order.<br/><br/>  If the problem persists, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 93 365 78 85 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
+$lang['ew_tr_error_busqueda_description'] = 'The data entered does not correspond to any order.<br/>Please, remember to enter all the digits of the order number and a telephone number or an e-mail linked to the order.<br/><br/>  If the problem persists, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 $lang['ew_tr_error_inesperado_title'] = 'Unexpected error in the request';
 $lang['ew_tr_error_inesperado_description'] = 'An error has been detected during the request referring to the order with number <font id="error_num_pedido"></font>.<br/><br/>  If the problem remains, please contact our support team:<br/><br/>(+34) 93 365 78 85 - Emakers Barcelona<br/>(+34) 81 051 45 63 - Emakers Madrid<br/><a href="mailto:infoenvios@emakers.es">infoenvios@emakers.es</a>';
 $lang['ew_tr_error_datos_solicitados_title'] = '  Error in the request';
@@ -196,8 +196,8 @@ $lang['ew_tr_notas_notipsa_description'] = 'Si lo desea, puede modificar el día
 
 // form
 $lang['ew_tr_form_title'] = 'If you wish to re-schedule a new delivery, fill this form with your preferences.';
-$lang['ew_tr_form_diaentrega'] = 'Delivery day:';
-$lang['ew_tr_form_franjaentrega'] = 'Shift:';
+$lang['ew_tr_form_diaentrega'] = 'STEP 1 - Choose delivery day:';
+$lang['ew_tr_form_franjaentrega'] = 'STEP 2 - Choose delivery shift:';
 $lang['ew_tr_form_otros_datos'] = 'Other data:';
 $lang['ew_tr_form_telf'] = 'Telephone number:';
 $lang['ew_tr_form_telf2'] = 'Alternative telephone number:';

@@ -288,3 +288,7 @@ font.fs10{
 .makehover{
 	cursor: pointer;
 }
+.hover_notAllowed{
+	cursor: not-allowed !important;
+	pointer-events: inherit !important;
+}

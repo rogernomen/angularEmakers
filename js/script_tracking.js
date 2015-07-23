@@ -141,6 +141,10 @@ $(function () {
     
     $('#diadeentrega').data("DateTimePicker").setMinDate(today2);
     
+    $('#diadeentrega > input').click(function(){
+	    $('#diadeentrega > span > span').trigger('click');
+    });
+    
     
 });
 
@@ -828,7 +832,7 @@ function rellenaFranjas_todas(){
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"1\">MAÑANA (09:00 - 14:00)</option>");
 	$('#input_franja_entrega').append("<option value=\"2\">TARDE (15:00 - 18:30)</option>");
-	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10 && $('#cf_agencia').val() != 6){
 		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
 	}
 	$('#input_franja_entrega').selectpicker('render');
@@ -836,28 +840,36 @@ function rellenaFranjas_todas(){
 	
 	// SISTEMA PREMIUM
 	// activamos todo
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
 	
 	// Reiniciamos los hiddens
 	$("#input_franja_entrega_normal").val(0);
 	$("#input_franja_entrega_premium").val(0);
 	
+	// Escondemos la alerta de franjas no disponibles
+	$('#txt_so_franja').removeClass('hideshape');
+	$('#txt_so_franja').removeClass('showshape');
+	$('#txt_so_franja').addClass('hideshape');
+	
 	// Especial Zaragoza --> NO HAY AFTERWORK
-	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10){
+	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10 || $('#cf_agencia').val() == 6){
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 9 ... 11 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
 			if(id_premium >= 9 && id_premium <= 11){
 				$(this).addClass('disabled');
+				$(this).addClass('hover_notAllowed');
 			}
 		});
 		$('#fr_gr_3').addClass('disabled');
 		$('#fr_gr_33').addClass('disabled');
+		$('#fr_gr_3').addClass('hover_notAllowed');
+		$('#fr_gr_33').addClass('hover_notAllowed');
 	}
 }
 
@@ -867,7 +879,7 @@ function rellenaFranjas_tarde(){
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"2\">TARDE (15:00 - 18:30)</option>");
-	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10 && $('#cf_agencia').val() != 6){
 		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
 	}
 	$('#input_franja_entrega').selectpicker('render');
@@ -875,43 +887,53 @@ function rellenaFranjas_tarde(){
 	
 	// SISTEMA PREMIUM
 	// activamos todo
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
 	// desactivamos premium mañana
 	$('#input_franja_entrega_premium > button').each(function(){
 		/* id's 1 ... 5 */
 		var id_premium = $(this).attr('id').split('fr_pr_')[1];
 		if(id_premium >= 1 && id_premium <= 5){
 			$(this).addClass('disabled');
+			$(this).addClass('hover_notAllowed');
 		}
 	});
 	// desactivamos normal mañana
 	$('#fr_gr_1').addClass('disabled');
+	$('#fr_gr_1').addClass('hover_notAllowed');
 	
 	// Reiniciamos los hiddens
 	$("#input_franja_entrega_normal").val(0);
 	$("#input_franja_entrega_premium").val(0);
 	
+	// Escondemos la alerta de franjas no disponibles
+	$('#txt_so_franja').removeClass('hideshape');
+	$('#txt_so_franja').removeClass('showshape');
+	$('#txt_so_franja').addClass('hideshape');
+	
 	// Especial Zaragoza --> NO HAY AFTERWORK
-	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10){
+	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10 || $('#cf_agencia').val() == 6){
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 9 ... 11 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
 			if(id_premium >= 9 && id_premium <= 11){
 				$(this).addClass('disabled');
+				$(this).addClass('hover_notAllowed');
 			}
 		});
 		$('#fr_gr_3').addClass('disabled');
 		$('#fr_gr_33').addClass('disabled');
+		$('#fr_gr_3').addClass('hover_notAllowed');
+		$('#fr_gr_33').addClass('hover_notAllowed');
 	}
 }
 
 function rellenaFranjas_noche(){
-	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10 && $('#cf_agencia').val() != 6){
 		// Vaciamos el select primero
 		$('#input_franja_entrega').html('');
 		$('#input_franja_entrega').prop('disabled',false);
@@ -921,24 +943,33 @@ function rellenaFranjas_noche(){
 		
 		// SISTEMA PREMIUM
 		// activamos todo
-		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
-		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
-		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
-		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
-		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
-		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
 		// desactivamos premium mañana
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 1 ... 8 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
 			if(id_premium >= 1 && id_premium <= 8){
 				$(this).addClass('disabled');
+				$(this).addClass('hover_notAllowed');
 			}
 		});
 		// desactivamos normal mañana
 		$('#fr_gr_1').addClass('disabled');
 		$('#fr_gr_2').addClass('disabled');
 		$('#fr_gr_4').addClass('disabled');
+		$('#fr_gr_1').addClass('hover_notAllowed');
+		$('#fr_gr_2').addClass('hover_notAllowed');
+		$('#fr_gr_4').addClass('hover_notAllowed');
+		
+		// Escondemos la alerta de franjas no disponibles
+		$('#txt_so_franja').removeClass('hideshape');
+		$('#txt_so_franja').removeClass('showshape');
+		$('#txt_so_franja').addClass('hideshape');
 		
 		// Reiniciamos los hiddens
 		$("#input_franja_entrega_normal").val(0);
@@ -953,7 +984,7 @@ function rellenaFranjas_diurna_todas(){
 	$('#input_franja_entrega').html('');
 	$('#input_franja_entrega').prop('disabled',false);
 	$('#input_franja_entrega').append("<option selected=\"selected\" value=\"4\">DIURNA (12:00 - 17:00)</option>");
-	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10 && $('#cf_agencia').val() != 6){
 		$('#input_franja_entrega').append("<option value=\"3\">AFTER-WORK (19:00 - 22:00)</option>");
 	}
 	$('#input_franja_entrega').selectpicker('render');
@@ -961,33 +992,41 @@ function rellenaFranjas_diurna_todas(){
 	
 	// SISTEMA PREMIUM
 	// activamos todo
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
 	
 	// Reiniciamos los hiddens
 	$("#input_franja_entrega_normal").val(0);
 	$("#input_franja_entrega_premium").val(0);
 	
+	// Escondemos la alerta de franjas no disponibles
+	$('#txt_so_franja').removeClass('hideshape');
+	$('#txt_so_franja').removeClass('showshape');
+	$('#txt_so_franja').addClass('hideshape');
+	
 	// Especial Zaragoza --> NO HAY AFTERWORK
-	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10){
+	if($('#cf_agencia').val() == 9 || $('#cf_agencia').val() == 10 || $('#cf_agencia').val() == 6){
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 9 ... 11 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
 			if(id_premium >= 9 && id_premium <= 11){
 				$(this).addClass('disabled');
+				$(this).addClass('hover_notAllowed');
 			}
 		});
 		$('#fr_gr_3').addClass('disabled');
 		$('#fr_gr_33').addClass('disabled');
+		$('#fr_gr_3').addClass('hover_notAllowed');
+		$('#fr_gr_33').addClass('hover_notAllowed');
 	}
 }
 
 function rellenaFranjas_diurna_noche(){
-	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10){
+	if($('#cf_agencia').val() != 9 && $('#cf_agencia').val() != 10 && $('#cf_agencia').val() != 6){
 		// Vaciamos el select primero
 		$('#input_franja_entrega').html('');
 		$('#input_franja_entrega').prop('disabled',false);
@@ -997,24 +1036,33 @@ function rellenaFranjas_diurna_noche(){
 		
 		// SISTEMA PREMIUM
 		// activamos todo
-		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
-		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
-		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
-		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
-		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
-		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+		$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+		$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
 		// desactivamos premium mañana
 		$('#input_franja_entrega_premium > button').each(function(){
 			/* id's 1 ... 8 */
 			var id_premium = $(this).attr('id').split('fr_pr_')[1];
 			if(id_premium >= 1 && id_premium <= 8){
 				$(this).addClass('disabled');
+				$(this).addClass('hover_notAllowed');
 			}
 		});
 		// desactivamos normal mañana
 		$('#fr_gr_1').addClass('disabled');
 		$('#fr_gr_2').addClass('disabled');
 		$('#fr_gr_4').addClass('disabled');
+		$('#fr_gr_1').addClass('hover_notAllowed');
+		$('#fr_gr_2').addClass('hover_notAllowed');
+		$('#fr_gr_4').addClass('hover_notAllowed');
+		
+		// Escondemos la alerta de franjas no disponibles
+		$('#txt_so_franja').removeClass('hideshape');
+		$('#txt_so_franja').removeClass('showshape');
+		$('#txt_so_franja').addClass('hideshape');
 		
 		// Reiniciamos los hiddens
 		$("#input_franja_entrega_normal").val(0);
@@ -1034,16 +1082,21 @@ function sinFranjasDisponibles(){
 	
 	// SISTEMA PREMIUM
 	// activamos todo
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');});
-	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('disabled');$(this).removeClass('hover_notAllowed');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).removeClass('active');$(this).removeClass('hover_notAllowed');});
 	// desactivamos todo
-	$('#input_franja_entrega_premium > button').each(function(){$(this).addClass('disabled');});
-	$('#content_conf_franjas_1 > div > button').each(function(){$(this).addClass('disabled');});
-	$('#content_conf_franjas_2 > div > button').each(function(){$(this).addClass('disabled');});
+	$('#input_franja_entrega_premium > button').each(function(){$(this).addClass('disabled');$(this).addClass('hover_notAllowed');});
+	$('#content_conf_franjas_1 > div > button').each(function(){$(this).addClass('disabled');$(this).addClass('hover_notAllowed');});
+	$('#content_conf_franjas_2 > div > button').each(function(){$(this).addClass('disabled');$(this).addClass('hover_notAllowed');});
+	
+	// Mostramos la alerta de franjas no disponibles
+	$('#txt_so_franja').removeClass('hideshape');
+	$('#txt_so_franja').removeClass('showshape');
+	$('#txt_so_franja').addClass('showshape');
 	
 	// Reiniciamos los hiddens
 	$("#input_franja_entrega_normal").val(0);
